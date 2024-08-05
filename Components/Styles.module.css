@@ -1,0 +1,229 @@
+.container{
+  background-image: url('../public/worldWide.png');
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+
+/* navbar style */
+.navbar {
+    background-color: white;
+    padding: 8px 24px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+    align-items: center; 
+    color: black;
+    font-size: 2rem;
+    position: fixed;
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+/* Style for the logo */
+.navbar .logo {
+ font-size: 3rem;
+ color: #605DEC;
+ font-weight: 500;
+ padding: 8px 24px;
+ cursor: pointer;
+
+    
+}
+.logo:hover{
+    color: aqua;
+}
+
+/* Style for the links */
+ .links {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    margin: 0 10px;
+    color: #7C8DB0;
+    padding: 8px 24px;
+    gap: 30px;
+
+
+
+}
+.link{
+/* Body Default */
+font-family: 'Nunito Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 25px;
+line-height: 22px;
+/* identical to box height */
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #7C8DB0;
+cursor: pointer;
+}
+.link:hover{
+    color: #605DEC;
+
+}
+.active{
+    color: #605DEC;
+}
+/*SignUp*/
+
+.signUp{
+  /* button */
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 22px;
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 12px 20px;
+gap: 8px;
+
+width: auto;
+height: auto;
+
+/* Purple Blue */
+background: #605DEC;
+border-radius: 4px;
+color: white;
+
+
+}
+
+.signUp:hover{
+
+    background-color:  aqua;
+
+    cursor: pointer;
+}
+/**/
+.flightSearch {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0px;
+    background: #ffffff;
+    border: 1px solid #cbd4e6;
+    box-shadow: 0px 2px 4px rgba(7, 4, 146, 0.1), 0px 24px 60px rgba(6, 47, 125, 0.05), 0px 12px 24px rgba(27, 59, 119, 0.05);
+    border-radius: 4px;
+  }
+  
+  .textInput {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: 4px;
+    
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+  }
+  
+  .base {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    padding: 8px 12px;
+    gap: 8px;
+    width: 324.5px;
+    height: 48px;
+    background: #ffffff;
+    border-radius: 4px;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+  }
+  
+  .icon {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+  }
+  
+  .label {
+    width: 260.5px;
+    height: 32px;
+    font-family: 'Nunito Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 25px;
+    display: flex;
+    align-items: center;
+    color: #7c8db0;
+    flex: none;
+    order: 1;
+    flex-grow: 1;
+  }
+  .label.input[type="search"]:focus {
+    border: 1px solid #605dec;
+
+  }
+  
+  .divider {
+    width: 1px;
+    height: 48px;
+    background: gray;
+    flex: none;
+  
+  }
+  
+  .button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px 20px;
+    gap: 8px;
+    width: 96px;
+    height: 48px;
+    background: #605dec;
+    border-radius: 4px;
+    flex: none;
+    order: 7;
+    flex-grow: 0;
+  }
+  
+  .button .label {
+    width: 56px;
+    height: 25px;
+    font-family: 'Nunito Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 25px;
+    display: flex;
+    align-items: center;
+    color: #fafafa;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+  }
+  
+  

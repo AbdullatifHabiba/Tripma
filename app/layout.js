@@ -1,0 +1,28 @@
+import { Inter } from "next/font/google";
+import "./globals.css";
+import Navbar from "../Components/Navbar";
+import Background from "../Components/Background";
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata = {
+  title: "Trimpa",
+  description: "Flight booking made easy",
+};
+
+export default function RootLayout({ children, model }) {
+  return (
+    <html lang="en">
+      <body className={inter.className}>
+
+        <Navbar />
+
+        <Background>
+          {model}
+
+          {children}
+
+        </Background>
+      </body>
+    </html>
+  );
+}
