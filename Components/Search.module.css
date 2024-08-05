@@ -1,0 +1,351 @@
+.selectWrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative; /* Required for positioning the custom arrow */
+}
+
+.select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  color: #000; /* Default font color */
+  appearance: none; /* Remove default arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+  font-size: 16px;
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.select:hover {
+  background-color: #0070f3; /* Background color on hover */
+  color: #fff; /* Font color on hover */
+}
+
+.selectWrapper::after {
+  content: "\25BC"; /* Custom arrow */
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/**/
+.flightSearch {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0px;
+  background: #ffffff;
+  border: 1px solid #cbd4e6;
+  box-shadow: 0px 2px 4px rgba(7, 4, 146, 0.1),
+    0px 24px 60px rgba(6, 47, 125, 0.05), 0px 12px 24px rgba(27, 59, 119, 0.05);
+  border-radius: 4px;
+  color: #000;
+}
+
+.textInput {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  gap: 4px;
+
+  flex: none;
+  order: 0;
+  flex-grow: 1;
+}
+
+.base {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  padding: 8px 12px;
+  gap: 8px;
+  width: 324.5px;
+  height: 48px;
+  background: #ffffff;
+  border-radius: 4px;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.icon {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.label {
+  width: 260.5px;
+  height: 32px;
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 25px;
+  display: flex;
+  align-items: center;
+  color: #7c8db0;
+  flex: none;
+  order: 1;
+  flex-grow: 1;
+}
+.label.input[type="search"]:focus {
+  border: 1px solid #605dec;
+}
+
+.divider {
+  width: 1px;
+  height: 50px;
+  background: gray;
+  flex: none;
+}
+
+.button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px 20px;
+  gap: 8px;
+  width: 96px;
+  background: #605dec;
+  border-radius: 4px;
+  margin: 2px;
+}
+
+.button .label {
+  width: 56px;
+  height: 25px;
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 25px;
+  display: flex;
+  align-items: center;
+  color: #fafafa;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+/* Drop dow custom */
+/* Container styles */
+.dropdown {
+  position: relative;
+  width: 100%;
+  color: #7c8db0;
+  margin: -7px -10px;
+}
+
+/* Header styles */
+.dropdownHeader {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+    margin: 0px;
+}
+
+/* Focused header */
+.dropdownHeader:focus {
+  outline: none;
+  border-color: blue; /* Blue border on focus */
+}
+
+/* List styles */
+.dropdownList {
+  position: absolute;
+  width: 100%;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 5px;
+  margin-top: 5px;
+  z-index: 10;
+}
+
+/* Item styles */
+.dropdownItem {
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px; /* Border radius for each item */
+  margin: 2px 0; /* Margin between items */
+}
+
+/* Hovered item */
+.dropdownItem:hover {
+  background-color: blue;
+  color: white;
+}
+
+.calendar {
+  position: relative;
+  font-family: Arial, sans-serif;
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.dateInput {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.calendarIcon {
+  margin-right: 10px;
+}
+
+.dateText {
+  flex-grow: 1;
+}
+
+.calendarPopup {
+  /* .base / Date Picker */
+
+  box-sizing: border-box;
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+
+  position: absolute;
+  width: 642px;
+  height: 395px;
+  left: -274px;
+  top: -20px;
+
+  background: #ffffff;
+  /* Grey / 200
+
+Used for outlines or inactive buttons
+
+*/
+  border: 1px solid #cbd4e6;
+  /* elevation / medium */
+  box-shadow: 0px 2px 4px rgba(7, 4, 146, 0.1),
+    0px 24px 60px rgba(6, 47, 125, 0.05), 0px 12px 24px rgba(27, 59, 119, 0.05);
+  border-radius: 12px;
+  z-index: 1000;
+}
+
+.tripTypeSelector {
+  /* field section */
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  gap: 26px;
+
+  width: 642px;
+  height: 88px;
+}
+
+.tripTypeSelector label {
+  margin: 0px 15px;
+}
+.tripTypeSelector label input {
+  margin-right: 10px;
+}
+
+.doneButton {
+  background-color: #4a4af4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+.calanderPicker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.passengerSelector {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdownHeader {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #fff;
+  margin: 0px 10px;
+}
+
+.userIcon {
+  margin-right: 8px;
+}
+
+.dropdownContent {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 200px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 10;
+}
+
+.counter {
+  display: flex;
+  flex-direction: column;
+}
+
+.counterRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.counterButton {
+  border: none;
+  background-color: #f0f0f0;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.counterButton:hover {
+  background-color: #e0e0e0;
+}
+
+.counterButton:focus {
+  outline: none;
+}

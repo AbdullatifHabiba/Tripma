@@ -19,7 +19,7 @@ const CookiesCard = () => {
         <div className={styles.cookiesCardText}>
           By using our site, you agree to eat our cookies.
         </div>
-        <div className={styles.cancel}>X</div>
+        <button className={styles.cancel} onClick={handleAccept} >X</button>
          </div>
         <div className={styles.buttons}>
           <button className={styles.accept} onClick={handleAccept}>

@@ -76,9 +76,10 @@ export default function Navbar() {
             </span>
           {/* </Link> */}
         </li>
-        <li className={style.signUp}>
+        <li className={style.link}>
           {/* <Link href="/ui/sign"> */}
             <span
+               className={`${style.signUp}` }
               onClick={() => handleLinkClick("/ui/sign")}
             >
               SignUp
