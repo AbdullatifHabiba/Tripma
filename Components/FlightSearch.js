@@ -2,8 +2,8 @@ import styles from './Styles.module.css';
 import Image from 'next/image';
 import depart from '../public/departure.png';
 import arrival from '../public/arrival.png';
-import calender from '../public/calendar with dates.png';
-import user from '../public/person solid.png';
+import calender from '../public/calendar.png';
+import user from '../public/user.png';
 const FlightSearch = () => {
   return (
     <div className={styles.flightSearch}>

@@ -14,14 +14,18 @@ const CookiesCard = () => {
     {!accepted && 
     <div className={accepted ? styles.hiddencookies : styles.cookiesCard}>
       <div className={styles.cookiesCardContent}>
-        <p className={styles.cookiesCardText}>
+      <div className={styles.buttons}>
+
+        <div className={styles.cookiesCardText}>
           By using our site, you agree to eat our cookies.
-        </p>
+        </div>
+        <div className={styles.cancel}>X</div>
+         </div>
         <div className={styles.buttons}>
           <button className={styles.accept} onClick={handleAccept}>
             Accept Cookies
           </button>
-          <button>Go to settings</button>
+          <button className={styles.buttonc}>Go to settings</button>
         </div>
       </div>
     </div>

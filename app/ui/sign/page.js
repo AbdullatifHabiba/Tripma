@@ -8,13 +8,13 @@ import facebook from "../../../public/facebook.png";
 import { useRouter } from "next/navigation";
 import Home from "../home/page";
 
-const Sign = () => {
+const Sign = ({state}) => {
   const [isOverlayVisible, setIsOverlayVisible] = useState(true);
   const router = useRouter();
 
   const handleCloseOverlay = () => {
     setIsOverlayVisible(false);
-    router.back();
+    state(false);
   };
 
   return (
@@ -30,9 +30,7 @@ const Sign = () => {
                 <h1 className={styles["sign-up-title"]}>Sign up for Tripma</h1>
                 <button
                   className={styles["cancel-button"]}
-                  onClick={() => {
-                    router.back();
-                  }}
+                  onClick={handleCloseOverlay}
                 >
                   ✖️
                 </button>
@@ -107,7 +105,6 @@ const Sign = () => {
           </div>
         </div>
       )}
-            <Home />
 
     </>
   );

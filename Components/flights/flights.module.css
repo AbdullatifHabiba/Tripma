@@ -1,0 +1,275 @@
+.CardRow {
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 64px;
+  gap: 24px;
+
+  width: 100%;
+  color: black;
+  flex-wrap: wrap;
+
+}
+.titleRow {
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 826px;
+
+  height: 33px;
+  align-self: center;
+}
+.cards {
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 40px;
+
+  width: 100%;
+  height: 100%;
+}
+.cardLine {
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0px;
+  gap: 40px;
+  flex-wrap: wrap;
+  flex-grow: 1;
+}
+.card {
+  /* Card / full card */
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+
+  width: auto;
+  height: auto;
+
+  /* True White */
+  background: #ffffff;
+  /* elevation / light */
+  box-shadow: 0px 2px 4px rgba(28, 5, 77, 0.1),
+    0px 12px 32px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+}
+
+.cardImage {
+  /* image */
+
+  width: 100%;
+  height: auto;
+}
+.cardData {
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px 24px;
+  gap: 4px;
+
+  width: 100%;
+  height: auto;
+  margin: auto;
+
+  /* True White */
+  background: #ffffff;
+}
+
+.titleRow {
+  /* title row */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: flex-start;
+padding: 0px;
+gap: 826px;
+
+width: 1312px;
+height: 33px;
+
+
+
+}
+/* Name of section and an accent */
+
+.name {
+  width: 100%;
+  height: 25px;
+
+  /* Header H4 */
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 25px;
+  /* identical to box height */
+
+  /* Grey / 600 */
+  color: #6e7491;
+
+  /* Inside auto layout */
+  display: flex;
+  order: 0;
+  flex-grow: 0;
+}
+
+.price {
+  width: 72px;
+  height: 25px;
+
+  /* Header H4 */
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 25px;
+  /* identical to box height */
+  text-align: right;
+  margin-left: auto;
+
+  /* Grey / 600 */
+  color: #6e7491;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.description {
+  width: 100%;
+  height: auto;
+
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #7c8db0;
+  display: flex;
+  flex-wrap: wrap;
+}
+.city {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+
+  /* Grey / 400 */
+  color: #7c8db0;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+.arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+}
+.exploreButton {
+ /* button */
+
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 12px 20px;
+gap: 8px;
+
+width: 195px;
+height: 48px;
+
+/* Purple Blue */
+background: #605DEC;
+border-radius: 4px;
+color: #ffffff;
+margin: 40px auto;
+
+
+
+}
+.reviewsContainer {
+    text-align: center;
+    padding: 50px 20px;
+    /* Grey / 600 */
+    color: #6E7491;
+    align-items: center;
+    padding: 64px;
+    gap: 24px;
+
+
+
+  }
+  
+  .highlight {
+    color: #605dec;
+  }
+  
+  .reviewsGrid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .AllCard{
+    display: flex;
+
+    
+  }
+
+  .reviewCard {
+    width: 300px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+  }
+  
+  .userInfo {
+    display: flex;
+    align-items:flex-start;
+    text-align: left;
+    margin-bottom: 10px;
+  }
+  
+  .avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    margin: 20px 0px;
+
+
+  }
+  
+  .rating {
+    color: #f39c12;
+    margin-bottom: 10px;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .reviewContent{
+    text-align: left;
+  }
+
+
+
+
+
+

@@ -19,13 +19,10 @@ export default function RootLayout({ children, model }) {
 
         <Navbar />
 
-        <Background>
           {model}
 
           {children}
-          <CookiesCard />
 
-        </Background>
       </body>
     </html>
   );

@@ -20,6 +20,7 @@
     align-items: center; 
     color: black;
     font-size: 2rem;
+    gap: 10px;
     /* position: fixed;
     width: 100%; */
 }
@@ -58,14 +59,13 @@
     gap: 30px;
 
 
-
 }
 .link{
 /* Body Default */
 font-family: 'Nunito Sans';
 font-style: normal;
 font-weight: 400;
-font-size: 25px;
+font-size: 16px;
 line-height: 22px;
 /* identical to box height */
 display: flex;
@@ -226,7 +226,7 @@ color: white;
     flex-grow: 0;
   }
   
-  
+  /* banar */
   .banar {
     display: flex;
     flex-direction: row;

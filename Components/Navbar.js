@@ -5,15 +5,22 @@ import { useState } from "react";
 import style from "./Styles.module.css";
 import Image from "next/image";
 import logo from "../public/tripma.svg";
+import Sign from "@/app/ui/sign/page";
 
 export default function Navbar() {
   const [activeLink, setActiveLink] = useState("");
+  const [isVisible, setIsVisible] = useState(false); //popup sign up
 
   const handleLinkClick = (link) => {
     setActiveLink(link);
+
+    if (link === "/ui/sign") {
+      setIsVisible(true);
+    }
   };
 
   return (
+    <>
     <div className={style.navbar}>
       <div className={style.logo} >
         <Link href="/">
@@ -58,7 +65,7 @@ export default function Navbar() {
           </Link>
         </li>
         <li className={style.link}>
-          <Link href="/ui/sign">
+          {/* <Link href="/ui/sign"> */}
             <span
               className={`${style.link} ${
                 activeLink === "/ui/sign" ? style.active : ""
@@ -67,21 +74,22 @@ export default function Navbar() {
             >
               SignIn
             </span>
-          </Link>
+          {/* </Link> */}
         </li>
         <li className={style.signUp}>
-          <Link href="/ui/sign">
+          {/* <Link href="/ui/sign"> */}
             <span
-              className={`${style.signUp} ${
-                activeLink === "/ui/sign" ? style.active : ""
-              }`}
               onClick={() => handleLinkClick("/ui/sign")}
             >
               SignUp
             </span>
-          </Link>
+          {/* </Link> */}
         </li>
       </ul>
     </div>
+    {
+      isVisible&&(<Sign state={setIsVisible}/>)
+    }
+    </>
   );
 }
