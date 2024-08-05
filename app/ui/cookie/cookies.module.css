@@ -12,8 +12,8 @@ gap: 12px;
 position: absolute;
 width: 300px;
 height: 130px;
-left: 48px;
-bottom: 48px;
+left: 10px;
+bottom: 0px;
 
 background: #F6F6FE;
 border: 1px solid #605DEC;
@@ -87,3 +87,6 @@ border-radius: 8px;
     padding: inherit;
 }
 
+.hiddencookies{
+    display: none;
+}

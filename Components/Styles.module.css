@@ -20,8 +20,8 @@
     align-items: center; 
     color: black;
     font-size: 2rem;
-    position: fixed;
-    width: 100%;
+    /* position: fixed;
+    width: 100%; */
 }
 
 
@@ -227,3 +227,34 @@ color: white;
   }
   
   
+/**/
+/* Banner Promotion */
+
+.banar{
+display: flex;
+flex-direction: row;
+padding: 16px 32px;
+gap: 10px;
+background: #605DEC;
+
+align-items: center;
+justify-content: center;
+}
+
+.banarContent{
+
+font-family: 'Nunito Sans';
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 25px;
+display: flex;
+color: #F6F6FE;
+justify-content: space-between;
+  gap: 200px;
+}
+
+.banarButton{
+  
+
+}

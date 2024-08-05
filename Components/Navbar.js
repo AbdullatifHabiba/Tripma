@@ -4,7 +4,7 @@ export default function Navbar() {
   return (
     <div className={style.navbar}>
       <div className={style.logo}>
-        <Link href="/ui/home">
+        <Link href="/">
           Trimpa
         </Link>
       </div>
