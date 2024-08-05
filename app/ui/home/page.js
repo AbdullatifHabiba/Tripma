@@ -9,9 +9,7 @@ export default function Home() {
       <div className={styles.hero}>
         <Image src={hero} alt="its more than just trip"></Image>
       </div>
-       <FlightSearch />
-     
-
+      <FlightSearch />
     </div>
   );
 }

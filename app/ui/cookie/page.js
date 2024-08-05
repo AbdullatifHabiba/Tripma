@@ -10,6 +10,8 @@ const CookiesCard = () => {
   };
 
   return (
+    <>
+    {!accepted && 
     <div className={accepted ? styles.hiddencookies : styles.cookiesCard}>
       <div className={styles.cookiesCardContent}>
         <p className={styles.cookiesCardText}>
@@ -23,6 +25,8 @@ const CookiesCard = () => {
         </div>
       </div>
     </div>
+  }
+    </>
   );
 };
 

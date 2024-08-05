@@ -1,29 +1,85 @@
+"use client";
 import Link from "next/link";
+
+import { useState } from "react";
 import style from "./Styles.module.css";
+import Image from "next/image";
+import logo from "../public/tripma.svg";
+
 export default function Navbar() {
+  const [activeLink, setActiveLink] = useState("");
+
+  const handleLinkClick = (link) => {
+    setActiveLink(link);
+  };
+
   return (
     <div className={style.navbar}>
-      <div className={style.logo}>
+      <div className={style.logo} >
         <Link href="/">
-          Trimpa
+          <Image src={logo} alt="logo" onClick={()=>handleLinkClick("/")}/>
         </Link>
       </div>
       <ul className={style.links}>
         <li className={style.link}>
-          <Link href="/ui/flight">Flights</Link>
+          <Link href="/ui/flights">
+            <span
+              className={`${style.link} ${
+                activeLink === "/ui/flights" ? style.active : ""
+              }`}
+              onClick={() => handleLinkClick("/ui/flights")}
+            >
+              Flights
+            </span>
+          </Link>
         </li>
         <li className={style.link}>
-          <Link href="/ui/hotel">Hotels</Link>
+          <Link href="/ui/hotels">
+            <span
+              className={`${style.link} ${
+                activeLink === "/ui/hotels" ? style.active : ""
+              }`}
+              onClick={() => handleLinkClick("/ui/hotels")}
+            >
+              Hotels
+            </span>
+          </Link>
         </li>
         <li className={style.link}>
-          <Link href="/ui/package">Packages</Link>
+          <Link href="/ui/packages">
+            <span
+              className={`${style.link} ${
+                activeLink === "/ui/packages" ? style.active : ""
+              }`}
+              onClick={() => handleLinkClick("/ui/packages")}
+            >
+              Packages
+            </span>
+          </Link>
         </li>
         <li className={style.link}>
-          <Link href="/ui/sign">SignIn</Link>
+          <Link href="/ui/sign">
+            <span
+              className={`${style.link} ${
+                activeLink === "/ui/sign" ? style.active : ""
+              }`}
+              onClick={() => handleLinkClick("/ui/sign")}
+            >
+              SignIn
+            </span>
+          </Link>
         </li>
-        <li className={`${style.signUp}`}>
-        <Link href="/ui/sign">SignUp</Link>
-
+        <li className={style.signUp}>
+          <Link href="/ui/sign">
+            <span
+              className={`${style.signUp} ${
+                activeLink === "/ui/sign" ? style.active : ""
+              }`}
+              onClick={() => handleLinkClick("/ui/sign")}
+            >
+              SignUp
+            </span>
+          </Link>
         </li>
       </ul>
     </div>

@@ -3,7 +3,7 @@ import "./globals.css";
 import Navbar from "../Components/Navbar";
 import Background from "../Components/Background";
 import Banar from "../Components/Banar";
-import Home from "./ui/home/page";
+import CookiesCard from "./ui/cookie/page";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -21,9 +21,10 @@ export default function RootLayout({ children, model }) {
 
         <Background>
           {model}
-          <Home />
 
           {children}
+          <CookiesCard />
+
         </Background>
       </body>
     </html>

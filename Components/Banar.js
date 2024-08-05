@@ -19,10 +19,10 @@ export default function Banar() {
     <div className={styles.banar}>
       <div className={styles.banarContent}>
         Join Tripma today and save up to 20% on your flight using code TRAVEL at checkout. Promotion valid for new users only.
+        </div>
         <button className={styles.banarButton} onClick={handleClose}>
             <Image src={x} alt="x" width={20} height={20} />
         </button>
       </div>
-    </div>
   );
 }
