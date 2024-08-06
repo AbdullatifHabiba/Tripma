@@ -1,8 +1,8 @@
-'use client';
-import { useState } from 'react';
-import styles from './Styles.module.css';
-import Image from 'next/image';
-import x from '../public/x close no.png';
+"use client";
+import { useState } from "react";
+import styles from "./Styles.module.css";
+import Image from "next/image";
+import x from "../public/x close no.png";
 
 export default function Banar() {
   const [isVisible, setIsVisible] = useState(true);
@@ -18,11 +18,12 @@ export default function Banar() {
   return (
     <div className={styles.banar}>
       <div className={styles.banarContent}>
-        Join Tripma today and save up to 20% on your flight using code TRAVEL at checkout. Promotion valid for new users only.
-        </div>
-        <button className={styles.banarButton} onClick={handleClose}>
-            <Image src={x} alt="x" width={20} height={20} />
-        </button>
+        Join Tripma today and save up to 20% on your flight using code TRAVEL at
+        checkout. Promotion valid for new users only.
       </div>
+      <button className={styles.banarButton} onClick={handleClose}>
+        <Image src={x} alt="x" width={20} height={20} />
+      </button>
+    </div>
   );
 }

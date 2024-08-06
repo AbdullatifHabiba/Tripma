@@ -34,4 +34,4 @@ const CookiesCard = () => {
   );
 };
 
-export default CookiesCard;''
+export default CookiesCard;

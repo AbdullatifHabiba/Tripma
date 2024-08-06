@@ -1,12 +1,11 @@
 import Home from "./ui/home/page";
-import CookiesCard from "./ui/cookie/page";
+import CookiesCard from "../Components/cookie/cookies";
 
 export default function Main() {
   return (
-     <>
+    <>
       <Home />
       <CookiesCard />
-
-     </>
+    </>
   );
 }

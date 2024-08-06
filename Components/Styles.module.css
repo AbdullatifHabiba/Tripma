@@ -1,6 +1,6 @@
-.container{
-  background-image: url('../public/worldWide.png');
-  background-size:cover;
+.container {
+  background-image: url("../public/worldWide.png");
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   height: 100vh;
@@ -12,129 +12,108 @@
 
 /* navbar style */
 .navbar {
-    background-color: white;
-    padding: 8px 24px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between; 
-    align-items: center; 
-    color: black;
-    font-size: 2rem;
-    gap: 10px;
-    /* position: fixed;
+  background-color: white;
+  padding: 8px 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  color: black;
+  font-size: 2rem;
+  gap: 10px;
+  /* position: fixed;
     width: 100%; */
 }
 
-
-
-
-
-
-
-
 /* Style for the logo */
 .navbar .logo {
- font-size: 3rem;
- color: #605DEC;
- font-weight: 500;
- padding: 8px 24px;
- cursor: pointer;
-
-    
+  font-size: 3rem;
+  color: #605dec;
+  font-weight: 500;
+  padding: 8px 24px;
+  cursor: pointer;
 }
-.logo:hover{
-    color: aqua;
+.logo:hover {
+  color: aqua;
 }
 
 /* Style for the links */
- .links {
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+.links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 
-    margin: 0 10px;
-    color: #7C8DB0;
-    padding: 8px 24px;
-    gap: 30px;
-
-
+  margin: 0 10px;
+  color: #7c8db0;
+  padding: 8px 24px;
+  gap: 30px;
 }
-.link{
-/* Body Default */
-font-family: 'Nunito Sans';
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-line-height: 22px;
-/* identical to box height */
-display: flex;
-align-items: center;
-text-align: center;
+.link {
+  /* Body Default */
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  /* identical to box height */
+  display: flex;
+  align-items: center;
+  text-align: center;
 
-color: #7C8DB0;
-cursor: pointer;
+  color: #7c8db0;
+  cursor: pointer;
 }
-.link:hover{
-    color: #605DEC;
-
+.link:hover {
+  color: #605dec;
 }
-.active{
-    color: #605DEC;
+.active {
+  color: #605dec;
 }
 /*SignUp*/
 
-.signUp{
-/* button */
-display: flex;
-flex-direction: row;
-align-items: center;
-padding: 12px 20px;
-gap: 8px;
-/* Purple Blue */
-background: #605DEC;
-border-radius: 4px;
-color: #ffffff;
-
-
-
+.signUp {
+  /* button */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px 20px;
+  gap: 8px;
+  /* Purple Blue */
+  background: #605dec;
+  border-radius: 4px;
+  color: #ffffff;
 }
 
-.signUp:hover{
+.signUp:hover {
+  background-color: aqua;
 
-    background-color:  aqua;
-
-    cursor: pointer;
+  cursor: pointer;
 }
 
-  
-  /* banar */
-  .banar {
-    display: flex;
-    flex-direction: row;
-    padding: 16px 32px;
-    background: #605DEC;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .banarContent {
-    font-family: 'Nunito Sans';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 25px;
-    display: flex;
-    color: #F6F6FE;
-    justify-content: center;
-    margin: auto;
-    ;
+/* banar */
+.banar {
+  display: flex;
+  flex-direction: row;
+  padding: 16px 32px;
+  background: #605dec;
+  align-items: center;
+  justify-content: center;
+}
 
-    
-  }
-  
-  .banarButton {
-    margin-left: auto; /* Pushes the button to the far right */
-    margin-right: 20px;
-  }
-  
+.banarContent {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 25px;
+  display: flex;
+  color: #f6f6fe;
+  justify-content: center;
+  margin: auto;
+}
+
+.banarButton {
+  margin-left: auto; /* Pushes the button to the far right */
+  margin-right: 20px;
+}

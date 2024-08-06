@@ -160,7 +160,7 @@
   align-items: center;
   justify-content: space-between;
   background-color: white;
-    margin: 0px;
+  margin: 0px;
 }
 
 /* Focused header */
@@ -178,8 +178,14 @@
   border-radius: 5px;
   margin-top: 5px;
   z-index: 10;
-}
+  color: #27273f;
 
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+}
 /* Item styles */
 .dropdownItem {
   padding: 10px;
@@ -202,6 +208,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  color: #7c8db0;
 }
 
 .dateInput {
@@ -211,6 +218,7 @@
   border-radius: 5px;
   padding: 10px;
   cursor: pointer;
+  width: 200px;
 }
 
 .calendarIcon {
@@ -253,9 +261,6 @@ Used for outlines or inactive buttons
 }
 
 .tripTypeSelector {
-  /* field section */
-
-  /* Auto layout */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -291,6 +296,14 @@ Used for outlines or inactive buttons
 .passengerSelector {
   position: relative;
   display: inline-block;
+
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 25px;
+
+  color: #7c8db0;
 }
 
 .dropdownHeader {
@@ -302,6 +315,8 @@ Used for outlines or inactive buttons
   cursor: pointer;
   background-color: #fff;
   margin: 0px 10px;
+  justify-content: flex-start;
+  width: 200px;
 }
 
 .userIcon {
@@ -348,4 +363,15 @@ Used for outlines or inactive buttons
 
 .counterButton:focus {
   outline: none;
+}
+
+.sideBySideCalendar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #fff;
 }

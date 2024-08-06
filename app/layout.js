@@ -1,9 +1,8 @@
 import { Inter } from "next/font/google";
+import "react-datepicker/dist/react-datepicker.css";
 import "./globals.css";
 import Navbar from "../Components/Navbar";
-import Background from "../Components/Background";
 import Banar from "../Components/Banar";
-import CookiesCard from "./ui/cookie/page";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -11,18 +10,14 @@ export const metadata = {
   description: "Flight booking made easy",
 };
 
-export default function RootLayout({ children, model }) {
+export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
         <Banar />
 
         <Navbar />
-
-          {model}
-
-          {children}
-
+        {children}
       </body>
     </html>
   );

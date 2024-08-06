@@ -21,51 +21,51 @@ export default function Navbar() {
 
   return (
     <>
-    <div className={style.navbar}>
-      <div className={style.logo} >
-        <Link href="/">
-          <Image src={logo} alt="logo" onClick={()=>handleLinkClick("/")}/>
-        </Link>
-      </div>
-      <ul className={style.links}>
-        <li className={style.link}>
-          <Link href="/ui/flights">
-            <span
-              className={`${style.link} ${
-                activeLink === "/ui/flights" ? style.active : ""
-              }`}
-              onClick={() => handleLinkClick("/ui/flights")}
-            >
-              Flights
-            </span>
+      <div className={style.navbar}>
+        <div className={style.logo}>
+          <Link href="/">
+            <Image src={logo} alt="logo" onClick={() => handleLinkClick("/")} />
           </Link>
-        </li>
-        <li className={style.link}>
-          <Link href="/ui/hotels">
-            <span
-              className={`${style.link} ${
-                activeLink === "/ui/hotels" ? style.active : ""
-              }`}
-              onClick={() => handleLinkClick("/ui/hotels")}
-            >
-              Hotels
-            </span>
-          </Link>
-        </li>
-        <li className={style.link}>
-          <Link href="/ui/packages">
-            <span
-              className={`${style.link} ${
-                activeLink === "/ui/packages" ? style.active : ""
-              }`}
-              onClick={() => handleLinkClick("/ui/packages")}
-            >
-              Packages
-            </span>
-          </Link>
-        </li>
-        <li className={style.link}>
-          {/* <Link href="/ui/sign"> */}
+        </div>
+        <ul className={style.links}>
+          <li className={style.link}>
+            <Link href="/ui/flights">
+              <span
+                className={`${style.link} ${
+                  activeLink === "/ui/flights" ? style.active : ""
+                }`}
+                onClick={() => handleLinkClick("/ui/flights")}
+              >
+                Flights
+              </span>
+            </Link>
+          </li>
+          <li className={style.link}>
+            <Link href="/ui/hotels">
+              <span
+                className={`${style.link} ${
+                  activeLink === "/ui/hotels" ? style.active : ""
+                }`}
+                onClick={() => handleLinkClick("/ui/hotels")}
+              >
+                Hotels
+              </span>
+            </Link>
+          </li>
+          <li className={style.link}>
+            <Link href="/ui/packages">
+              <span
+                className={`${style.link} ${
+                  activeLink === "/ui/packages" ? style.active : ""
+                }`}
+                onClick={() => handleLinkClick("/ui/packages")}
+              >
+                Packages
+              </span>
+            </Link>
+          </li>
+          <li className={style.link}>
+            {/* <Link href="/ui/sign"> */}
             <span
               className={`${style.link} ${
                 activeLink === "/ui/sign" ? style.active : ""
@@ -74,23 +74,21 @@ export default function Navbar() {
             >
               SignIn
             </span>
-          {/* </Link> */}
-        </li>
-        <li className={style.link}>
-          {/* <Link href="/ui/sign"> */}
+            {/* </Link> */}
+          </li>
+          <li className={style.link}>
+            {/* <Link href="/ui/sign"> */}
             <span
-               className={`${style.signUp}` }
+              className={`${style.signUp}`}
               onClick={() => handleLinkClick("/ui/sign")}
             >
               SignUp
             </span>
-          {/* </Link> */}
-        </li>
-      </ul>
-    </div>
-    {
-      isVisible&&(<Sign state={setIsVisible}/>)
-    }
+            {/* </Link> */}
+          </li>
+        </ul>
+      </div>
+      {isVisible && <Sign state={setIsVisible} />}
     </>
   );
 }
