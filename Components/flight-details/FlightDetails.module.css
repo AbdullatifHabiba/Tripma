@@ -1,0 +1,251 @@
+.flightSearch {
+  font-family: Arial, sans-serif;
+  max-width: 1200px;
+  margin:  50px 100px;
+  color: #27273f;
+}
+
+
+.searchBar{
+  /* Flight Search */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+
+width: 872px;
+
+
+
+
+}
+.filterOptions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0px;
+  gap: 16px;
+  width: 704px;
+  height: 38px;
+  margin: 20px 0px;
+}
+
+.selectOptions {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.selectOptions select {
+  background-color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+}
+
+.content {
+  display: flex;
+  gap: 40px;
+  margin: auto;
+}
+
+.leftColumn {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: flex-start;
+}
+
+.rightColumn {
+  flex: 1;
+}
+.flightList {
+  box-sizing: border-box;
+
+  width: auto;
+  height: 456px;
+  overflow-y: scroll;
+  margin: 20px 0px;
+  /* Purple Extra Light */
+  border: 1px solid #e9e8fc;
+  border-radius: 12px;
+}
+.flightItem {
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4px 16px;
+  gap: 8px;
+
+  width: 840px;
+  height: 72px;
+
+  /* True White */
+  background: #ffffff;
+  border-radius: 4px;
+
+}
+
+
+.flightData {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4px 16px;
+  gap: 8px;
+  width: 840px;
+  height: 72px;
+  background: #FFFFFF;
+  border-radius: 4px;
+}
+
+.airlineLogo {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.dataRowCombined {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 8px 16px;
+  gap: 4px;
+  width: 760px;
+  height: 64px;
+  flex: none;
+  order: 1;
+  flex-grow: 1;
+}
+
+.dataRowPrimary,
+.dataRowSecondary {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 34px;
+  width: 728px;
+  height: 22px;
+  flex: none;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.label,
+.labelRight {
+  width: 156.5px;
+  height: 22px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  flex: none;
+  flex-grow: 1;
+}
+
+.labelRight {
+  text-align: right;
+  justify-content: flex-end;
+}
+
+.dataRowPrimary .label,
+.dataRowPrimary .labelRight {
+  color: #27273F;
+}
+
+.dataRowSecondary .label,
+.dataRowSecondary .labelRight {
+  color: #7C8DB0;
+}
+
+.dataRowSecondary .label:nth-child(2) {
+  opacity: 0;
+}
+
+.price {
+  text-align: center;
+}
+
+.showAllFlights {
+  box-sizing: border-box;
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px 20px;
+  gap: 8px;
+  width: 168px;
+  height: 48px;
+
+  /* Purple Blue */
+  border: 1px solid #605dec;
+  border-radius: 4px;
+  margin-left:auto ;
+  color: #605dec;
+}
+
+.priceGrid,
+.priceHistory,
+.map,
+.priceRating {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.buyButton {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+/*price grid*/
+.priceGrid {
+  margin: 20px 0;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+}
+
+.gridTable {
+  width: 100%;
+  /* border-collapse: collapse; */
+
+}
+
+.gridTable th,
+.gridTable td {
+  padding: 10px;
+  text-align: center;
+}
+
+.gridTable th {
+  background-color: #f0f0f0;
+}
+
+.gridTable .highlight {
+  /* Highlight the cells up to the hovered cell */
+  background-color: #e0e0ff;
+}
+
+.gridTable .bestPrice {
+  font-weight: bold;
+  color: #4a90e2;
+}

@@ -7,14 +7,12 @@ import Dropdown from "./Dropdown";
 import Calendar from "./Calendar";
 import PassengerSelector from "./PassengerSelector";
 
-
-
-const FlightSearch = () => {
+const FlightSearch = ({ width }) => {
   const options = ["New York", "Los Angeles", "Chicago", "Houston", "Miami"];
 
   return (
-    <div className={styles.flightSearch}>
-      <div className={styles.textInput}>
+    <div className={styles.flightSearch} style={{ width: width }}>
+      <div className={styles.textInput} style={{ width: width / 5 }}>
         <div className={styles.base}>
           <div className={styles.icon}>
             <Image src={depart} alt="departure" />
@@ -25,7 +23,7 @@ const FlightSearch = () => {
 
       <div className={styles.divider}></div>
 
-      <div className={styles.textInput}>
+      <div className={styles.textInput} style={{ width: width / 5 }}>
         <div className={styles.base}>
           <div className={styles.icon}>
             <Image src={arrival} alt="arrival" />
@@ -36,12 +34,16 @@ const FlightSearch = () => {
 
       <div className={styles.divider}></div>
 
-      <Calendar />
+      <div className={styles.textInput} style={{ width: width / 5 }}>
+        <Calendar />
+      </div>
 
       <div className={styles.divider}></div>
 
-    
-      <PassengerSelector/>
+      <div className={styles.textInput} style={{ width: width / 5 }}>
+        <PassengerSelector />
+      </div>
+
       <div className={styles.button}>
         <div className={styles.label}>Search</div>
       </div>
