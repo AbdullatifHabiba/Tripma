@@ -7,7 +7,7 @@
   gap: 24px;
 
   width: 100%;
-  color: black;
+  color: #6e7491;
   flex-wrap: wrap;
 
 }
@@ -156,7 +156,7 @@ height: 33px;
 
   font-family: "Nunito Sans";
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 16px;
   line-height: 22px;
   color: #7c8db0;

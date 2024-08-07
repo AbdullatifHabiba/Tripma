@@ -1,25 +1,21 @@
 .flightSearch {
   font-family: Arial, sans-serif;
-  max-width: 1200px;
-  margin:  50px 100px;
-  color: #27273f;
+  margin: 50px 20px;
+
+  /* Grey / 600 */
+  color: #6e7491;
 }
 
-
-.searchBar{
+.searchBar {
   /* Flight Search */
 
-/* Auto layout */
-display: flex;
-flex-direction: row;
-align-items: flex-start;
-padding: 0px;
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
 
-width: 872px;
-
-
-
-
+  width: 872px;
 }
 .filterOptions {
   display: flex;
@@ -31,6 +27,7 @@ width: 872px;
   width: 704px;
   height: 38px;
   margin: 20px 0px;
+
 }
 
 .selectOptions {
@@ -39,6 +36,8 @@ width: 872px;
   padding: 5px 10px;
   border-radius: 4px;
   cursor: pointer;
+  color: #6e7491;
+
 }
 .selectOptions select {
   background-color: #fff;
@@ -51,20 +50,32 @@ width: 872px;
 
 .content {
   display: flex;
+  flex-direction: column;
   gap: 40px;
-  margin: auto;
+  max-width: 1200px;
+  margin-left: -100px;
+  color: #6e7491;
+
+}
+.flightDetails {
+  display: grid;
+  grid-template-columns: 75% 25%;
+  gap: 40px;
+  width: 100%;
+  /* max-width: 1200px; */
+  /* margin: 0 auto; */
 }
 
 .leftColumn {
-  flex: 2;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-rows: auto auto auto;
+  gap: 10px;
 }
 
 .rightColumn {
-  flex: 1;
+  display: grid;
+  grid-template-rows: auto auto auto;
+  gap: 10px;
 }
 .flightList {
   box-sizing: border-box;
@@ -72,10 +83,15 @@ width: 872px;
   width: auto;
   height: 456px;
   overflow-y: scroll;
-  margin: 20px 0px;
+  margin: 10px 0px;
   /* Purple Extra Light */
   border: 1px solid #e9e8fc;
   border-radius: 12px;
+}
+.flightList::-webkit-scrollbar {
+  display: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 .flightItem {
   /* Auto layout */
@@ -91,9 +107,12 @@ width: 872px;
   /* True White */
   background: #ffffff;
   border-radius: 4px;
+  cursor: pointer;
 
 }
-
+.flightItem:hover ,.flightData:hover {
+  background: #f5f5f5;
+}
 
 .flightData {
   display: flex;
@@ -103,7 +122,7 @@ width: 872px;
   gap: 8px;
   width: 840px;
   height: 72px;
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 4px;
 }
 
@@ -146,7 +165,7 @@ width: 872px;
 .labelRight {
   width: 156.5px;
   height: 22px;
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: "Nunito Sans", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -164,12 +183,12 @@ width: 872px;
 
 .dataRowPrimary .label,
 .dataRowPrimary .labelRight {
-  color: #27273F;
+  color: #27273f;
 }
 
 .dataRowSecondary .label,
 .dataRowSecondary .labelRight {
-  color: #7C8DB0;
+  color: #7c8db0;
 }
 
 .dataRowSecondary .label:nth-child(2) {
@@ -194,8 +213,8 @@ width: 872px;
 
   /* Purple Blue */
   border: 1px solid #605dec;
-  border-radius: 4px;
-  margin-left:auto ;
+  border-radius: 12px;
+  margin-left: auto;
   color: #605dec;
 }
 
@@ -203,49 +222,241 @@ width: 872px;
 .priceHistory,
 .map,
 .priceRating {
-  background-color: #f9f9f9;
-  padding: 15px;
-  border-radius: 4px;
-  margin-bottom: 20px;
+  background-color: #fff;
+  padding: 20px 10px;
+  border-radius: 12px;
+  margin: auto;
+
+  /* Body Default */
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+
+  /* Grey / 600 */
+  color: #6e7491;
+}
+.priceGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+.priceHistory {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
 }
 
 .buyButton {
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  padding: 10px 20px;
+  padding: 4px 8px;
+
+  width: 84px;
+  height: 26px;
+
+  background: #5cd6c0;
   border-radius: 4px;
-  cursor: pointer;
+
+  color: #ffffff;
+  margin: 0px 16px;
 }
 /*price grid*/
 .priceGrid {
-  margin: 20px 0;
+  margin: 10px 0;
   font-family: Arial, sans-serif;
   background-color: #fff;
+  border-radius: 12px; /* Add rounded corners */
+  padding: 0; /* Remove padding */
 }
+.priceRating{
+  padding: 20px 12px;
 
+}
 .gridTable {
   width: 100%;
-  /* border-collapse: collapse; */
-
+  border-collapse: separate; /* Ensure cell borders are separate */
+  border-spacing: 0; /* Remove any spacing between cells */
+  border-radius: 12px; /* Apply border radius to the table */
 }
 
 .gridTable th,
 .gridTable td {
   padding: 10px;
   text-align: center;
+  border: 1px solid #ddd; /* Cell borders */
 }
 
 .gridTable th {
-  background-color: #f0f0f0;
+  font-weight: normal;
 }
 
 .gridTable .highlight {
-  /* Highlight the cells up to the hovered cell */
-  background-color: #e0e0ff;
+  background-color: #e0e0ff; /* Light blue background for highlights */
 }
 
 .gridTable .bestPrice {
   font-weight: bold;
   color: #4a90e2;
+}
+
+.gridTable .highlightRow td {
+  background-color: #e0e0ff; /* Light blue background for entire row */
+}
+
+.gridTable .highlightCol {
+  background-color: #e0e0ff; /* Light blue background for entire column */
+}
+
+/* Apply rounded corners to the outer cells */
+.gridTable tr:first-child th:first-child {
+  border-top-left-radius: 12px;
+}
+
+.gridTable tr:first-child th:last-child {
+  border-top-right-radius: 12px;
+}
+
+.gridTable tr:last-child td:first-child {
+  border-bottom-left-radius: 12px;
+}
+
+.gridTable tr:last-child td:last-child {
+  border-bottom-right-radius: 12px;
+}
+/* selected flight card*/
+
+.flightSelectCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  width: 400px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  margin: 32px 0px;
+}
+
+.flightCard {
+  
+
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 8px;
+    gap: 8px;
+
+    width: 368px;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+    border-radius: 8px 8px 0 0;
+
+
+
+    font-family: 'Nunito Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+
+
+    /* Grey / 900 */
+    color: #27273F;
+
+
+
+
+}
+.details{
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 4px;
+
+width: 148px;
+height: auto;
+/* Inside auto layout */
+flex: none;
+order: 2;
+flex-grow: 1;
+
+
+}
+
+.flightCard:last-child {
+  border-bottom: none;
+  border-radius: 0 0 8px 8px;
+}
+
+.airline {
+ /* Airline details */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 4px;
+
+width: 148px;
+height: 48px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 1;
+
+}
+
+.details .label , .airline .label{
+  color: #7c8db0;
+}
+
+.totalCost {
+  text-align: right;
+  width: 100%;
+  padding: 10px;
+}
+
+.totalCost p {
+  margin: 5px 0;
+}
+
+.totalCost strong {
+  font-size: 16px;
+}
+
+.passengerInfoBtn {
+  background-color: #605DEC;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+.saveCloseBtn{
+box-sizing: border-box;
+width: 161px;
+height: 48px;
+padding: 10px 20px;
+border: 1px solid #605DEC;
+color : #605DEC;
+border-radius: 4px;
+margin-top: 10px;
+cursor: pointer;
+
+}
+.saveCloseBtn:hover,
+.passengerInfoBtn:hover {
+  background-color: #4a47cc;
 }

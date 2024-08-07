@@ -91,4 +91,71 @@ const deals = [
         "Good experience overall, but there is room for improvement in customer support.",
     },
   ];
-  export { deals, uniquePlaces, reviews };
+  const GridData = {
+    columns: ["2/12", "2/13", "2/14", "2/15", "2/16"],
+    rows: [
+      {
+        date: "3/7",
+        prices: [
+          { value: "$837" },
+          { value: "$592" },
+          { value: "$592" },
+          { value: "$837" },
+          { value: "$837" },
+        ],
+      },
+      {
+        date: "3/8",
+        prices: [
+          { value: "$837" },
+          { value: "$592" },
+          { value: "$592" },
+          { value: "$837" },
+          { value: "$1,308" },
+        ],
+      },
+      {
+        date: "3/9",
+        prices: [
+          { value: "$624" },
+          { value: "$592" },
+          { value: "$624" },
+          { value: "$592" },
+          { value: "$592" },
+        ],
+      },
+      {
+        date: "3/10",
+        prices: [
+          { value: "$1,308" },
+          { value: "$624" },
+          { value: "$624" },
+          { value: "$837" },
+          { value: "$837" },
+        ],
+      },
+      {
+        date: "3/11",
+        prices: [
+          { value: "$592" },
+          { value: "$624" },
+          { value: "$1,308" },
+          { value: "$837" },
+          { value: "$624" },
+        ],
+      },
+    ],
+  };
+  
+  const priceHistoryData = [
+    { date: "3/1", price: 700 },
+    { date: "3/2", price: 600 },
+    { date: "3/3", price: 800 },
+    { date: "3/4", price: 750 },
+    { date: "3/5", price: 650 },
+    { date: "3/6", price: 700 },
+    { date: "3/7", price: 850 },
+    { date: "3/8", price: 900 },
+    { date: "3/9", price: 800 },
+  ];
+  export { deals, uniquePlaces, reviews ,GridData ,priceHistoryData};

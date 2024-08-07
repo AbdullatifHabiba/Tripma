@@ -16,9 +16,13 @@ const PriceGrid = ({ data }) => {
     setHoveredCol(null);
   };
 
+
   return (
+    <>
+      <h3>Price grid <span
+      style={{ color: "#7C8DB0" }}
+      >(flexible dates)</span></h3>
     <div className={styles.priceGrid}>
-      <h3>Price grid (flexible dates)</h3>
       <table className={styles.gridTable}>
         <thead>
           <tr>
@@ -66,6 +70,8 @@ const PriceGrid = ({ data }) => {
         </tbody>
       </table>
     </div>
+    </>
+
   );
 };
 
