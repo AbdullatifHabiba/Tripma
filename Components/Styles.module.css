@@ -21,8 +21,11 @@
   color: black;
   font-size: 2rem;
   gap: 10px;
-  /* position: fixed;
-    width: 100%; */
+  position: sticky;
+  top: 0;
+
+  z-index: 10000;
+  width: 100%;
 }
 
 /* Style for the logo */
@@ -86,7 +89,7 @@
 }
 
 .signUp:hover {
-  background-color: aqua;
+  background-color: blue;
 
   cursor: pointer;
 }

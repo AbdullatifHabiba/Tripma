@@ -1,9 +1,12 @@
-import FlightDetails from "@/Components/flight-details/FlightDetails";
+import PlacesComponent from "@/Components/flights/places";
+import { uniquePlaces } from "../flights/data";
 
 export default function Hotels() {
     return (
-        <div>
-        <FlightDetails />
-        </div>
+        
+            <PlacesComponent places={uniquePlaces} allowExplore={false}>
+       
+        </PlacesComponent>
+        
     );
     }

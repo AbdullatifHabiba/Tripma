@@ -65,8 +65,8 @@ const Footer1 = () => {
 
 const Footer2 = () => {
   return (
-    <div className={styles.footerBottom}>
-      <Image src={foo2} alt='footer'/>
+    <div className={` ${styles.footerBottom} `}>
+      <Image src={foo2} alt='footer' />
     </div>
   );
 };

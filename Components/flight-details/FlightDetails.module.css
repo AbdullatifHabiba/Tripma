@@ -87,7 +87,9 @@
   /* Purple Extra Light */
   border: 1px solid #e9e8fc;
   border-radius: 12px;
+  padding: 10px 20px;
 }
+
 .flightList::-webkit-scrollbar {
   display: none;
   -ms-overflow-style: none;
@@ -101,12 +103,11 @@
   padding: 4px 16px;
   gap: 8px;
 
-  width: 840px;
   height: 72px;
-
+  width: 100%;
   /* True White */
   background: #ffffff;
-  border-radius: 4px;
+  border-bottom: 1px solid #ddd;
   cursor: pointer;
 
 }
@@ -120,10 +121,12 @@
   align-items: center;
   padding: 4px 16px;
   gap: 8px;
-  width: 840px;
   height: 72px;
+  width: 100%;
   background: #ffffff;
-  border-radius: 4px;
+}
+.flightItem:last-child {
+  border-bottom: none;
 }
 
 .airlineLogo {
@@ -420,9 +423,13 @@ flex-grow: 1;
 }
 
 .totalCost {
-  text-align: right;
+  text-align: center;
   width: 100%;
   padding: 10px;
+  display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
 }
 
 .totalCost p {
@@ -434,15 +441,19 @@ flex-grow: 1;
 }
 
 .passengerInfoBtn {
-  background-color: #605DEC;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-top: 10px;
-  transition: background-color 0.3s ease;
+
+padding: 12px 20px;
+gap: 8px;
+
+width: 222px;
+height: 48px;
+
+margin-top: 20px;
+
+/* Purple Blue */
+background: #605DEC;
+border-radius: 4px;
+color: #ffffff;
 }
 .saveCloseBtn{
 box-sizing: border-box;
@@ -458,5 +469,8 @@ cursor: pointer;
 }
 .saveCloseBtn:hover,
 .passengerInfoBtn:hover {
-  background-color: #4a47cc;
+  background-color: #2a28d8;
 }
+
+
+

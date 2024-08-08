@@ -6,6 +6,7 @@ import arrival from "../../public/arrival.png";
 import Dropdown from "./Dropdown";
 import Calendar from "./Calendar";
 import PassengerSelector from "./PassengerSelector";
+import Link from "next/link";
 
 const FlightSearch = ({ width }) => {
   const options = ["New York", "Los Angeles", "Chicago", "Houston", "Miami"];
@@ -45,7 +46,11 @@ const FlightSearch = ({ width }) => {
       </div>
 
       <div className={styles.button}>
-        <div className={styles.label}>Search</div>
+        <div className={styles.label}>
+          <Link href="/ui/flights/search">
+            Search
+          </Link>
+        </div>
       </div>
     </div>
   );

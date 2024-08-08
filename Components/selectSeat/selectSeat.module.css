@@ -1,0 +1,58 @@
+.container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .business, .economy {
+    position: absolute;
+    background: #fff;
+    border-radius: 8px;
+    padding: 12px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .train {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    background: #fff;
+    border-radius: 8px;
+    padding: 12px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .business {
+    width: auto;
+    height: auto;
+    left: 50%; /* Adjusted position */
+    top: 100px; /* Adjusted position */
+    /* transform: translate(-50%, -50%); */
+  }
+  
+  .economy {
+    width: 150px;
+    height: 980px;
+    left: 60%; /* Adjusted position */
+    top: 20%; /* Adjusted position */
+    transform: translate(-50%, -50%);
+  }
+  
+  .seat {
+    width: 30px;
+    height: 40px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 4px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFF;
+    position: relative;
+  }
+  

@@ -9,15 +9,13 @@ align-items: flex-start;
 padding: 60px 120px 24px;
 gap: 40px;
 
-width: 1440px;
-height: 415px;
+width: 100%;
 
 justify-self: center;
 
   }
   
   .footerSection {
-   /* column / about */
 
 /* Auto layout */
 display: flex;
@@ -28,7 +26,7 @@ gap: 8px;
 
 margin: 0 auto;
 width: 200px;
-height: 293px;
+
 
 
 /* Inside auto layout */
@@ -67,6 +65,9 @@ flex-grow: 0;
     margin-top: 24px;
     padding-top: 24px;
     width: 100%;
+    display: flex;
+    justify-content: center ;
+    align-items: center;
   }
   
   .socialMedia a {

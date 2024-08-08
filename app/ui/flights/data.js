@@ -7,6 +7,13 @@ import img4 from "@/public/static/images/img4.png";
 import img5 from "@/public/static/images/img5.png";
 import img6 from "@/public/static/images/img6.png";
 import person from "@/public/static/images/person.png";
+import logo1 from "@/public/static/logos/Air China.svg";
+import logo2 from "@/public/static/logos/Air France.svg";
+import logo3 from "@/public/static/logos/EVA Air.svg";
+import logo4 from "@/public/static/logos/Japan Airlines.svg";
+import logo5 from "@/public/static/logos/Korean Air.svg";
+import logo6 from "@/public/static/logos/Emirates.svg";
+
 const deals = [
     {
       city: "The Bund",
@@ -158,4 +165,97 @@ const deals = [
     { date: "3/8", price: 900 },
     { date: "3/9", price: 800 },
   ];
-  export { deals, uniquePlaces, reviews ,GridData ,priceHistoryData};
+   const flightDetailsData = [
+    {
+      airline: "Hawaiian Airlines",
+      logo: logo1,
+      duration: "16h 45m",
+      departTime: "7:00AM",
+      arriveTime: "4:15PM",
+      stops: "1",
+      stopInfo: "2h 45m in HNL",
+      price: "624",
+    },
+    {
+      airline: "Hawaiian Airlines",
+      logo: logo2,
+      duration: "16h 45m",
+      departTime: "7:00AM",
+      arriveTime: "4:15PM",
+      stops: "1",
+      stopInfo: "2h 45m in HNL",
+      price: "624",
+    },
+    {
+      airline: "Hawaiian Airlines",
+      logo: logo3,
+      duration: "16h 45m",
+      departTime: "7:00AM",
+      arriveTime: "4:15PM",
+      stops: "1",
+      stopInfo: "2h 45m in HNL",
+      price: "624",
+    },
+    // Add more flight details here
+    {
+      airline: "Delta Airlines",
+      logo: logo4,
+      duration: "10h 30m",
+      departTime: "9:30AM",
+      arriveTime: "8:00PM",
+      stops: "0",
+      stopInfo: "Non-stop",
+      price: "450",
+    },
+    {
+      airline: "United Airlines",
+      logo: logo5,
+      duration: "8h 15m",
+      departTime: "1:45PM",
+      arriveTime: "10:00PM",
+      stops: "1",
+      stopInfo: "1h 30m in ORD",
+      price: "520",
+    },
+    {
+      airline: "American Airlines",
+      logo: logo6,
+      duration: "12h 10m",
+      departTime: "6:00AM",
+      arriveTime: "6:10PM",
+      stops: "2",
+      stopInfo: "2h 30m in DFW, 1h 45m in MIA",
+      price: "680",
+    },
+    {
+      airline: "Delta Airlines",
+      logo: logo4,
+      duration: "10h 30m",
+      departTime: "9:30AM",
+      arriveTime: "8:00PM",
+      stops: "0",
+      stopInfo: "Non-stop",
+      price: "450",
+    },
+    {
+      airline: "United Airlines",
+      logo: logo5,
+      duration: "8h 15m",
+      departTime: "1:45PM",
+      arriveTime: "10:00PM",
+      stops: "1",
+      stopInfo: "1h 30m in ORD",
+      price: "520",
+    },
+    {
+      airline: "American Airlines",
+      logo: logo6,
+      duration: "12h 10m",
+      departTime: "6:00AM",
+      arriveTime: "6:10PM",
+      stops: "2",
+      stopInfo: "2h 30m in DFW, 1h 45m in MIA",
+      price: "680",
+    },
+  ];
+  export { deals, uniquePlaces, reviews ,GridData ,priceHistoryData,flightDetailsData};

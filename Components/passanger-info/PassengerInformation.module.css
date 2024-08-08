@@ -1,0 +1,181 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #605DEC;
+    margin-bottom: 20px;
+  }
+  .subtitle{
+    font-size: 18px;
+    font-weight: normal;
+    margin-bottom: 20px;
+  }
+  
+  .formContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
+  }
+  
+  .formSection {
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  .inputRow {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .inputGroup {
+    flex: 1;
+  }
+  
+  .label {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+  }
+  
+  .input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .input::placeholder {
+    color: #aaa;
+  }
+  
+  .sectionTitle {
+    font-size: 18px;
+    font-weight: normal;
+    margin-top: 30px;
+    margin-bottom: 15px;
+  }
+  
+  .checkboxGroup {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  .flightSummary{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    align-items: flex-end;
+  }
+  .checkboxGroup input {
+    margin-right: 10px;
+  }
+  
+  .bagCounter {
+    display: flex;
+
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20%;
+    margin-top: 15px;
+  }
+  .bagCounterButtons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    gap: 10px;
+  }
+  .bagCounterCol1{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .bagCounterCol1 button {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-size: 18px;
+    cursor: pointer;
+    display: inline-block;
+  }
+  
+ 
+  .selectSeat {
+
+    box-sizing: border-box;
+    width: 161px;
+    height: 48px;
+    padding: 10px 20px;
+    border: 1px solid #605DEC;
+    border-radius: 4px;
+    margin-top: 10px;
+    background: rgba(203, 212, 230, 0.3);
+    border-radius: 4px;
+    color: #ffffff;
+    }
+    .submitButton{
+    box-sizing: border-box;
+    width: 161px;
+    height: 48px;
+    padding: 10px 20px;
+    border: 1px solid #605DEC;
+    color : #605DEC;
+    border-radius: 4px;
+    margin-top: 10px;
+    cursor: pointer;
+    
+    }
+    .submitButton:hover {
+      background-color: #2a28d8;
+    }
+    .selectSeat:enabled  {
+      background-color: #2a28d8;
+      cursor: pointer;
+
+    }
+    .formBtns{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 24px;
+        margin-top: 20px;
+
+
+
+    }
+  
+  .sideSection {
+    width: 100%;
+    max-width: 300px;
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+
+
+  }
+  
+  @media (max-width: 768px) {
+    .formSection, .sideSection {
+      max-width: 100%;
+    }
+    .sideSection {
+      margin-left: 0;
+      margin-top: 30px;
+    }
+  }
+ 
