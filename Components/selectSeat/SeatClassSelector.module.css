@@ -1,84 +1,277 @@
 .container {
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  width: 712px;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  backdrop-filter: blur(12px);
+  margin-bottom: 10px;
+}
 
-    /* Auto layout */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0px;
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  width: 100%;
+  background: #27273f;
+  color: white;
+}
 
-    width: 712px;
+.flightInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding:0px 6px;
+}
 
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(12px);
-  }
-  .header{
-    /* Progress step header / default */
+.location h4 {
+  margin: 0;
+  font-weight: 900;
+
+}
+
+.location span {
+  font-size: 12px;
+}
+
+.flightDetails {
+  text-align: left;
+  padding: 16px;
+  cursor: pointer;
+
+}
+.flightDetails:hover {
+  background: #605dec;
+}
+
+.flightDetails span {
+  display: block;
+}
+
+.classes {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 8px 16px;
+  gap: 5px;
+  width: 100%;
+}
+
+.class {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 32px 8px;
+  gap: 16px;
+  width: 336px;
+  border-radius: 8px;
+  background: white;
+}
+
+.selected {
+  background: #605dec;
+  color: #ffffff;
+}
+.selectecon , .selectbus {
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 10px;
+  gap: 10px;
+
+  width: auto;
+  height: 22px;
+   color: #ffffff;
+ 
+  border-radius: 4px;
+}
+.selectbus {
+
+  background: linear-gradient(180deg, #5cd6c0 0%, #22c3a6 100%);
+}
+.selectecon {
+ background: linear-gradient(180deg, #605dec 0%, #2a26d9 100%);
+}
+.class h3 {
+  margin: 0;
+  color: #0d0d70;
+  display: flex;
+  gap: 40px;
+  font-weight: 600;
+}
+
+.class p {
+  font-size: 14px;
+  color: #666;
+}
+
+.class ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.class ul li {
+  font-size: 14px;
+  color: #333;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  gap: 16px;
+  width: 100%;
+  background: #fafafe;
+  align-self: flex-end;
+}
+
+.passengerInfo {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.passengerInfo div {
+  margin-right: 32px;
+}
+
+.passengerInfo span {
+  display: block;
+  font-size: 12px;
+}
+
+.passengerInfo h4 {
+  margin: 0;
+}
+
+.footerButtons {
+  display: flex;
+  gap: 16px;
+}
+
+.button {
+  cursor: pointer;
+
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px 20px;
+  gap: 8px;
+
+  width: 160px;
+  height: 48px;
+
+  border: 1px solid #605dec;
+  border-radius: 4px;
+  color: #605dec;
+}
+
+.buttonPrimary {
+  /* button */
+
+box-sizing: border-box;
 
 /* Auto layout */
 display: flex;
 flex-direction: row;
-justify-content: space-between;
 align-items: center;
-padding: 0px;
+padding: 12px 20px;
+gap: 8px;
 
-width: 712px;
-height: 88px;
+width: 130px;
+height: 48px;
+border: 1px solid #7C8DB0;
+border-radius: 4px;
 
-/* Grey / 900 */
-background: #27273F;
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
 
+}
+.inlineList {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  padding: 0;
+}
 
+.inlineList li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Adjust spacing between list items */
+}
 
-  }
-  .classes{
-    /* feature lists */
+.inlineList li img {
+  margin-right: 10px; /* Adjust spacing between image and text */
+}
+.upgrade-card {
+  width: 400px;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 40%;
+  left: -40%;
+  background: white;
+  z-index: 1000;
+  color: #0d0d70;
+}
 
-/* Auto layout */
-display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: flex-start;
-padding: 8px 16px;
-gap: 4px;
+.upgrade-card h3 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 18px;
+  color: #27273F;
+}
 
-width: 712px;
-height: 715px;
+.upgrade-card p {
+  margin-bottom: 24px;
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+}
 
-/* Background Blur */
-backdrop-filter: blur(12px);
+.card-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+}
 
+.cancel-button {
+  padding: 10px 20px;
+  background-color: white;
+  border: 1px solid #605DEC;
+  border-radius: 4px;
+  color: #605DEC;
+  cursor: pointer;
+}
 
-  }
-  .footerOptions{
+.cancel-button:hover {
+  background-color: #f5f5f5;
+}
 
-/* Auto layout */
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-padding: 0px;
+.upgrade-button {
+  padding: 10px 20px;
+  background-color: #605DEC;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+}
 
-width: 712px;
-height: 97px;
-
-/* Purple White Light */
-background: #0d0d70;
-
-
-  }
- .classes{
-    /* feature list / economy */
-
-/* Auto layout */
-display: flex;
-flex-direction: column;
-align-items: center;
-padding: 32px 8px;
-gap: 16px;
-
-width: 336px;
-
-border-radius: 8px;
-
-
- }
+.upgrade-button:hover {
+  background-color: #4e4bdf;
+}

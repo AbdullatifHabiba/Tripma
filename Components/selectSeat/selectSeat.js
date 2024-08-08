@@ -8,14 +8,16 @@ import check from '@/public/correct_icon.svg';
 
 
 
-const TrainSeats = () => {
+const TrainSeats = ({setSelectedSeat}) => {
   const [selectedSeats, setSelectedSeats] = useState([]);
 
-  const toggleSeatSelection = (seatId) => {
+  const toggleSeatSelection = (seat) => {
+    setSelectedSeat(seat);
+    
     setSelectedSeats((prevSelectedSeats) =>
-      prevSelectedSeats.includes(seatId)
-        ? prevSelectedSeats.filter((id) => id !== seatId)
-        : [...prevSelectedSeats, seatId]
+      prevSelectedSeats.includes(seat.id)
+        ? prevSelectedSeats.filter((id) => id !== seat.id)
+        : [ seat.id]
     );
   };
 
@@ -28,7 +30,7 @@ const TrainSeats = () => {
     return (
       <div
         key={seat.id}
-        onClick={() => toggleSeatSelection(seat.id)}
+        onClick={() => toggleSeatSelection(seat)}
         className={`${styles.seat} ${seatStyle} ${isSelected ? styles.selected : ''}`}
         title={`Seat ${seat.row}-${seat.col}`}
       >
