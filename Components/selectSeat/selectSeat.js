@@ -1,15 +1,12 @@
 'use client';
 import React, { useState } from 'react';
-import SVGComponent from './svgcomp'; // Import your converted SVG component
+import Image from 'next/image';
+import plan from '@/public/plan.svg';
 import styles from './selectSeat.module.css';
+import { businessSeats, economySeats } from './seats_Data';
+import check from '@/public/correct_icon.svg';
 
-const rectangleDimensions = [
-  { id: 1, x: 1121, y: 506, width: 30, height: 40, isBusiness: true },
-  { id: 2, x: 1159.5, y: 506, width: 30, height: 40, isBusiness: true },
-  { id: 3, x: 1236.5, y: 506, width: 30, height: 40, isBusiness: false },
-  { id: 4, x: 1275, y: 506, width: 30, height: 40, isBusiness: false },
-  // Add more rectangles as needed
-];
+
 
 const TrainSeats = () => {
   const [selectedSeats, setSelectedSeats] = useState([]);
@@ -22,32 +19,68 @@ const TrainSeats = () => {
     );
   };
 
+  const renderSeat = (seat, isBusiness) => {
+    const isSelected = selectedSeats.includes(seat.id);
+    const seatStyle = isBusiness
+      ? styles.seatBusiness
+      : styles.seatEconomy;
+
+    return (
+      <div
+        key={seat.id}
+        onClick={() => toggleSeatSelection(seat.id)}
+        className={`${styles.seat} ${seatStyle} ${isSelected ? styles.selected : ''}`}
+        title={`Seat ${seat.row}-${seat.col}`}
+      >
+        {isSelected? <Image src={check}  alt='check'/> :"" }
+      </div>
+    );
+  };
+
+  const renderRow = (seats, isBusiness) => {
+    const middleIndex = Math.floor(seats.length / 2);
+    const rowSeats = [...seats];
+    rowSeats.splice(middleIndex, 0, { id: `row-${seats[0].row}`, row: seats[0].row, col: 'rowNumber' });
+    return (
+      <div className={isBusiness ? styles.businessRow : styles.economyRow}>
+        {rowSeats.map((seat) => 
+          seat.col === 'rowNumber' ? (
+            <div key={seat.id} className={styles.rowNumber}>
+              {seat.row}
+            </div>
+          ) : (
+            renderSeat(seat, isBusiness)
+          )
+        )}
+      </div>
+    );
+  };
+
   return (
     <div className={styles.container}>
-      <SVGComponent />
-      {rectangleDimensions.map((rect) => {
-        const isSelected = selectedSeats.includes(rect.id);
-        const seatStyle = rect.isBusiness
-          ? { background: 'linear-gradient(180deg, #5CD6C0 0%, #22C3A6 100%)' }
-          : { background: 'linear-gradient(180deg, #605DEC 0%, #2A26D9 100%)' };
-
-        return (
-          <div
-            key={rect.id}
-            onClick={() => toggleSeatSelection(rect.id)}
-            className={`${styles.seat} ${isSelected ? styles.selected : ''}`}
-            style={{
-              ...seatStyle,
-              width: `${rect.width}px`,
-              height: `${rect.height}px`,
-              left: `${rect.x}px`,
-              top: `${rect.y}px`,
-            }}
-            title={`Seat ${rect.id}`}
-          />
-        );
-      })}
+    <Image
+      src={plan}
+      alt="Train"
+      className={styles.train}
+    />
+    <div className={styles.business}>
+      {[1, 2, 3, 4, 5].map(row => (
+          <React.Fragment key={row}>
+            {renderRow(businessSeats.filter(seat => seat.row === row), true)}
+          </React.Fragment>
+      ))}
     </div>
+    <div className={styles.economy}>
+  {Array.from({ length: 28 }, (_, i) => i + 6).map((row, index) => (
+    <React.Fragment key={row}>
+      {(row === 6 || row === 14 || row === 19 || row === 29) && (
+        <div className={styles.exitRow}>ℹ️Exit Row</div>
+      )}
+      {renderRow(economySeats.filter(seat => seat.row === row), false)}
+    </React.Fragment>
+  ))}
+</div>
+  </div>
   );
 };
 

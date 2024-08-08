@@ -1,5 +1,5 @@
 import styles from "./Home.module.css";
-import hero from "../../../public/Hero Text Gradient.png";
+import hero from "@/public/Hero Text Gradient.png";
 import Image from "next/image";
 import FlightSearch from "@/Components/searchBar/FlightSearch";
 import Background from "@/Components/Background";

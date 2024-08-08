@@ -1,16 +1,18 @@
 import DealsComponent from "@/Components/flights/deals";
-import Home from "../home/page";
+import Home from "../../../Components/home/Home";
 import PlacesComponent from "@/Components/flights/places";
 import Reviews from "@/Components/flights/reviews";
 import { Footer1, Footer2 } from "@/Components/footer/footer";
 import { deals, uniquePlaces, reviews } from "./data";
 import Link from "next/link";
+import Navbar from "@/Components/Navbar";
 
 export default function Flights() {
   
 
   return (
     <>
+      <Navbar />
       <Home />
       <div className="flex flex-col items-center justify-center w-full">
         <DealsComponent flights={deals} >

@@ -6,7 +6,7 @@ import google from "../../../public/google.png";
 import apple from "../../../public/apple mac.png";
 import facebook from "../../../public/facebook.png";
 import { useRouter } from "next/navigation";
-import Home from "../home/page";
+import Home from "../../../Components/home/Home";
 
 const Sign = ({state}) => {
   const [isOverlayVisible, setIsOverlayVisible] = useState(true);

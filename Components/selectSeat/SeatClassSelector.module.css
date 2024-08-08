@@ -1,0 +1,84 @@
+.container {
+  
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+
+    width: 712px;
+
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(12px);
+  }
+  .header{
+    /* Progress step header / default */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 0px;
+
+width: 712px;
+height: 88px;
+
+/* Grey / 900 */
+background: #27273F;
+
+
+
+  }
+  .classes{
+    /* feature lists */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: flex-start;
+padding: 8px 16px;
+gap: 4px;
+
+width: 712px;
+height: 715px;
+
+/* Background Blur */
+backdrop-filter: blur(12px);
+
+
+  }
+  .footerOptions{
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+
+width: 712px;
+height: 97px;
+
+/* Purple White Light */
+background: #0d0d70;
+
+
+  }
+ .classes{
+    /* feature list / economy */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 32px 8px;
+gap: 16px;
+
+width: 336px;
+
+border-radius: 8px;
+
+
+ }
