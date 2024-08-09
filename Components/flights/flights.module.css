@@ -9,7 +9,6 @@
   width: 100%;
   color: #6e7491;
   flex-wrap: wrap;
-
 }
 .titleRow {
   /* Auto layout */
@@ -54,8 +53,8 @@
   align-items: flex-start;
   padding: 0px;
 
-  width: auto;
-  height: auto;
+  width: 411px;
+  height: 524px;
 
   /* True White */
   background: #ffffff;
@@ -63,13 +62,17 @@
   box-shadow: 0px 2px 4px rgba(28, 5, 77, 0.1),
     0px 12px 32px rgba(0, 0, 0, 0.05);
   border-radius: 12px;
+  flex-grow: 1;
 }
 
 .cardImage {
   /* image */
 
   width: 100%;
-  height: auto;
+  height: 397px;
+  position: relative;
+  border-radius: 12px 12px 0px 0px;
+ 
 }
 .cardData {
   /* Auto layout */
@@ -90,19 +93,16 @@
 .titleRow {
   /* title row */
 
-/* Auto layout */
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-align-items: flex-start;
-padding: 0px;
-gap: 826px;
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 826px;
 
-width: 1312px;
-height: 33px;
-
-
-
+  width: 1312px;
+  height: 33px;
 }
 /* Name of section and an accent */
 
@@ -161,7 +161,7 @@ height: 33px;
   line-height: 22px;
   color: #7c8db0;
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
 }
 .city {
   font-family: "Nunito Sans";
@@ -186,90 +186,74 @@ height: 33px;
   padding: 8px;
 }
 .exploreButton {
- /* button */
+  /* button */
 
-display: flex;
-flex-direction: row;
-align-items: center;
-padding: 12px 20px;
-gap: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px 20px;
+  gap: 8px;
 
-width: 195px;
-height: 48px;
+  width: 195px;
+  height: 48px;
 
-/* Purple Blue */
-background: #605DEC;
-border-radius: 4px;
-color: #ffffff;
-margin: 40px auto;
-
-
-
+  /* Purple Blue */
+  background: #605dec;
+  border-radius: 4px;
+  color: #ffffff;
+  margin: 40px auto;
 }
 .reviewsContainer {
-    text-align: center;
-    padding: 50px 20px;
-    /* Grey / 600 */
-    color: #6E7491;
-    align-items: center;
-    padding: 64px;
-    gap: 24px;
+  text-align: center;
+  padding: 50px 20px;
+  /* Grey / 600 */
+  color: #6e7491;
+  align-items: center;
+  padding: 64px;
+  gap: 24px;
+}
 
+.highlight {
+  color: #605dec;
+}
 
+.reviewsGrid {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.AllCard {
+  display: flex;
+}
 
-  }
-  
-  .highlight {
-    color: #605dec;
-  }
-  
-  .reviewsGrid {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  .AllCard{
-    display: flex;
+.reviewCard {
+  width: 300px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+}
 
-    
-  }
+.userInfo {
+  display: flex;
+  align-items: flex-start;
+  text-align: left;
+  margin-bottom: 10px;
+}
 
-  .reviewCard {
-    width: 300px;
-    padding: 20px;
-    background: #fff;
-    border-radius: 8px;
-  }
-  
-  .userInfo {
-    display: flex;
-    align-items:flex-start;
-    text-align: left;
-    margin-bottom: 10px;
-  }
-  
-  .avatar {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    margin: 20px 0px;
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin: 20px 0px;
+}
 
-
-  }
-  
-  .rating {
-    color: #f39c12;
-    margin-bottom: 10px;
-    align-items: flex-start;
-    text-align: left;
-  }
-  .reviewContent{
-    text-align: left;
-  }
-
-
-
-
-
-
+.rating {
+  color: #f39c12;
+  margin-bottom: 10px;
+  align-items: flex-start;
+  text-align: left;
+}
+.reviewContent {
+  text-align: left;
+}

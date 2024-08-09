@@ -18,10 +18,17 @@ const DealsComponent = ({ flights, children }) => {
           <div
             key={index}
             className={styles.card}
-            style={{ width: flight.image.width }}
           >
-            <div className={styles.cardImage}>
-              <Image src={flight.image} alt={flight.city} />
+            <div className={styles.cardImage}
+             style={{
+              backgroundImage: `url(${flight.image})`,
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+             }}
+            
+            >
+              {/* <Image src={flight.image} alt={flight.city} fill={true} /> */}
             </div>
             <div className={styles.cardData}>
               <div className={styles.name}>

@@ -1,18 +1,5 @@
+// This file contains the data for the deals, unique places, reviews, and price history chart.
 
-import img1 from "@/public/static/images/img1.png";
-import img2 from "@/public/static/images/img2.png";
-import img3 from "@/public/static/images/img3.png";
-import image from "@/public/static/images/image.png";
-import img4 from "@/public/static/images/img4.png";
-import img5 from "@/public/static/images/img5.png";
-import img6 from "@/public/static/images/img6.png";
-import person from "@/public/static/images/person.png";
-import logo1 from "@/public/static/logos/Air China.svg";
-import logo2 from "@/public/static/logos/Air France.svg";
-import logo3 from "@/public/static/logos/EVA Air.svg";
-import logo4 from "@/public/static/logos/Japan Airlines.svg";
-import logo5 from "@/public/static/logos/Korean Air.svg";
-import logo6 from "@/public/static/logos/Emirates.svg";
 
 const deals = [
     {
@@ -20,13 +7,13 @@ const deals = [
       place: "Shanghai",
       price: "$598",
       description: "China’s most international city.",
-      image: img2,
+      image: "https://res.cloudinary.com/dzkj7rogo/image/upload/v1723219853/tripma/zv4wldnkbqxlzdxcj1lk.png",
     },
     {
       city: "Sydney Opera House",
       place: "Sydney",
       price: "$981",
-      image: img3,
+      image:  "https://res.cloudinary.com/dzkj7rogo/image/upload/v1723219848/tripma/aosmkytx6xefmm6psv29.png",
       description: "Take a stroll along the famous harbor",
     },
     {
@@ -34,13 +21,13 @@ const deals = [
       place: "Kyoto",
       price: "$633",
       description: "Step back in time in the Gion district.",
-      image: img1,
+      image:  "https://res.cloudinary.com/dzkj7rogo/image/upload/v1723219849/tripma/kravpp0r3avijry3qgdv.png",
     },
     {
       city: "Tsavo East National Park",
       place: "Kenya",
       price: "$1,248",
-      image: image,
+      image:  "https://res.cloudinary.com/dzkj7rogo/image/upload/v1723219853/tripma/gmr5ub4hn85mm1cyu7oo.png",
       description:
         "Named after the Tsavo River, and opened in April 1984, Tsavo East National Park is one of the oldest parks in Kenya. It is located in the semi-arid Taru Desert.",
     },
@@ -52,12 +39,12 @@ const deals = [
       place: "Maldives",
       description:
         "From the 2nd century AD, the islands were known as the 'Money Isles' due to the abundance of cowry shells, a currency of the early ages.",
-      image: img4,
+      image: "https://res.cloudinary.com/dzkj7rogo/image/upload/v1723219848/tripma/vgcbhgs6ecjhbhssc1rn.png",
     },
     {
       city: "Experience the Ourika Valley in ",
       place: "Morocco",
-      image: img5,
+      image: "https://res.cloudinary.com/dzkj7rogo/image/upload/v1723219840/tripma/ndghiaefivj4gzjf3ba9.png",
       description:
         "Morocco’s Hispano-Moorish architecture blends influences from Berber culture, Spain, and contemporary artistic currents in the Middle East.",
     },
@@ -66,12 +53,12 @@ const deals = [
       place: "Mongolia",
       description:
         "Traditional Mongolian yurts consists of an angled latticework of wood or bamboo for walls, ribs, and a wheel.",
-      image: img6,
+      image: "https://res.cloudinary.com/dzkj7rogo/image/upload/v1723219840/tripma/uovci5bjvybo8skfywlg.png",
     },
   ];
   const reviews = [
     {
-      avatar: person,
+      avatar: "https://res.cloudinary.com/dzkj7rogo/image/upload/v1723219894/tripma/logos/gtlozyryieunk6cntedw.svg",
       name: "John Doe",
       location: "New York, USA",
       date: "January 2023",
@@ -80,7 +67,7 @@ const deals = [
         "Tripma is amazing! I had a wonderful experience and will definitely use it again.",
     },
     {
-      avatar: person,
+      avatar: "https://res.cloudinary.com/dzkj7rogo/image/upload/f_auto,q_auto/v1/tripma/yyuiqu9m0q6ivkc7tqsx",
       name: "Jane Smith",
       location: "London, UK",
       date: "February 2023",
@@ -89,7 +76,7 @@ const deals = [
         "Great service and easy to use. Highly recommend Tripma for your travel needs.",
     },
     {
-      avatar: person,
+      avatar: "https://res.cloudinary.com/dzkj7rogo/image/upload/v1723233009/tripma/osfyxpjo243ods2simqt.png",
       name: "Alice Johnson",
       location: "Sydney, Australia",
       date: "March 2023",
@@ -168,7 +155,7 @@ const deals = [
    const flightDetailsData = [
     {
       airline: "Hawaiian Airlines",
-      logo: logo1,
+      logo: "https://res.cloudinary.com/dzkj7rogo/image/upload/v1723219895/tripma/logos/igzhwxzfkwosb4w7nwgz.svg",
       duration: "16h 45m",
       departTime: "7:00AM",
       arriveTime: "4:15PM",
@@ -178,7 +165,7 @@ const deals = [
     },
     {
       airline: "Hawaiian Airlines",
-      logo: logo2,
+      logo: "https://res.cloudinary.com/dzkj7rogo/image/upload/v1723219895/tripma/logos/pgrmkeaxfi0fmni3dxni.svg",
       duration: "16h 45m",
       departTime: "7:00AM",
       arriveTime: "4:15PM",
@@ -188,7 +175,7 @@ const deals = [
     },
     {
       airline: "Hawaiian Airlines",
-      logo: logo3,
+      logo: "https://res.cloudinary.com/dzkj7rogo/image/upload/v1723219892/tripma/logos/u4xemgsschxchzu5ezxk.svg",
       duration: "16h 45m",
       departTime: "7:00AM",
       arriveTime: "4:15PM",
@@ -199,7 +186,7 @@ const deals = [
     // Add more flight details here
     {
       airline: "Delta Airlines",
-      logo: logo4,
+      logo: "https://res.cloudinary.com/dzkj7rogo/image/upload/v1723219893/tripma/logos/asxxv3p5h5iqfcy16eme.svg",
       duration: "10h 30m",
       departTime: "9:30AM",
       arriveTime: "8:00PM",
@@ -209,7 +196,7 @@ const deals = [
     },
     {
       airline: "United Airlines",
-      logo: logo5,
+      logo: "https://res.cloudinary.com/dzkj7rogo/image/upload/v1723219894/tripma/logos/gtlozyryieunk6cntedw.svg",
       duration: "8h 15m",
       departTime: "1:45PM",
       arriveTime: "10:00PM",
@@ -219,7 +206,7 @@ const deals = [
     },
     {
       airline: "American Airlines",
-      logo: logo6,
+      logo: "https://res.cloudinary.com/dzkj7rogo/image/upload/v1723219893/tripma/logos/qcsne6nfcakg2xac6z0w.svg",
       duration: "12h 10m",
       departTime: "6:00AM",
       arriveTime: "6:10PM",
@@ -229,7 +216,7 @@ const deals = [
     },
     {
       airline: "Delta Airlines",
-      logo: logo4,
+      logo: "https://res.cloudinary.com/dzkj7rogo/image/upload/v1723219894/tripma/logos/s7c58qu1gdx3mcdgbkfs.svg",
       duration: "10h 30m",
       departTime: "9:30AM",
       arriveTime: "8:00PM",
@@ -239,7 +226,7 @@ const deals = [
     },
     {
       airline: "United Airlines",
-      logo: logo5,
+      logo: "https://res.cloudinary.com/dzkj7rogo/image/upload/v1723219732/dffwtghnm4iwzomhjuzw.svg",
       duration: "8h 15m",
       departTime: "1:45PM",
       arriveTime: "10:00PM",
@@ -249,7 +236,7 @@ const deals = [
     },
     {
       airline: "American Airlines",
-      logo: logo6,
+      logo: "https://res.cloudinary.com/dzkj7rogo/image/upload/v1723219893/tripma/logos/pivjy59yvpboovzgobd3.svg",
       duration: "12h 10m",
       departTime: "6:00AM",
       arriveTime: "6:10PM",

@@ -18,10 +18,17 @@ const PlacesComponent = ({ places, children ,allowExplore }) => {
           <div
             key={index}
             className={styles.card}
-            style={{ width: place.image.width }}
           >
-            <div className={styles.cardImage}>
-              <Image src={place.image} alt={place.city} />
+            <div
+              className={styles.cardImage}
+              style={{
+                backgroundImage: `url(${place.image})`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            >
+              {/* <Image src={place.image} alt={place.city} fill/> */}
             </div>
             <div className={styles.cardData}>
               <div className={styles.name}>
@@ -35,10 +42,11 @@ const PlacesComponent = ({ places, children ,allowExplore }) => {
           </div>
         ))}
       </div>
-     {allowExplore && <div className={styles.exploreButton}>
-        <button>Explore More Stays</button>
-      </div>
-}
+      {allowExplore && (
+        <div className={styles.exploreButton}>
+          <button>Explore More Stays</button>
+        </div>
+      )}
     </div>
   );
 };

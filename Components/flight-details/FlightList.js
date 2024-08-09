@@ -53,9 +53,12 @@ const FlightItem = ({
   price,
 }) => (
   <>
-    <Image src={logo} alt={airline} className={styles.airlineLogo} />
-
+  <div className={styles.airlineLogo}  >
+         <Image src={logo} alt={airline} fill />
+      </div>
     <div className={styles.dataRowCombined}>
+    
+
       <div className={styles.dataRowPrimary}>
         <span className={styles.label}>{duration}</span>
         <span className={styles.label}>

@@ -38,8 +38,6 @@ const FlightDetails = () => {
         <FlightSearch width={850} />
         <FilterOptions />
 
-
-
         <div className={styles.flightDetails}>
           <div className={styles.leftColumn}>
             <FlightList onFlightSelect={handleFlightSelect}>
@@ -54,15 +52,12 @@ const FlightDetails = () => {
             <Image src={map} alt="map" />
           </div>
 
-
           <div className={styles.rightColumn}>
             {selectedDepartingFlight || selectedReturningFlight ? (
-              
-                <FlightSelectCard 
-                departingFlight={selectedDepartingFlight} 
+              <FlightSelectCard
+                departingFlight={selectedDepartingFlight}
                 returningFlight={selectedReturningFlight}
-                 />
-             
+              />
             ) : (
               <>
                 <PriceGrid data={GridData} />
@@ -73,8 +68,6 @@ const FlightDetails = () => {
           </div>
         </div>
       </div>
-
-
 
       <PlacesComponent places={uniquePlaces} allowExplore={false}>
         <div style={{ fontWeight: "bold" }}>
