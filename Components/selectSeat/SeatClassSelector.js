@@ -1,5 +1,5 @@
-"use client";
-import React from "react";
+'use client';
+import React, { useState, useEffect } from "react";
 import styles from "./SeatClassSelector.module.css";
 import Image from "next/image";
 import ecoChair from "@/public/static/images/economyChairs.svg";
@@ -7,7 +7,6 @@ import businessChair from "@/public/static/images/businessChairs.svg";
 import dot from "@/public/dot.svg";
 import check from "@/public/check_green.svg";
 import arrow from "@/public/right-arrow.svg";
-import { useState } from "react";
 
 const SelectedDiv = ({ selected }) => {
   return selected ? (
@@ -23,9 +22,36 @@ const SeatClassSelector = ({ selectedSeat }) => {
     return String.fromCharCode(baseCharCode + number - 1);
   };
 
-  const [Departing, setDeparting] = useState(true);
+  const [departing, setDeparting] = useState(true);
   const [isBusiness, setIsBusiness] = useState(false);
   const [allowUpgrade, setAllowUpgrade] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
+
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
+
+  if (!hydrated) {
+    return null; // Render nothing on the server
+  }
+
+  const handleDepartingClick = () => {
+    setDeparting(true);
+  };
+
+  const handleArrivingClick = () => {
+    setDeparting(false);
+  };
+
+  const handleUpgradeClick = () => {
+    setIsBusiness(true);
+    setAllowUpgrade(false);
+  };
+
+  const handleCancelClick = () => {
+    setAllowUpgrade(false);
+  };
+
   return (
     <div className={styles.container}>
       {/* Header with flight information */}
@@ -42,29 +68,23 @@ const SeatClassSelector = ({ selectedSeat }) => {
           </div>
           |
           <div
-            className={`${styles.flightDetails}
-          
-          ${Departing ? styles.selected : ""}
-          `}
-            onClick={() => {
-              setDeparting(true);
-            }}
+            className={`${styles.flightDetails} ${
+              departing ? styles.selected : ""
+            }`}
+            onClick={handleDepartingClick}
           >
             <span>Feb 25 | 7:00AM</span>
-            <span style={{fontSize:'small'}}>Departing</span>
+            <span style={{ fontSize: "small" }}>Departing</span>
           </div>
           |
           <div
-            className={`${styles.flightDetails}
-          
-${!Departing ? styles.selected : ""}
-`}
-            onClick={() => {
-              setDeparting(false);
-            }}
+            className={`${styles.flightDetails} ${
+              !departing ? styles.selected : ""
+            }`}
+            onClick={handleArrivingClick}
           >
             <span>Mar 21 | 12:15PM</span>
-            <span style={{fontSize:'small'}}>Arriving</span>
+            <span style={{ fontSize: "small" }}>Arriving</span>
           </div>
         </div>
       </div>
@@ -74,7 +94,7 @@ ${!Departing ? styles.selected : ""}
         <div className={`${styles.class} `}>
           <Image src={ecoChair} alt="Economy class" />
           <h3>
-            Economy {!isBusiness ? <SelectedDiv selected={isBusiness} /> : ""}
+            Economy {!isBusiness && <SelectedDiv selected={isBusiness} />}
           </h3>
           <p>
             Rest and recharge during your flight with extended leg room,
@@ -89,7 +109,6 @@ ${!Departing ? styles.selected : ""}
               <Image src={dot} alt="dot" />
               Complimentary snacks and drinks
             </li>
-
             <li>
               <Image src={dot} alt="dot" />
               One free carry-on and personal item
@@ -100,7 +119,7 @@ ${!Departing ? styles.selected : ""}
           <Image src={businessChair} alt="Economy class" />
           <h3>
             Business class{" "}
-            {isBusiness ? <SelectedDiv selected={isBusiness} /> : ""}
+            {isBusiness && <SelectedDiv selected={isBusiness} />}
           </h3>
           <p>
             Rest and recharge during your flight with extended leg room,
@@ -149,20 +168,30 @@ ${!Departing ? styles.selected : ""}
         <div className={styles.footerButtons}>
           <button className={styles.button}>Save and close</button>
           <button
-            className={`${styles.buttonPrimary}  ${
+            className={`${styles.buttonPrimary} ${
               selectedSeat ? styles.selected : ""
-            } `}
-            onClick={() => {setAllowUpgrade(true)}}
+            }`}
+            onClick={() => {
+              setAllowUpgrade(true);
+            }}
           >
             Next Flight
           </button>
         </div>
       </div>
-      {allowUpgrade&& <UpgradeCard setIsBusiness={setIsBusiness} setAllowUpgrade={setAllowUpgrade}/>}
+      {allowUpgrade && (
+        <UpgradeCard
+          setIsBusiness={setIsBusiness}
+          setAllowUpgrade={setAllowUpgrade}
+          handleCancelClick={handleCancelClick}
+          handleUpgradeClick={handleUpgradeClick}
+        />
+      )}
     </div>
   );
 };
-const UpgradeCard = ({setIsBusiness,setAllowUpgrade}) => {
+
+const UpgradeCard = ({ setIsBusiness, setAllowUpgrade, handleCancelClick, handleUpgradeClick }) => {
   return (
     <div className={styles["upgrade-card"]}>
       <h3>Upgrade seat</h3>
@@ -171,18 +200,15 @@ const UpgradeCard = ({setIsBusiness,setAllowUpgrade}) => {
         seats that recline 40 percent more than economy.
       </p>
       <div className={styles["card-buttons"]}>
-        <button className={styles["cancel-button"]}
-          onClick={() => {
-            setAllowUpgrade(false);
-          }}
-        
-        >Cancel</button>
+        <button
+          className={styles["cancel-button"]}
+          onClick={handleCancelClick}
+        >
+          Cancel
+        </button>
         <button
           className={styles["upgrade-button"]}
-          onClick={() => {
-            setIsBusiness(true);
-            setAllowUpgrade(false);
-          }}
+          onClick={handleUpgradeClick}
         >
           Upgrade for $199
         </button>
@@ -190,4 +216,5 @@ const UpgradeCard = ({setIsBusiness,setAllowUpgrade}) => {
     </div>
   );
 };
+
 export default SeatClassSelector;

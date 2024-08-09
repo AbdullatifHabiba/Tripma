@@ -14,7 +14,7 @@ import {
   deals,
   GridData,
   priceHistoryData,
-} from "@/app/ui/flights/data";
+} from "@/Components/lib/data";
 import { Footer1, Footer2 } from "../footer/footer";
 import PriceRating from "./PriceRating";
 import { FlightList, FilterOptions } from "./FlightList";

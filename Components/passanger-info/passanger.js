@@ -4,7 +4,7 @@ import Image from "next/image";
 import styles from "./PassengerInformation.module.css";
 import backpackIcon from "@/public/static/images/bag.svg";
 import FlightSelectCard from "../flight-details/FlightCard";
-import { flightDetailsData } from "@/app/ui/flights/data";
+import { flightDetailsData } from "@/Components/lib/data";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -85,13 +85,14 @@ export default function PassengerInformation() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Passenger Information</h1>
-        <p className={styles.subtitle}>
-        Enter the required information for each traveler and be sure that it exactly matches 
-        <br/>the government-issued ID presented at the airport.
-        </p>
+     
       <div className={styles.formContainer}>
         <div className={styles.formSection}>
+        <h1 className={styles.title}>Passenger Information</h1>
+        <p className={styles.subtitle}>
+        Enter the required information for each traveler and be sure that it exactly matches 
+        the government-issued ID presented at the airport.
+        </p>
           <form onSubmit={handleSubmit}>
           <h2 className={styles.sectionTitle}>Passenger1 (Adult)</h2>
 
