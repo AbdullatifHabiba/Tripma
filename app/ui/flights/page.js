@@ -15,7 +15,7 @@ export default function Flights() {
       <Navbar />
       <Home />
       <div className="flex flex-col items-center justify-center w-full">
-        <DealsComponent flights={deals} >
+      <DealsComponent flights={deals} >
           <div style={{ fontWeight: 'bold' }}>
           Find your next adventure with these <Link href={"/ui/deals"} style={{ color: 'blue' }}>flight deals</Link></div>
         </DealsComponent>

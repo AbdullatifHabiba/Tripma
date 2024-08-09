@@ -6,6 +6,8 @@ import Link from "next/link";
 const DealsComponent = ({ flights, children }) => {
   return (
     <div className={styles.CardRow}>
+    
+      <div className={styles.cardLine}>
       <div className={styles.titleRow}>
         {children}
         <button className={styles.arrow}>
@@ -13,7 +15,6 @@ const DealsComponent = ({ flights, children }) => {
           <Image src={ra} alt="right-arrow" />
         </button>
       </div>
-      <div className={styles.cardLine}>
         {flights.map((flight, index) => (
           <div
             key={index}

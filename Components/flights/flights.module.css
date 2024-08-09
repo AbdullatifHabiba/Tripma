@@ -10,18 +10,7 @@
   color: #6e7491;
   flex-wrap: wrap;
 }
-.titleRow {
-  /* Auto layout */
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 0px;
-  gap: 826px;
 
-  height: 33px;
-  align-self: center;
-}
 .cards {
   /* Auto layout */
   display: flex;
@@ -37,7 +26,7 @@
   /* Auto layout */
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   padding: 0px;
   gap: 40px;
@@ -96,15 +85,13 @@
   /* Auto layout */
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
+  justify-content:center;
+  align-items: center;
   padding: 0px;
-  gap: 826px;
 
-  width: 1312px;
+  width: 100%;
   height: 33px;
 }
-/* Name of section and an accent */
 
 .name {
   width: 100%;
@@ -184,6 +171,7 @@
   align-items: center;
   justify-content: center;
   padding: 8px;
+  margin-left: auto;
 }
 .exploreButton {
   /* button */

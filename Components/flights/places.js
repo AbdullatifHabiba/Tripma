@@ -6,6 +6,8 @@ import Link from "next/link";
 const PlacesComponent = ({ places, children ,allowExplore }) => {
   return (
     <div className={styles.CardRow}>
+     
+      <div className={styles.cardLine}>
       <div className={styles.titleRow}>
         {children}
         <button className={styles.arrow}>
@@ -13,7 +15,6 @@ const PlacesComponent = ({ places, children ,allowExplore }) => {
           <Image src={ra} alt="right-arrow" />
         </button>
       </div>
-      <div className={styles.cardLine}>
         {places.map((place, index) => (
           <div
             key={index}
