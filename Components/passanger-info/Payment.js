@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import styles from "./PassengerInformation.module.css";
 import FlightSelectCard from "../flight-details/FlightCard";
-import { flightDetailsData } from "@/Components/lib/data";
+import { flightDetailsData } from "@/lib/data";
 import { useRouter } from "next/navigation";
 import google from "@/public/google.png";
 import apple from "@/public/apple.png";

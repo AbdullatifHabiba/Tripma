@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./FlightDetails.module.css";
 import Image from "next/image";
-import { flightDetailsData } from "@/Components/lib/data";
+import { flightDetailsData } from "@/lib/data";
 
 const FilterOptions = () => (
   <div className={styles.filterOptions}>

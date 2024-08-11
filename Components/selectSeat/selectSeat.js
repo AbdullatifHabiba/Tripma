@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import plan from '@/public/plan.svg';
 import styles from './selectSeat.module.css';
-import { businessSeats, economySeats } from '../lib/seats_Data';
+import { businessSeats, economySeats } from '../../lib/seats_Data';
 import check from '@/public/correct_icon.svg';
 
 
@@ -31,6 +31,7 @@ const TrainSeats = ({setSelectedSeat}) => {
       <div
         key={seat.id}
         onClick={() => toggleSeatSelection(seat)}
+        
         className={`${styles.seat} ${seatStyle} ${isSelected ? styles.selected : ''}`}
         title={`Seat ${seat.row}-${seat.col}`}
       >

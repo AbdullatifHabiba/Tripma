@@ -4,7 +4,7 @@ import Link from "next/link";
 import styles from "./FlightDetails.module.css";
 import FlightSearch from "../searchBar/FlightSearch";
 import Image from "next/image";
-import map from "@/public/static/images/map.svg";
+import map from "@/public/map.svg";
 import PriceGrid from "./PriceGrid";
 import PriceHistory from "./PriceHistory";
 import PlacesComponent from "../flights/places";
@@ -14,7 +14,7 @@ import {
   deals,
   GridData,
   priceHistoryData,
-} from "@/Components/lib/data";
+} from "@/lib/data";
 import { Footer1, Footer2 } from "../footer/footer";
 import PriceRating from "./PriceRating";
 import { FlightList, FilterOptions } from "./FlightList";

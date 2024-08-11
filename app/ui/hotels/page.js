@@ -1,5 +1,5 @@
 import PlacesComponent from "@/Components/flights/places";
-import { hotels } from "../../../Components/lib/data";
+import { hotels } from "../../../lib/data";
 import Navbar from "@/Components/Navbar";
 import ShopHotels from "@/Components/explore/hotels";
 

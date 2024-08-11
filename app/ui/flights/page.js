@@ -3,7 +3,7 @@ import Home from "@/Components/home/Home";
 import PlacesComponent from "@/Components/flights/places";
 import Reviews from "@/Components/flights/reviews";
 import { Footer1, Footer2 } from "@/Components/footer/footer";
-import { deals, uniquePlaces, reviews } from "@/Components/lib/data";
+import { deals, uniquePlaces, reviews } from "@/lib/data";
 import Link from "next/link";
 import Navbar from "@/Components/Navbar";
 

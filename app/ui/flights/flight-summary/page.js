@@ -2,14 +2,13 @@ import { Footer1, Footer2 } from "@/Components/footer/footer";
 import Navbar from "@/Components/Navbar";
 import styles from "./Page.module.css";
 import { FlightItem } from "@/Components/flight-details/FlightList";
-import { flightDetailsData, hotels, experiences } from "@/Components/lib/data";
+import { flightDetailsData, hotels, experiences } from "@/lib/data";
 import Image from "next/image";
 import visa from "@/public/visa.svg";
-import map from "@/public/static/images/map.svg";
+import map from "@/public/map.svg";
 import ShopHotels from "@/Components/explore/hotels";
 import UniqueExperiences from "@/Components/explore/experinces";
 import ShareTravel from "@/Components/explore/share-travel";
-import FlightRouteMap from "@/Components/explore/map";
 import Link from "next/link";
 export default function Page() {
   const flight0 = flightDetailsData[0];

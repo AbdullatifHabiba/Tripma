@@ -2,9 +2,9 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "./PassengerInformation.module.css";
-import backpackIcon from "@/public/static/images/bag.svg";
+import backpackIcon from "@/public/bag.svg";
 import FlightSelectCard from "../flight-details/FlightCard";
-import { flightDetailsData } from "@/Components/lib/data";
+import { flightDetailsData } from "@/lib/data";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 

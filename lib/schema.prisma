@@ -1,0 +1,154 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+}
+
+model User {
+  id       Int       @id @default(autoincrement())
+  email    String    @unique
+  name     String?
+  password String?
+  bookings Booking[] // Relationship to bookings
+}
+
+model GuestUser {
+  id       Int       @id @default(autoincrement())
+  email    String?
+  name     String?
+  bookings Booking[] // Relationship to bookings
+}
+
+model Flight {
+  id           Int       @id @default(autoincrement())
+  flightNumber String    // Flight number
+  airline      String    // Airline name
+  origin       String
+  destination  String
+  departure    DateTime
+  arrival      DateTime
+  stops        String?   // Number of stops
+  stopInfo     String?   // Additional stop information
+  price        Float
+  logo         String?   // Airline logo
+  duration     String
+  seats        Seat[]    // Relationship to seats available on this flight
+  bookings     Booking[] // Relationship to bookings on this flight
+  isRoundTrip  Boolean   @default(false) // Indicates if this flight is part of a round trip
+}
+
+model Seat {
+  id        Int      @id @default(autoincrement())
+  row       Int      // Row number
+  col       Int      // Column number
+  class     String   // e.g., 'First Class', 'Economy'
+  available Boolean  @default(true)
+  flightId  Int
+  bookingId Int?
+  booking   Booking? @relation(fields: [bookingId], references: [id])
+  flight    Flight   @relation(fields: [flightId], references: [id])
+
+  @@unique([row, col, flightId])
+}
+
+model Passenger {
+  id                   Int               @id @default(autoincrement())
+  firstName            String
+  middleName           String?
+  lastName             String
+  suffix               String? // e.g., Jr., Sr., III
+  dateOfBirth          DateTime // Date of birth
+  email                String
+  phoneNumber          String
+  redressNumber        String? // Optional for security clearance
+  knownTravellerNumber String? // Optional for security clearance
+  emergencyContact     EmergencyContact?
+  bookingId            Int
+  booking              Booking           @relation(fields: [bookingId], references: [id])
+
+  @@index([bookingId])
+}
+
+model EmergencyContact {
+  id          Int       @id @default(autoincrement())
+  firstName   String
+  lastName    String
+  email       String
+  phoneNumber String
+  passengerId Int       @unique // Make this field unique
+  passenger   Passenger @relation(fields: [passengerId], references: [id])
+}
+
+model Booking {
+  id              Int           @id @default(autoincrement())
+  bookingNumber   String        @unique
+  flightId        Int
+  userId          Int?
+  guestUserId     Int?
+  paymentMethod   PaymentMethod @relation(fields: [paymentMethodId], references: [id])
+  paymentMethodId Int
+  createdAt       DateTime      @default(now())
+  totalPrice      Float
+  passengers      Passenger[]
+  seats           Seat[]
+  user            User?         @relation(fields: [userId], references: [id])
+  guestUser       GuestUser?    @relation(fields: [guestUserId], references: [id])
+  flight          Flight        @relation(fields: [flightId], references: [id])
+
+  @@index([userId])
+  @@index([guestUserId])
+  @@index([flightId])
+}
+
+model PaymentMethod {
+  id         Int       @id @default(autoincrement())
+  type       String    // e.g., 'Visa', 'MasterCard', 'PayPal', etc.
+  cardNumber String?
+  expiryDate String?
+  bookings   Booking[]
+}
+
+model Hotel {
+  id       Int    @id @default(autoincrement())
+  name     String
+  location String
+  price    Float
+}
+
+model Experience {
+  id       Int    @id @default(autoincrement())
+  name     String
+  location String
+  price    Float
+}
+
+model Deal {
+  id          Int     @id @default(autoincrement())
+  city        String
+  place       String
+  price       String
+  description String?
+  image       String
+}
+
+model UniquePlace {
+  id          Int     @id @default(autoincrement())
+  city        String
+  place       String
+  description String?
+  image       String
+}
+
+model Review {
+  id       Int      @id @default(autoincrement())
+  avatar   String
+  name     String
+  location String
+  date     DateTime
+  rating   Int
+  content  String
+}

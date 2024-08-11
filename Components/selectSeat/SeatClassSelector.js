@@ -2,8 +2,8 @@
 import React, { useState, useEffect } from "react";
 import styles from "./SeatClassSelector.module.css";
 import Image from "next/image";
-import ecoChair from "@/public/static/images/economyChairs.svg";
-import businessChair from "@/public/static/images/businessChairs.svg";
+import ecoChair from "@/public/economyChairs.svg";
+import businessChair from "@/public/businessChairs.svg";
 import dot from "@/public/dot.svg";
 import check from "@/public/check_green.svg";
 import arrow from "@/public/right-arrow.svg";

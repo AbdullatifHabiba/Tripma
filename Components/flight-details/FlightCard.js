@@ -66,7 +66,7 @@ const FlightSelectCard = ({
             {pass && (
               <Link
               href={{
-                pathname: '/ui/flights/passenger',
+                pathname: '/ui/flights/passanger',
               }}
               className={styles.passengerInfoBtn}
             >
