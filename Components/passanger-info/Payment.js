@@ -34,18 +34,52 @@ export default function Payment() {
 
   const validateForm = () => {
     let newErrors = {};
-    if (paymentMethod === "credit") {
-      if (!formData.nameOnCard)
-        newErrors.nameOnCard = "Name on card is required";
-      if (!formData.cardNumber)
-        newErrors.cardNumber = "Card number is required";
-      if (!formData.expirationDate)
-        newErrors.expirationDate = "Expiration date is required";
-      if (!formData.ccv) newErrors.ccv = "CCV is required";
+  
+    // Validate name on card
+    if (!formData.nameOnCard) {
+      newErrors.nameOnCard = "Name on card is required";
     }
+  
+    // Validate card number (basic check for 16 digits)
+    if (!formData.cardNumber) {
+      newErrors.cardNumber = "Card number is required";
+    } else if (!/^\d{16}$/.test(formData.cardNumber)) {
+      newErrors.cardNumber = "Card number must be 16 digits";
+    }
+  
+    // Validate expiration date (basic check for MM/YY format)
+    if (!formData.expirationDate) {
+      newErrors.expirationDate = "Expiration date is required";
+    } else if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(formData.expirationDate)) {
+      newErrors.expirationDate = "Expiration date must be in MM/YY format";
+    }
+  
+    // Validate CCV (basic check for 3 or 4 digits)
+    if (!formData.ccv) {
+      newErrors.ccv = "CCV is required";
+    } else if (!/^\d{3,4}$/.test(formData.ccv)) {
+      newErrors.ccv = "CCV must be 3 or 4 digits";
+    }
+  
+    // Validate email (basic email format check)
+    if (!formData.email) {
+      newErrors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Email is not valid";
+    }
+  
+    // Validate password (basic check for minimum length)
+    if (!formData.password) {
+      newErrors.password = "Password is required";
+    } else if (formData.password.length < 6) {
+      newErrors.password = "Password must be at least 6 characters";
+    }
+  
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
+  
+
 
   useEffect(() => {
     setIsFormValid(validateForm());
@@ -236,6 +270,9 @@ export default function Payment() {
                     value={formData.email}
                     onChange={handleInputChange}
                   />
+                  {errors.email && (
+                    <span className={styles.error}>{errors.email}</span>
+                  )}
                
                   <input
                     type="password"
@@ -245,6 +282,9 @@ export default function Payment() {
                     value={formData.password}
                     onChange={handleInputChange}
                   />
+                  {errors.password && (
+                    <span className={styles.error}>{errors.password}</span>
+                  )}
                 </div>
 
                 <div className={styles.inputGroup}>

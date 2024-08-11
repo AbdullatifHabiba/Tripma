@@ -9,7 +9,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function PassengerInformation() {
-    const router = useRouter();
+  const router = useRouter();
   const [passengerInfo, setPassengerInfo] = useState({
     firstName: "",
     middleName: "",
@@ -29,6 +29,7 @@ export default function PassengerInformation() {
   });
 
   const [isFormValid, setIsFormValid] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -57,44 +58,70 @@ export default function PassengerInformation() {
     }));
   };
 
-  useEffect(() => {
-    const validateForm = () => {
-      const requiredFields = [
-        "firstName",
-        "lastName",
-        "dateOfBirth",
-        "email",
-        "phone",
-        "knownTravellerNumber",
-        "emergencyContactFirstName",
-        "emergencyContactLastName",
-        "emergencyContactEmail",
-        "emergencyContactPhone",
-      ];
+  const validateEmail = (email) => {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+  };
 
-      for (let field of requiredFields) {
-        if (!passengerInfo[field]) {
-          return false;
-        }
+  const validatePhone = (phone) => {
+    const phonePattern = /^\d{11}$/;
+    return phonePattern.test(phone);
+  };
+
+  const validateForm = () => {
+    const requiredFields = [
+      "firstName",
+      "lastName",
+      "dateOfBirth",
+      "email",
+      "phone",
+      "knownTravellerNumber",
+      "emergencyContactFirstName",
+      "emergencyContactLastName",
+      "emergencyContactEmail",
+      "emergencyContactPhone",
+    ];
+
+    const newErrors = {};
+
+    for (let field of requiredFields) {
+      if (!passengerInfo[field]) {
+        newErrors[field] = `${field} is required`;
       }
-      return true;
-    };
+    }
 
+    if (passengerInfo.email && !validateEmail(passengerInfo.email)) {
+      newErrors.email = "Invalid email format";
+    }
+    if (passengerInfo.phone && !validatePhone(passengerInfo.phone)) {
+      newErrors.phone = "Invalid phone number format";
+    }
+    if (passengerInfo.emergencyContactEmail && !validateEmail(passengerInfo.emergencyContactEmail)) {
+      newErrors.emergencyContactEmail = "Invalid email format";
+    }
+    if (passengerInfo.emergencyContactPhone && !validatePhone(passengerInfo.emergencyContactPhone)) {
+      newErrors.emergencyContactPhone = "Invalid phone number format";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  useEffect(() => {
     setIsFormValid(validateForm());
   }, [passengerInfo]);
 
   return (
     <div className={styles.container}>
-     
       <div className={styles.formContainer}>
         <div className={styles.formSection}>
-        <h1 className={styles.title}>Passenger Information</h1>
-        <p className={styles.subtitle}>
-        Enter the required information for each traveler and be sure that it exactly matches 
-        the government-issued ID presented at the airport.
-        </p>
+          <h1 className={styles.title}>Passenger Information</h1>
+          <p className={styles.subtitle}>
+            Enter the required information for each traveler and be sure that it exactly matches 
+            the government-issued ID presented at the airport.
+          </p>
           <form onSubmit={handleSubmit}>
-          <h2 className={styles.sectionTitle}>Passenger1 (Adult)</h2>
+            <h2 className={styles.sectionTitle}>Passenger1 (Adult)</h2>
 
             <div className={styles.inputRow}>
               <div className={styles.inputGroup}>
@@ -108,6 +135,7 @@ export default function PassengerInformation() {
                   placeholder="First name*"
                   required
                 />
+                {errors.firstName && <span className={styles.error}>{errors.firstName}</span>}
               </div>
               <div className={styles.inputGroup}>
                 <input
@@ -131,6 +159,7 @@ export default function PassengerInformation() {
                   placeholder="Last name*"
                   required
                 />
+                {errors.lastName && <span className={styles.error}>{errors.lastName}</span>}
               </div>
             </div>
 
@@ -158,8 +187,9 @@ export default function PassengerInformation() {
                   required
                 />
                 <span>
-                    <small>MM/DD/YY</small>
+                  <small>MM/DD/YY</small>
                 </span>
+                {errors.dateOfBirth && <span className={styles.error}>{errors.dateOfBirth}</span>}
               </div>
             </div>
 
@@ -175,6 +205,7 @@ export default function PassengerInformation() {
                   placeholder="Email address*"
                   required
                 />
+                {errors.email && <span className={styles.error}>{errors.email}</span>}
               </div>
               <div className={styles.inputGroup}>
                 <input
@@ -187,6 +218,7 @@ export default function PassengerInformation() {
                   placeholder="Phone number*"
                   required
                 />
+                {errors.phone && <span className={styles.error}>{errors.phone}</span>}
               </div>
             </div>
 
@@ -213,6 +245,7 @@ export default function PassengerInformation() {
                   placeholder="Known traveller number*"
                   required
                 />
+                {errors.knownTravellerNumber && <span className={styles.error}>{errors.knownTravellerNumber}</span>}
               </div>
             </div>
 
@@ -244,6 +277,7 @@ export default function PassengerInformation() {
                   placeholder="first name*"
                   required
                 />
+                {errors.emergencyContactFirstName && <span className={styles.error}>{errors.emergencyContactFirstName}</span>}
               </div>
               <div className={styles.inputGroup}>
                 <input
@@ -256,6 +290,7 @@ export default function PassengerInformation() {
                   placeholder="last name*"
                   required
                 />
+                {errors.emergencyContactLastName && <span className={styles.error}>{errors.emergencyContactLastName}</span>}
               </div>
             </div>
 
@@ -271,6 +306,7 @@ export default function PassengerInformation() {
                   placeholder="email address*"
                   required
                 />
+                {errors.emergencyContactEmail && <span className={styles.error}>{errors.emergencyContactEmail}</span>}
               </div>
               <div className={styles.inputGroup}>
                 <input
@@ -283,6 +319,7 @@ export default function PassengerInformation() {
                   placeholder="phone number*"
                   required
                 />
+                {errors.emergencyContactPhone && <span className={styles.error}>{errors.emergencyContactPhone}</span>}
               </div>
             </div>
 
@@ -322,7 +359,7 @@ export default function PassengerInformation() {
                 className={styles.selectSeat}
                 disabled={!isFormValid}
                 onClick={() => {
-                 router.push("/ui/flights/passanger/select-seat");
+                  router.push("/ui/flights/passanger/select-seat");
                 }}
               >
                 Select Seat
