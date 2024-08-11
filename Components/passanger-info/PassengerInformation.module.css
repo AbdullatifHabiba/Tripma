@@ -219,6 +219,7 @@ color: #605DEC;
 
 .infoIcon {
   cursor: pointer;
+  margin-right: 5px;
 }
 
 .accountInfo,
@@ -318,7 +319,14 @@ color: #605DEC;
   color: #605dec;
   text-decoration: none;
 }
+.rowIcon{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #ccc;
 
+}
 @media (max-width: 768px) {
   .formSection,
   .sideSection {

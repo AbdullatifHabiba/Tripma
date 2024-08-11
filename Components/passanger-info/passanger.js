@@ -148,7 +148,7 @@ export default function PassengerInformation() {
               </div>
               <div className={styles.inputGroup}>
                 <input
-                  type="text"
+                  type="date"
                   id="dateOfBirth"
                   name="dateOfBirth"
                   value={passengerInfo.dateOfBirth}
@@ -322,7 +322,7 @@ export default function PassengerInformation() {
                 className={styles.selectSeat}
                 disabled={!isFormValid}
                 onClick={() => {
-                 router.push("/ui/passanger/select-seat");
+                 router.push("/ui/flights/passanger/select-seat");
                 }}
               >
                 Select Seat
@@ -343,7 +343,7 @@ export default function PassengerInformation() {
               className={styles.selectSeat}
               disabled={!isFormValid}
               onClick={() => {
-               router.push("/ui/passanger/select-seat");
+                router.push("/ui/flights/passanger/select-seat");
               }}
             >
               Select Seat

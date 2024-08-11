@@ -1,12 +1,15 @@
 import PlacesComponent from "@/Components/flights/places";
-import { uniquePlaces } from "../../../Components/lib/data";
+import { hotels } from "../../../Components/lib/data";
+import Navbar from "@/Components/Navbar";
+import ShopHotels from "@/Components/explore/hotels";
 
 export default function Hotels() {
     return (
-        
-            <PlacesComponent places={uniquePlaces} allowExplore={false}>
+        <>
+        <Navbar />
+        <ShopHotels hotels={hotels} />
        
-        </PlacesComponent>
+        </>
         
     );
     }

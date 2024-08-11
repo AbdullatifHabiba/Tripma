@@ -245,4 +245,47 @@ const deals = [
       price: "680",
     },
   ];
-  export { deals, uniquePlaces, reviews ,GridData ,priceHistoryData,flightDetailsData};
+  const hotels = [
+    {
+      name: "Ryokan Japan",
+      description: "Enjoy views of the garden from your room",
+      price: "$439",
+      imageUrl: "https://res.cloudinary.com/dzkj7rogo/image/upload/v1723366213/yiranding-aIG78YGhDmM-unsplash_4_wi02us.png",
+    },
+    {
+      name: "Bessho SASA",
+      description: "Japanese ryokan with private onsen bath",
+      price: "$529",
+      imageUrl: "https://res.cloudinary.com/dzkj7rogo/image/upload/v1723366212/yiranding-aIG78YGhDmM-unsplash_6_vfuxr6.png",
+    },
+    {
+      name: "HOTEL THE FLAG 大阪市",
+      description: "Modern hotel in the heart of Osaka",
+      price: "$139",
+      imageUrl: "https://res.cloudinary.com/dzkj7rogo/image/upload/v1723366211/yang-deng-ELlfT9NV6jc-unsplash_1_9_qfdi4q.png",
+    },
+    {
+      name: "9 Hours Shinjuku",
+      description: "A convenient capsule hotel at Shinjuku station",
+      price: "$59",
+      imageUrl: "https://res.cloudinary.com/dzkj7rogo/image/upload/v1723366588/yang-deng-ELlfT9NV6jc-unsplash_1_10_mc6s7k.png",
+    },
+  ];
+
+  const experiences = [
+    {
+      name: "Tokyo Nightlife",
+      description: "Explore the vibrant nightlife in Tokyo's clubs",
+      price: "$109",
+      imageUrl: "https://res.cloudinary.com/dzkj7rogo/image/upload/v1723366211/yang-deng-ELlfT9NV6jc-unsplash_1_9_qfdi4q.png",
+    },
+    {
+      name: "Nihon Kimono",
+      description: "Wear the national dress of Japan around the city",
+      price: "$89",
+      imageUrl: "https://res.cloudinary.com/dzkj7rogo/image/upload/v1723366209/yang-deng-ELlfT9NV6jc-unsplash_1_11_kupw8k.png",
+    },
+    
+  ];
+  
+  export { deals, uniquePlaces, reviews ,GridData ,priceHistoryData,flightDetailsData,hotels,experiences};

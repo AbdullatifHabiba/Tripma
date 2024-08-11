@@ -184,15 +184,19 @@ export default function Payment() {
                     )}
                   </div>
                   <div className={styles.inputGroup}>
+                    <div className={styles.rowIcon}>
                     <input
                       type="text"
                       name="ccv"
                       placeholder="CCV"
                       className={styles.input}
+                      style={{border: "none"}}
                       value={formData.ccv}
                       onChange={handleInputChange}
                     />
                     <span className={styles.infoIcon}>ℹ️</span>
+                    </div>
+
                     {errors.ccv && (
                       <span className={styles.error}>{errors.ccv}</span>
                     )}
@@ -294,7 +298,7 @@ export default function Payment() {
                   <button
                     type="button"
                     className={styles.backButton}
-                    onClick={() => router.push("/ui/passanger/select-seat")}
+                    onClick={() => router.push("/ui/flights/passanger/select-seat")}
                   >
                     Back to seat select
                   </button>
@@ -302,6 +306,8 @@ export default function Payment() {
                     type="submit"
                     disabled={!isFormValid}
                     className={styles.confirmButton}
+                    onClick={() => router.push("/ui/flights/flight-summary")}
+
                   >
                     Confirm and pay
                   </button>
@@ -325,6 +331,8 @@ export default function Payment() {
               type="submit"
               disabled={!isFormValid}
               className={styles.confirmButton}
+              onClick={() => router.push("/ui/flights/flight-summary")}
+
             >
               Confirm and pay
             </button>

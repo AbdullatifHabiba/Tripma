@@ -63,7 +63,7 @@
   flex-grow: 1;
 }
 .textInput:focus{
-  border-color: #0070f3;
+  border-color: #605dec;
 
 }
 .base {
@@ -224,6 +224,9 @@
   width: 200px;
 }
 
+.active{
+  border-color: #605dec;
+}
 .calendarIcon {
   margin-right: 10px;
 }

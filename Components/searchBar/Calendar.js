@@ -1,9 +1,9 @@
 "use client";
-import styles from "./Search.module.css";
 import Image from "next/image";
 import calendarIcon from "../../public/calendar.png";
 import React, { useState, useRef, useEffect } from "react";
 import DatePicker from "react-datepicker";
+import styles from "./Search.module.css";
 
 const Calendar = () => {
     const [dateRange, setDateRange] = useState([null, null]);
@@ -77,7 +77,8 @@ const Calendar = () => {
                 />
                 One way
               </label>
-              <div className={styles.dateInput} onClick={handleDateClick}>
+              <div className={ `${styles.dateInput} ${isOpen? styles.active:''}` } onClick={handleDateClick}
+              >
                 <Image
                   src={calendarIcon}
                   alt="Calendar"

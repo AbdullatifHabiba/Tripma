@@ -1,0 +1,144 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  justify-content: space-around;
+  gap: 100px;
+  margin: 0 50px;
+}
+
+.leftContainer,
+.rightContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  gap: 20px;
+
+}
+
+.card {
+  background: #fff;
+  border-radius: 8px;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.flightItem{
+border: 1px solid #E5E5E5;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+    margin: 10px 0px;    
+}
+.bottomTitle {
+  font-family: 'Nunito Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 22px;
+  margin-bottom: 10px;
+  color: #7C8DB0;
+}
+
+
+.confirm{
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: center;
+padding: auto;
+width: 704px;
+height: 64px;
+
+background: #EAFFFB;
+
+/* Body Default */
+font-family: 'Nunito Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 22px;
+
+color: #007B65;
+border: 1px solid #007B65;
+
+
+}
+
+.confirmationNumber span {
+  font-weight: bold;
+}
+
+
+
+.sectionTitle {
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 33px;
+  margin-bottom: 10px;
+}
+.subtitle{
+    margin-bottom: 10px;
+    font-family: 'Nunito Sans';
+    font-style: normal;
+    font-weight:700;
+    font-size: 18px;
+
+}
+
+.priceDetails,
+.flightRouteDetails {
+  display: flex;
+  justify-content: space-between;
+}
+/* credit card */
+.paymentDetails {
+  height: 188px;
+  width: 300px;
+  /* Pink Gradient */
+  background: linear-gradient(180deg, #eb568c 0%, #ed5e76 100%);
+  box-shadow: inset -4px -4px 16px rgba(0, 0, 0, 0.1),
+    inset 4px 4px 16px rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  color:#fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+.visaNumber{
+    display: flex;
+    justify-content: space-between;
+
+}
+.priceDetails{
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+
+}
+
+.paymentLogo {
+  width: 50px;
+  height: auto;
+}
+
+.paymentInfo p {
+  margin: 0;
+}
+
+.totalAmount {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+}

@@ -1,8 +1,6 @@
 import { Inter } from "next/font/google";
 import "react-datepicker/dist/react-datepicker.css";
 import "./globals.css";
-import Navbar from "../Components/Navbar";
-import Banar from "../Components/Banar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {

@@ -17,7 +17,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0;
+  padding:0px 6px;
   width: 100%;
   background: #27273f;
   color: white;
@@ -25,12 +25,22 @@
 
 .flightInfo {
   display: flex;
-  justify-content: space-between;
+  justify-content:flex-start;
   align-items: center;
   width: 100%;
   padding:0px 6px;
 }
+.flightInfoLeft {
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: space-around;
+padding: 0px;
+margin: 0 auto;
+width: 290px;
+height: 88px;
 
+}
 .location h4 {
   margin: 0;
   font-weight: 900;
@@ -42,9 +52,21 @@
 }
 
 .flightDetails {
-  text-align: left;
-  padding: 16px;
-  cursor: pointer;
+
+
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: flex-start;
+padding: 20px 24px;
+gap: 4px;
+
+width: 210px;
+height: 88px;
+
+background: #27273F;
+
+
 
 }
 .flightDetails:hover {

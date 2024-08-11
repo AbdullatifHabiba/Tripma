@@ -3,18 +3,18 @@ import { Footer1, Footer2 } from "@/Components/footer/footer";
 import PassengerInformation from "@/Components/passanger-info/passanger";
 import Navbar from "@/Components/Navbar";
 import Payment from "@/Components/passanger-info/Payment";
-import React, { useState } from "react";
+import React from "react";
+import { useSearchParams } from 'next/navigation';
 
 export default function Passenger() {
-    const [PaymentState, setPaymentState] = useState(true);
     return (
        <>
         <Navbar />
 
-     { PaymentState ? <Payment />  : <PassengerInformation/> }
+        <PassengerInformation />
 
-            <Footer1 />
-            <Footer2 />
+        <Footer1 />
+        <Footer2 />
        </>
     );
 }

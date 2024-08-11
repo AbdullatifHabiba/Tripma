@@ -1,7 +1,6 @@
 import styles from "./flights.module.css";
 import Image from "next/image";
 import ra from "../../public/right-arrow.svg";
-import Link from "next/link";
 
 const PlacesComponent = ({ places, children ,allowExplore }) => {
   return (

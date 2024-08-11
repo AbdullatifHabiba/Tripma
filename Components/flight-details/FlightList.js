@@ -42,7 +42,7 @@ const FilterOptions = () => (
   </div>
 );
 
-const FlightItem = ({
+export const FlightItem = ({
   airline,
   logo,
   duration,
@@ -52,7 +52,7 @@ const FlightItem = ({
   stopInfo,
   price,
 }) => (
-  <>
+  <div className={styles.flightItem}>
   <div className={styles.airlineLogo}  >
          <Image src={logo} alt={airline} fill />
       </div>
@@ -76,7 +76,7 @@ const FlightItem = ({
         <span className={styles.labelRight}>round trip</span>
       </div>
     </div>
-  </>
+  </div>
 );
 
 
@@ -87,7 +87,7 @@ const FlightList = ({ onFlightSelect, children }) => (
 
     <div className={styles.flightList}>
       {flightDetailsData.map((flight, index) => (
-        <div className={styles.flightItem} key={index}
+        <div  key={index}
         onClick={() => onFlightSelect(flight)}>
           <FlightItem
             airline={flight.airline}

@@ -5,11 +5,9 @@ import Link from "next/link";
 const cardItem = ({ flight }) => {
   return (
     <div className={styles.flightCard}>
-      <Image
-        src={flight.logo}
-        alt={flight.airline}
-        className={styles.airlineLogo}
-      />
+      <div className={styles.airlineLogo}>
+        <Image src={flight.logo} alt={flight.airline} fill />
+      </div>
       <div className={styles.airline}>
         <span>{flight.airline}</span>
         <span className={styles.label}>FA123</span>
@@ -25,7 +23,11 @@ const cardItem = ({ flight }) => {
   );
 };
 
-const FlightSelectCard = ({ departingFlight, returningFlight ,pass=true}) => {
+const FlightSelectCard = ({
+  departingFlight,
+  returningFlight,
+  pass = true,
+}) => {
   const calculateTotalCost = () => {
     if (!departingFlight) return null;
     const departingPrice = Number(departingFlight.price) || 0;
@@ -46,25 +48,31 @@ const FlightSelectCard = ({ departingFlight, returningFlight ,pass=true}) => {
       <div className={styles.totalCost}>
         {departingFlight && !returningFlight && (
           <>
-            <pre>      Subtotal           ${+departingFlight.price}</pre>
-            <pre>Taxes and Fees      $121</pre>
+            <pre> Subtotal ${+departingFlight.price}</pre>
+            <pre>Taxes and Fees $121</pre>
             <pre>
-         <strong>          Total     ${totalCost}</strong>
+              <strong> Total ${totalCost}</strong>
             </pre>
             <button className={styles.saveCloseBtn}>Save and Close</button>
           </>
         )}
         {departingFlight && returningFlight && (
           <>
-            <pre>      Subtotal      ${totalCost - 121}</pre>
-            <pre>Taxes and Fees      $121</pre>
+            <pre> Subtotal ${totalCost - 121}</pre>
+            <pre>Taxes and Fees $121</pre>
             <pre>
-         <strong>          Total     ${totalCost}</strong>
+              <strong> Total ${totalCost}</strong>
             </pre>
-           { pass&& <Link href="/ui/passanger" className={styles.passengerInfoBtn}>
+            {pass && (
+              <Link
+              href={{
+                pathname: '/ui/flights/passenger',
+              }}
+              className={styles.passengerInfoBtn}
+            >
               Passenger Information
             </Link>
-            }
+            )}
           </>
         )}
       </div>
