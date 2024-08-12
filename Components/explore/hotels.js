@@ -12,7 +12,7 @@ export default function ShopHotels({ hotels }) {
             <div
               className={styles.image}
               style={{
-                backgroundImage: `url(${hotel.imageUrl})`,
+                backgroundImage: `url(${hotel.image})`,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
@@ -21,7 +21,7 @@ export default function ShopHotels({ hotels }) {
             <div className={styles.cardContent}>
               <h3 className={styles.cardTitle}>{hotel.name}</h3>
               <p className={styles.cardDescription}>{hotel.description}</p>
-              <p className={styles.cardPrice}>{hotel.price}</p>
+              <p className={styles.cardPrice}>{hotel.price}$</p>
             </div>
           </div>
         ))}

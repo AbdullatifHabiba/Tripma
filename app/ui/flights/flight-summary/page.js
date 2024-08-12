@@ -2,7 +2,6 @@ import { Footer1, Footer2 } from "@/Components/footer/footer";
 import Navbar from "@/Components/Navbar";
 import styles from "./Page.module.css";
 import { FlightItem } from "@/Components/flight-details/FlightList";
-import { flightDetailsData, hotels, experiences } from "@/lib/data";
 import Image from "next/image";
 import visa from "@/public/visa.svg";
 import map from "@/public/map.svg";
@@ -10,7 +9,13 @@ import ShopHotels from "@/Components/explore/hotels";
 import UniqueExperiences from "@/Components/explore/experinces";
 import ShareTravel from "@/Components/explore/share-travel";
 import Link from "next/link";
-export default function Page() {
+
+export default  async function  Page() {
+const API_URL = process.env.SERVER_URL;
+const  hotels = await fetch(`${API_URL}/api/hotels`).then((res) => res.json());
+const  experiences = await fetch(`${API_URL}/api/experiences`).then((res) => res.json());
+const flightDetailsData = await fetch(`${API_URL}/api/flights`).then((res) => res.json());
+
   const flight0 = flightDetailsData[0];
   const flight1 = flightDetailsData[1];
 

@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "if [ \"$IGNORE_POSTINSTALL\" != \"true\" ]; then npx prisma generate --schema=./lib/schema.prisma; fi"
+
   },
   "dependencies": {
     "@prisma/client": "^5.18.0",

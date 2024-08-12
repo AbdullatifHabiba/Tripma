@@ -12,7 +12,7 @@ export default function UniqueExperiences({ experiences }) {
          <div
               className={styles.image}
               style={{
-                backgroundImage: `url(${experience.imageUrl})`,
+                backgroundImage: `url(${experience.image})`,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
@@ -20,7 +20,7 @@ export default function UniqueExperiences({ experiences }) {
             />            <div className={styles.cardContent}>
               <h3 className={styles.cardTitle}>{experience.name}</h3>
               <p className={styles.cardDescription}>{experience.description}</p>
-              <p className={styles.cardPrice}>{experience.price}</p>
+              <p className={styles.cardPrice}>{experience.price}$</p>
             </div>
           </div>
         ))}

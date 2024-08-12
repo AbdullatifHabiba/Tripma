@@ -9,7 +9,7 @@ export async function GET() {
 
 // post array of hotels
 export async function POST(request) {
-    const { body } = request;
+    const body = await request.json();;
     const hotels = await prisma.hotel.createMany({
         data: body
     });
