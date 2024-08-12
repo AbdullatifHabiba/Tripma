@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./FlightDetails.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import { formatTime } from "@/utils/functions";
 const cardItem = ({ flight }) => {
   return (
     <div className={styles.flightCard}>
@@ -10,12 +11,12 @@ const cardItem = ({ flight }) => {
       </div>
       <div className={styles.airline}>
         <span>{flight.airline}</span>
-        <span className={styles.label}>FA123</span>
+        <span className={styles.label}>{flight.flightNumber}</span>
       </div>
       <div className={styles.details}>
         <span>{flight.duration} (+1d)</span>
         <span>
-          {flight.departTime} - {flight.arriveTime}
+        {formatTime(flight.departure)} - {formatTime(flight.arrival)}
         </span>
         <span className={styles.label}>{flight.stopInfo}</span>
       </div>

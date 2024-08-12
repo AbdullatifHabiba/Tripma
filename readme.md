@@ -18,11 +18,11 @@
         - [Example Response](#example-response-1)
     - [Flight Deals API](#flight-deals-api)
       - [Get Flight Deals](#get-flight-deals)
-        - [Endpoint: `/api/flight-deals`](#endpoint-apiflight-deals)
+        - [Endpoint: `/api/deals`](#endpoint-apideals)
         - [Example Request](#example-request-2)
         - [Example Response](#example-response-2)
     - [Unique Places API](#unique-places-api)
-      - [Endpoint: `/api/unique-places`](#endpoint-apiunique-places)
+      - [Endpoint: `/api/places`](#endpoint-apiplaces)
       - [Example Request](#example-request-3)
       - [Example Response](#example-response-3)
     - [User Reviews API](#user-reviews-api)
@@ -205,14 +205,14 @@ GET /api/promotions
 
 #### Get Flight Deals
 
-##### Endpoint: `/api/flight-deals`
+##### Endpoint: `/api/deals`
 - **Method:** GET
 
 This API provides a list of featured flight deals, including destination details, images, descriptions, and prices.
 
 ##### Example Request
 ```
-GET /api/flight-deals
+GET /api/deals
 ```
 
 ##### Example Response
@@ -249,7 +249,7 @@ GET /api/flight-deals
 
 ### Unique Places API
 
-#### Endpoint: `/api/unique-places`
+#### Endpoint: `/api/places`
 
 - **Method:** GET
 
@@ -257,7 +257,7 @@ This API provides a list of unique travel destinations, including location detai
 
 #### Example Request
 ```
-GET /api/unique-places
+GET /api/places
 ```
 
 #### Example Response

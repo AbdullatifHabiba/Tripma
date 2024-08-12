@@ -1,8 +1,7 @@
 import React from "react";
 import styles from "./FlightDetails.module.css";
 import Image from "next/image";
-import { flightDetailsData } from "@/lib/data";
-
+import { formatTime } from "@/utils/functions";
 const FilterOptions = () => (
   <div className={styles.filterOptions}>
     <div className={styles.selectOptions}>
@@ -81,20 +80,19 @@ export const FlightItem = ({
 
 
 
-const FlightList = ({ onFlightSelect, children }) => (
+const FlightList = ({ onFlightSelect, flightDetailsData, children }) => (
   <>
     {children}
 
     <div className={styles.flightList}>
       {flightDetailsData.map((flight, index) => (
-        <div  key={index}
-        onClick={() => onFlightSelect(flight)}>
+        <div key={index} onClick={() => onFlightSelect(flight)}>
           <FlightItem
             airline={flight.airline}
             logo={flight.logo}
             duration={flight.duration}
-            departTime={flight.departTime}
-            arriveTime={flight.arriveTime}
+            departTime={formatTime(flight.departure)}
+            arriveTime={formatTime(flight.arrival)}
             stops={flight.stops}
             stopInfo={flight.stopInfo}
             price={flight.price}
@@ -106,5 +104,7 @@ const FlightList = ({ onFlightSelect, children }) => (
     <button className={styles.showAllFlights}>Show all flights</button>
   </>
 );
+
+
 
 export { FilterOptions, FlightList };

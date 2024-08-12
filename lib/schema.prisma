@@ -16,12 +16,7 @@ model User {
   bookings Booking[] // Relationship to bookings
 }
 
-model GuestUser {
-  id       Int       @id @default(autoincrement())
-  email    String?
-  name     String?
-  bookings Booking[] // Relationship to bookings
-}
+
 
 model Flight {
   id           Int       @id @default(autoincrement())
@@ -45,7 +40,7 @@ model Seat {
   id        Int      @id @default(autoincrement())
   row       Int      // Row number
   col       Int      // Column number
-  class     String   // e.g., 'First Class', 'Economy'
+  class     String   
   available Boolean  @default(true)
   flightId  Int
   bookingId Int?
@@ -96,7 +91,6 @@ model Booking {
   passengers      Passenger[]
   seats           Seat[]
   user            User?         @relation(fields: [userId], references: [id])
-  guestUser       GuestUser?    @relation(fields: [guestUserId], references: [id])
   flight          Flight        @relation(fields: [flightId], references: [id])
 
   @@index([userId])

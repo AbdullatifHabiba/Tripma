@@ -9,18 +9,13 @@ import PriceGrid from "./PriceGrid";
 import PriceHistory from "./PriceHistory";
 import PlacesComponent from "../flights/places";
 import DealsComponent from "../flights/deals";
-import {
-  uniquePlaces,
-  deals,
-  GridData,
-  priceHistoryData,
-} from "@/lib/data";
+import { GridData, priceHistoryData } from "@/lib/data";
 import { Footer1, Footer2 } from "../footer/footer";
 import PriceRating from "./PriceRating";
 import { FlightList, FilterOptions } from "./FlightList";
 import FlightSelectCard from "./FlightCard";
 
-const FlightDetails = () => {
+const FlightDetails = ({ flightDetailsData, uniquePlaces, deals }) => {
   const [selectedDepartingFlight, setSelectedDepartingFlight] = useState(null);
   const [selectedReturningFlight, setSelectedReturningFlight] = useState(null);
 
@@ -40,7 +35,10 @@ const FlightDetails = () => {
 
         <div className={styles.flightDetails}>
           <div className={styles.leftColumn}>
-            <FlightList onFlightSelect={handleFlightSelect}>
+            <FlightList
+              onFlightSelect={handleFlightSelect}
+              flightDetailsData={flightDetailsData}
+            >
               <h3 style={{ fontWeight: "bold" }}>
                 Choose a{" "}
                 <span style={{ color: "#605DEC" }}>
