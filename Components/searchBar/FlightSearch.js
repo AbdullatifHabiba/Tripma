@@ -7,9 +7,24 @@ import Dropdown from "./Dropdown";
 import Calendar from "./Calendar";
 import PassengerSelector from "./PassengerSelector";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const FlightSearch = ({ width }) => {
   const options = ["New York", "Los Angeles", "Chicago", "Houston", "Miami"];
+
+  const [from, setFrom] = useState("");
+  const [to, setTo] = useState("");
+  const [date, setDate] = useState("");
+  const [passengers, setPassengers] = useState(1);
+  const router = useRouter();
+
+  const handleSearch = () => {
+    router.push({
+      pathname: "/ui/flights/search",
+      query: { from, to, date, passengers },
+    });
+  };
 
   return (
     <div className={styles.flightSearch} style={{ width: width }}>
@@ -47,7 +62,11 @@ const FlightSearch = ({ width }) => {
 
       <div className={styles.button}>
         <div className={styles.label}>
-          <Link href="/ui/flights/search">
+          <Link href={{
+            pathname: "/ui/flights/search",
+            query: { from, to, date, passengers }
+          }}
+          >
             Search
           </Link>
         </div>

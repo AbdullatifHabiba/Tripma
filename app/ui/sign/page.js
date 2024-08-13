@@ -1,19 +1,43 @@
 "use client";
 import { useState } from "react";
+import { signIn } from "next-auth/react";
 import styles from "./Sign.module.css";
 import Image from "next/image";
 import google from "@/public/google.png";
 import apple from "@/public/apple.png";
 import facebook from "@/public/facebook.png";
-import { useRouter } from "next/navigation";
 
-const Sign = ({state}) => {
+const Sign = ({ state }) => {
   const [isOverlayVisible, setIsOverlayVisible] = useState(true);
-  const router = useRouter();
+  const [emailOrPhone, setEmailOrPhone] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleCloseOverlay = () => {
     setIsOverlayVisible(false);
     state(false);
+  };
+
+  const handleSignUp = async () => {
+    // Handle email/password sign-up
+    const res = await fetch('/api/auth/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ emailOrPhone, password }),
+    });
+
+    if (res.ok) {
+      // Sign up was successful, you might want to sign the user in immediately
+      signIn("credentials", { redirect: false, email: emailOrPhone, password });
+    } else {
+      // Handle error (e.g., user already exists)
+      console.error('Sign up failed');
+    }
+  };
+
+  const handleSocialSignIn = (provider) => {
+    signIn(provider);
   };
 
   return (
@@ -51,6 +75,8 @@ const Sign = ({state}) => {
                 className={styles["text-input-base"]}
                 type="text"
                 id="emailOrPhone"
+                value={emailOrPhone}
+                onChange={(e) => setEmailOrPhone(e.target.value)}
               />
             </div>
             <div className={styles["text-input"]}>
@@ -61,6 +87,8 @@ const Sign = ({state}) => {
                 className={styles["text-input-base"]}
                 type="password"
                 id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <div className={`${styles["text-input-ckecks"]}}`}>
@@ -76,26 +104,37 @@ const Sign = ({state}) => {
               </div>
             </div>
 
-            <button className={styles["button"]}>Create account</button>
+            <button className={styles["button"]} onClick={handleSignUp}>
+              Create account
+            </button>
             <div className={styles["frame-89"]}>
               <div className={styles["divider"]}></div>
               <span>or</span>
               <div className={styles["divider"]}></div>
             </div>
-            <button className={styles["button-secondary"]}>
+            <button
+              className={styles["button-secondary"]}
+              onClick={() => handleSocialSignIn("google")}
+            >
               <div className={styles["icon"]}>
                 <Image src={google} alt="google" />
               </div>
               Continue with Google
             </button>
-            <button className={styles["button-secondary"]}>
+            <button
+              className={styles["button-secondary"]}
+              onClick={() => handleSocialSignIn("apple")}
+            >
               <div className={styles["icon"]}>
                 <Image src={apple} alt="apple" />
               </div>
               Continue with Apple
             </button>
 
-            <button className={styles["button-secondary"]}>
+            <button
+              className={styles["button-secondary"]}
+              onClick={() => handleSocialSignIn("facebook")}
+            >
               <div className={styles["icon"]}>
                 <Image src={facebook} alt="facebook" />
               </div>
@@ -104,7 +143,6 @@ const Sign = ({state}) => {
           </div>
         </div>
       )}
-
     </>
   );
 };
