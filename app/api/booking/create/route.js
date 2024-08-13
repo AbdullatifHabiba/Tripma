@@ -16,7 +16,7 @@ export async function POST(req) {
     if (!departFlight || !arriveFlight) {
         return  NextResponse.json({ error: "Flight not found" }, { status: 404 });
     }
-    const booking = await prisma.booking.create({
+    let booking = await prisma.booking.create({
         data: {
             bookingNumber: uuidv4(),
             totalPrice: 0,
