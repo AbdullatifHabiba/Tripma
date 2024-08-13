@@ -9,14 +9,14 @@ import ShopHotels from "@/Components/explore/hotels";
 import UniqueExperiences from "@/Components/explore/experinces";
 import ShareTravel from "@/Components/explore/share-travel";
 import Link from "next/link";
-import { hotels, experiences, flightDetailsData, hotels } from "@/lib/data";
+import { hotels, experiences, flightDetailsData } from "@/lib/data";
 export default async function Page() {
   let hotels = hotels;
   let experiences = experiences;
   let flightDetailsData = flightDetailsData;
+  const API_URL = process.env.SERVER_URL;
 
   try {
-    const API_URL = process.env.SERVER_URL;
     hotels = await fetch(`${API_URL}/api/hotels`).then((res) => res.json());
     experiences = await fetch(`${API_URL}/api/experiences`).then((res) =>
       res.json()
