@@ -23,4 +23,3 @@ export async function DELETE() {
     const flights = await prisma.flight.deleteMany();
     return NextResponse.json(flights);
 }
-

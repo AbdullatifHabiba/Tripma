@@ -2,16 +2,16 @@
 import styles from "./Search.module.css";
 import React, { useState, useRef, useEffect } from "react";
 
-
-const Dropdown = ({ options, label }) => {
+const Dropdown = ({ options, label, onSelect, value }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState(value);
   const dropdownRef = useRef(null);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
   const selectOption = (option) => {
     setSelectedOption(option);
     setIsOpen(false);
+    onSelect(option); // Call the callback function
   };
 
   useEffect(() => {
@@ -32,12 +32,18 @@ const Dropdown = ({ options, label }) => {
       <div
         className={`${styles.dropdownHeader} ${isOpen ? styles.open : ''}`}
         onClick={toggleDropdown}
-        tabIndex={0} // Makes the header focusable
+        tabIndex={0}
       >
         <div>{selectedOption || label}</div>
       </div>
       {isOpen && (
         <div className={styles.dropdownList}>
+          <div
+            className={styles.dropdownItem}
+            onClick={() => selectOption(null)}
+          >
+            Clear
+          </div>
           {options.map((option, index) => (
             <div
               key={index}

@@ -15,9 +15,10 @@ import PriceRating from "./PriceRating";
 import { FlightList, FilterOptions } from "./FlightList";
 import FlightSelectCard from "./FlightCard";
 
-const FlightDetails = ({ flightDetailsData, uniquePlaces, deals }) => {
+const FlightDetails = ({ flightDetailsData, uniquePlaces, deals ,searchParams}) => {
   const [selectedDepartingFlight, setSelectedDepartingFlight] = useState(null);
   const [selectedReturningFlight, setSelectedReturningFlight] = useState(null);
+  
 
   const handleFlightSelect = (flight) => {
     if (!selectedDepartingFlight) {
@@ -30,7 +31,7 @@ const FlightDetails = ({ flightDetailsData, uniquePlaces, deals }) => {
   return (
     <div className="flex flex-col items-center justify-center w-full">
       <div className={styles.content}>
-        <FlightSearch width={850} />
+        <FlightSearch width={850} searchParams={searchParams}/>
         <FilterOptions />
 
         <div className={styles.flightDetails}>
