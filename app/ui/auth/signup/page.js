@@ -1,23 +1,48 @@
 "use client";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import styles from "./Sign.module.css";
 import Image from "next/image";
 import google from "@/public/google.png";
 import apple from "@/public/apple.png";
 import facebook from "@/public/facebook.png";
 
-const Sign = ({ state }) => {
+const SignUp = ({ state }) => {
   const [isOverlayVisible, setIsOverlayVisible] = useState(true);
   const [emailOrPhone, setEmailOrPhone] = useState("");
   const [password, setPassword] = useState("");
+  const [termsChecked, setTermsChecked] = useState(false);
 
   const handleCloseOverlay = () => {
     setIsOverlayVisible(false);
     state(false);
   };
 
+  const validateInputs = () => {
+    if (!emailOrPhone) {
+      toast.error("Email or phone number is required");
+      return false;
+    }
+    if (!password) {
+      toast.error("Password is required");
+      return false;
+    }
+    if (password.length < 6) {
+      toast.error("Password must be at least 6 characters long");
+      return false;
+    }
+    if (!termsChecked) {
+      toast.error("You must agree to the terms and conditions");
+      return false;
+    }
+    return true;
+  };
+
   const handleSignUp = async () => {
+    if (!validateInputs()) return;
+
     // Handle email/password sign-up
     const res = await fetch('/api/auth/signup', {
       method: 'POST',
@@ -26,13 +51,16 @@ const Sign = ({ state }) => {
       },
       body: JSON.stringify({ emailOrPhone, password }),
     });
+    const data = await res.json();
 
     if (res.ok) {
-      // Sign up was successful, you might want to sign the user in immediately
-      signIn("credentials", { redirect: false, email: emailOrPhone, password });
+      // Sign up was successful, sign the user in immediately
+      signIn("credentials", { redirect: true, email: emailOrPhone, password });
+      toast.success('Sign up successful!');
     } else {
-      // Handle error (e.g., user already exists)
       console.error('Sign up failed');
+      // toastify the returned message
+      toast.error(data.message);
     }
   };
 
@@ -42,6 +70,7 @@ const Sign = ({ state }) => {
 
   return (
     <>
+      <ToastContainer />
       {isOverlayVisible && (
         <div className={styles.overlay} onClick={handleCloseOverlay}>
           <div
@@ -93,7 +122,12 @@ const Sign = ({ state }) => {
             </div>
             <div className={`${styles["text-input-ckecks"]}}`}>
               <div className={`${styles["text-input"]} ${styles["checkbox"]}`}>
-                <input type="checkbox" id="terms" />
+                <input 
+                  type="checkbox" 
+                  id="terms" 
+                  checked={termsChecked}
+                  onChange={(e) => setTermsChecked(e.target.checked)}
+                />
                 <label htmlFor="terms">
                   I agree to the terms and conditions
                 </label>
@@ -147,4 +181,4 @@ const Sign = ({ state }) => {
   );
 };
 
-export default Sign;
+export default SignUp;

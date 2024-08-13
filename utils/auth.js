@@ -4,6 +4,8 @@ import GoogleProvider from 'next-auth/providers/google';
 import AppleProvider from 'next-auth/providers/apple';
 import FacebookProvider from 'next-auth/providers/facebook';
 import { compare } from 'bcryptjs';
+import prisma from './database';
+
 
 export const authOptions = {
   providers: [
@@ -14,9 +16,10 @@ export const authOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
+        console.log(credentials)
         // Fetch the user from the database using the emailOrPhone field
         const user = await prisma.user.findUnique({
-          where: { email: credentials.emailOrPhone },
+          where: { email: credentials.email },
         });
 
         if (!user) {
@@ -48,7 +51,10 @@ export const authOptions = {
   ],
   pages: {
     signIn: '/ui/sign', // Custom sign-in page
-  },
+
+  }
+  
+  
 };
 
 export default NextAuth(authOptions);
