@@ -17,6 +17,7 @@ export async function POST(req) {
     redressNumber: passenger.redressNumber,
     knownTravellerNumber: passenger.knownTravellerNumber,    
     dateOfBirth: new Date(passenger.dateOfBirth).toISOString(),
+    checkedBags: passenger.checkedBags,
     bookingId: Number(bookingId),
   }));
 
