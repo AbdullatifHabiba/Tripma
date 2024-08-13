@@ -9,17 +9,11 @@ import Navbar from "@/Components/Navbar";
 
 export default async function Flights() {
   const API_URL = process.env.SERVER_URL;
-  let deals = deals;
-  let uniquePlaces = uniquePlaces;
-  let reviews = reviews;
-try {
-    deals = await fetch(`${API_URL}/api/deals`).then((res) => res.json());
-    uniquePlaces = await fetch(`${API_URL}/api/places`).then((res) => res.json());
-    reviews = await fetch(`${API_URL}/api/reviews`).then((res) => res.json());
-  }
-  catch (error) {
-    console.error("An error occurred:", error);
-  }
+  
+    const deals = await fetch(`${API_URL}/api/deals`).then((res) => res.json());
+    const uniquePlaces = await fetch(`${API_URL}/api/places`).then((res) => res.json());
+    const reviews = await fetch(`${API_URL}/api/reviews`).then((res) => res.json());
+ 
 
 
   return (

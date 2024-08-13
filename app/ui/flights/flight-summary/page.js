@@ -11,22 +11,18 @@ import ShareTravel from "@/Components/explore/share-travel";
 import Link from "next/link";
 import { hotels, experiences, flightDetailsData } from "@/lib/data";
 export default async function Page() {
-  let hotels = hotels;
-  let experiences = experiences;
-  let flightDetailsData = flightDetailsData;
+//   var hotels = hotels;
+//   var experiences = experiences;
+//   var flightDetailsData = flightDetailsData;
   const API_URL = process.env.SERVER_URL;
 
-  try {
-    hotels = await fetch(`${API_URL}/api/hotels`).then((res) => res.json());
-    experiences = await fetch(`${API_URL}/api/experiences`).then((res) =>
+    const hotels = await fetch(`${API_URL}/api/hotels`).then((res) => res.json());
+    const experiences = await fetch(`${API_URL}/api/experiences`).then((res) =>
       res.json()
     );
-    flightDetailsData = await fetch(`${API_URL}/api/flights`).then((res) =>
+    const flightDetailsData = await fetch(`${API_URL}/api/flights`).then((res) =>
       res.json()
     );
-  } catch (error) {
-    console.error("An error occurred:", error);
-  }
 
   const flight0 = flightDetailsData[0];
   const flight1 = flightDetailsData[1];
