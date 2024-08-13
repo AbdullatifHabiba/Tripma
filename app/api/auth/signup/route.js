@@ -25,5 +25,5 @@ export async function POST(req) {
     },
   });
 
-  return NextResponse.json({ message: 'User created successfully' }, { status: 201 });
+  return NextResponse.json({ message: 'User created successfully',newUser }, { status: 201 });
 }

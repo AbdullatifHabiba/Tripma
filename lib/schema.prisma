@@ -16,8 +16,6 @@ model User {
   bookings Booking[] // Relationship to bookings
 }
 
-
-
 model Flight {
   id           Int       @id @default(autoincrement())
   flightNumber String    // Flight number
@@ -32,22 +30,30 @@ model Flight {
   logo         String?   // Airline logo
   duration     String
   seats        Seat[]    // Relationship to seats available on this flight
-  bookings     Booking[] // Relationship to bookings on this flight
+  departBookings Booking[] @relation("DepartFlight") // Relationship to bookings where this flight is the departure flight
+  arriveBookings Booking[] @relation("ArriveFlight") // Relationship to bookings where this flight is the arrival flight
   isRoundTrip  Boolean   @default(false) // Indicates if this flight is part of a round trip
 }
 
-model Seat {
-  id        Int      @id @default(autoincrement())
-  row       Int      // Row number
-  col       Int      // Column number
-  class     String   
-  available Boolean  @default(true)
-  flightId  Int
-  bookingId Int?
-  booking   Booking? @relation(fields: [bookingId], references: [id])
-  flight    Flight   @relation(fields: [flightId], references: [id])
+model Booking {
+  id              Int           @id @default(autoincrement())
+  bookingNumber   String        @unique
+  departFlightId  Int?
+  arriveFlightId  Int?
+  userId          Int?
+  paymentMethodId Int?
+  createdAt       DateTime      @default(now())
+  totalPrice      Float
+  passengers      Passenger[]
+  seats           Seat[]
+  user            User?         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  departFlight    Flight?       @relation("DepartFlight", fields: [departFlightId], references: [id], onDelete: Cascade)
+  arriveFlight    Flight?       @relation("ArriveFlight", fields: [arriveFlightId], references: [id], onDelete: Cascade)
+  paymentMethod   PaymentMethod? @relation(fields: [paymentMethodId], references: [id])
 
-  @@unique([row, col, flightId])
+  @@index([userId])
+  @@index([departFlightId])
+  @@index([arriveFlightId])
 }
 
 model Passenger {
@@ -63,7 +69,8 @@ model Passenger {
   knownTravellerNumber String? // Optional for security clearance
   emergencyContact     EmergencyContact?
   bookingId            Int
-  booking              Booking           @relation(fields: [bookingId], references: [id])
+  checkedBags          Int 
+  booking              Booking           @relation(fields: [bookingId], references: [id], onDelete: Cascade)
 
   @@index([bookingId])
 }
@@ -74,30 +81,23 @@ model EmergencyContact {
   lastName    String
   email       String
   phoneNumber String
-  passengerId Int       @unique // Make this field unique
+  passengerId Int       @unique
   passenger   Passenger @relation(fields: [passengerId], references: [id])
 }
 
-model Booking {
-  id              Int           @id @default(autoincrement())
-  bookingNumber   String        @unique
-  flightId        Int
-  userId          Int?
-  guestUserId     Int?
-  paymentMethod   PaymentMethod @relation(fields: [paymentMethodId], references: [id])
-  paymentMethodId Int
-  createdAt       DateTime      @default(now())
-  totalPrice      Float
-  passengers      Passenger[]
-  seats           Seat[]
-  user            User?         @relation(fields: [userId], references: [id])
-  flight          Flight        @relation(fields: [flightId], references: [id])
+model Seat {
+  id        Int      @id @default(autoincrement())
+  row       Int      // Row number
+  col       Int      // Column number
+  class     String   
+  available Boolean  @default(true)
+  flightId  Int
+  bookingId Int?
+  booking   Booking? @relation(fields: [bookingId], references: [id])
+  flight    Flight   @relation(fields: [flightId], references: [id])
 
-  @@index([userId])
-  @@index([guestUserId])
-  @@index([flightId])
+  @@unique([row, col, flightId])
 }
-
 model PaymentMethod {
   id         Int       @id @default(autoincrement())
   type       String    // e.g., 'Visa', 'MasterCard', 'PayPal', etc.
@@ -107,19 +107,18 @@ model PaymentMethod {
 }
 
 model Hotel {
-  id       Int    @id @default(autoincrement())
-  name     String
+  id          Int     @id @default(autoincrement())
+  name        String
   description String
-  price    Float
+  price       Float
   image       String
-
 }
 
 model Experience {
-  id       Int    @id @default(autoincrement())
-  name     String
+  id          Int     @id @default(autoincrement())
+  name        String
   description String
-  price    Float
+  price       Float
   image       String
 }
 

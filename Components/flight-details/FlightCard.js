@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./FlightDetails.module.css";
 import Image from "next/image";
-import Link from "next/link";
 import { formatTime } from "@/utils/functions";
+import { useRouter } from "next/navigation";
 const cardItem = ({ flight }) => {
   return (
     <div className={styles.flightCard}>
@@ -16,7 +16,7 @@ const cardItem = ({ flight }) => {
       <div className={styles.details}>
         <span>{flight.duration} (+1d)</span>
         <span>
-        {formatTime(flight.departure)} - {formatTime(flight.arrival)}
+          {formatTime(flight.departure)} - {formatTime(flight.arrival)}
         </span>
         <span className={styles.label}>{flight.stopInfo}</span>
       </div>
@@ -29,6 +29,7 @@ const FlightSelectCard = ({
   returningFlight,
   pass = true,
 }) => {
+  const router = useRouter();
   const calculateTotalCost = () => {
     if (!departingFlight) return null;
     const departingPrice = Number(departingFlight.price) || 0;
@@ -38,6 +39,21 @@ const FlightSelectCard = ({
   };
 
   const totalCost = calculateTotalCost();
+  const createIntialBooking = async () => {
+    const flightsID = {
+      departFlightId: departingFlight.id,
+      arriveFlightId: returningFlight.id,
+    };
+    const data = await fetch("/api/booking/create", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(flightsID),
+    });
+    const { booking } = await data.json();
+    router.push(`/ui/flights/passanger?bookingId=${booking["id"]}`);
+  };
 
   return (
     <div className={styles.priceGrid}>
@@ -65,14 +81,16 @@ const FlightSelectCard = ({
               <strong> Total ${totalCost}</strong>
             </pre>
             {pass && (
-              <Link
-              href={{
-                pathname: '/ui/flights/passanger',
-              }}
-              className={styles.passengerInfoBtn}
-            >
-              Passenger Information
-            </Link>
+              <button
+                // href={{
+                //   pathname: '/ui/flights/passanger',
+                //   query:{bookingId:booking.id}
+                // }}
+                className={styles.passengerInfoBtn}
+                onClick={createIntialBooking} // Remove the parentheses from the onClick event
+              >
+                Passenger Information
+              </button>
             )}
           </>
         )}

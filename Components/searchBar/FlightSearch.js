@@ -33,9 +33,8 @@ const FlightSearch = ({ width, searchParams }) => {
 
     fetchAirports();
   }, []);
-
-  const origins = airports.map((airport) => airport.origin);
-  const destinations = airports.map((airport) => airport.destination);
+  const origins = [...new Set(airports.map((airport) => airport.origin))];
+  const destinations = [...new Set(airports.map((airport) => airport.destination))];
 
   const handleSearch = () => {
     const formattedStartDate = startDate

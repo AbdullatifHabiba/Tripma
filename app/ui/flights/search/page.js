@@ -16,7 +16,7 @@ export default async function search({ searchParams }) {
     fetch(`${API_URL}/api/places`).then((res) => res.json()),
     fetch(`${API_URL}/api/deals`).then((res) => res.json()),
   ]);
-
+console.log("flightDetailsData", flightDetailsData);
   console.log("search", searchParams);
 
   return (

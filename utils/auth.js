@@ -32,7 +32,6 @@ export const authOptions = {
         if (!isValid) {
           throw new Error('Incorrect password');
         }
-
         return user;
       },
     }),

@@ -8,7 +8,7 @@ import { flightDetailsData } from "@/lib/data";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-export default function PassengerInformation() {
+export default function PassengerInformation({bookingId}) {
   const router = useRouter();
   const [passengerInfo, setPassengerInfo] = useState({
     firstName: "",
@@ -17,7 +17,7 @@ export default function PassengerInformation() {
     suffix: "",
     dateOfBirth: "",
     email: "",
-    phone: "",
+    phoneNumber: "",
     redressNumber: "",
     knownTravellerNumber: "",
     emergencyContactSameAsPassenger: false,
@@ -74,7 +74,7 @@ export default function PassengerInformation() {
       "lastName",
       "dateOfBirth",
       "email",
-      "phone",
+      "phoneNumber",
       "knownTravellerNumber",
       "emergencyContactFirstName",
       "emergencyContactLastName",
@@ -94,7 +94,7 @@ export default function PassengerInformation() {
       newErrors.email = "Invalid email format";
     }
     if (passengerInfo.phone && !validatePhone(passengerInfo.phone)) {
-      newErrors.phone = "Invalid phone number format";
+      newErrors.phoneNumber = "Invalid phone number format";
     }
     if (passengerInfo.emergencyContactEmail && !validateEmail(passengerInfo.emergencyContactEmail)) {
       newErrors.emergencyContactEmail = "Invalid email format";
@@ -111,6 +111,17 @@ export default function PassengerInformation() {
     setIsFormValid(validateForm());
   }, [passengerInfo]);
 
+  const createPassenger = async () => {
+    const data = await fetch("/api/booking/passengers", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({  passengers:[passengerInfo],bookingId:bookingId })
+    });
+    const response = await data.json();
+    console.log(response);
+  }
   return (
     <div className={styles.container}>
       <div className={styles.formContainer}>
@@ -210,15 +221,15 @@ export default function PassengerInformation() {
               <div className={styles.inputGroup}>
                 <input
                   type="tel"
-                  id="phone"
-                  name="phone"
-                  value={passengerInfo.phone}
+                  id="phoneNumber"
+                  name="phoneNumber"
+                  value={passengerInfo.phoneNumber}
                   onChange={handleInputChange}
                   className={styles.input}
                   placeholder="Phone number*"
                   required
                 />
-                {errors.phone && <span className={styles.error}>{errors.phone}</span>}
+                {errors.phoneNumber && <span className={styles.error}>{errors.phoneNumber}</span>}
               </div>
             </div>
 
@@ -359,7 +370,8 @@ export default function PassengerInformation() {
                 className={styles.selectSeat}
                 disabled={!isFormValid}
                 onClick={() => {
-                  router.push("/ui/flights/passanger/select-seat");
+                   createPassenger();
+                  router.push(`/ui/flights/passanger/select-seat?bookingId=${bookingId}`);
                 }}
               >
                 Select Seat
@@ -380,7 +392,8 @@ export default function PassengerInformation() {
               className={styles.selectSeat}
               disabled={!isFormValid}
               onClick={() => {
-                router.push("/ui/flights/passanger/select-seat");
+                createPassenger();
+                router.push(`/ui/flights/passanger/select-seat?bookingId=${bookingId}`);
               }}
             >
               Select Seat
