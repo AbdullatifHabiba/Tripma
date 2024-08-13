@@ -26,7 +26,7 @@ const FlightSearch = ({ width, searchParams }) => {
 
   useEffect(() => {
     const fetchAirports = async () => {
-      const response = await fetch("http://localhost:3000/api/flights/airports");
+      const response = await fetch("/api/flights/airports");
       const data = await response.json();
       setAirports(data);
     };
