@@ -9,12 +9,24 @@ import ShopHotels from "@/Components/explore/hotels";
 import UniqueExperiences from "@/Components/explore/experinces";
 import ShareTravel from "@/Components/explore/share-travel";
 import Link from "next/link";
+import { hotels, experiences, flightDetailsData } from "@/lib/data";
+export default async function Page() {
+  // let hotels = [];
+  // let experiences = [];
+  // let flightDetailsData = [];
 
-export default  async function  Page() {
-const API_URL = process.env.SERVER_URL;
-const  hotels = await fetch(`${API_URL}/api/hotels`).then((res) => res.json());
-const  experiences = await fetch(`${API_URL}/api/experiences`).then((res) => res.json());
-const flightDetailsData = await fetch(`${API_URL}/api/flights`).then((res) => res.json());
+  // try {
+  //   const API_URL = process.env.SERVER_URL;
+  //   hotels = await fetch(`${API_URL}/api/hotels`).then((res) => res.json());
+  //   experiences = await fetch(`${API_URL}/api/experiences`).then((res) =>
+  //     res.json()
+  //   );
+  //   flightDetailsData = await fetch(`${API_URL}/api/flights`).then((res) =>
+  //     res.json()
+  //   );
+  // } catch (error) {
+  //   console.error("An error occurred:", error);
+  // }
 
   const flight0 = flightDetailsData[0];
   const flight1 = flightDetailsData[1];
@@ -32,13 +44,22 @@ const flightDetailsData = await fetch(`${API_URL}/api/flights`).then((res) => re
                 Your confirmation number is <span>#381029404387</span>
               </p>
             </div>
-            <h2 className={styles.sectionTitle} style={{color:'#605DEC'}}>Bon voyage, Sophia!</h2>
-            <h2 className={styles.subtitle}>Confirmation number: #381029404387</h2>
+            <h2 className={styles.sectionTitle} style={{ color: "#605DEC" }}>
+              Bon voyage, Sophia!
+            </h2>
+            <h2 className={styles.subtitle}>
+              Confirmation number: #381029404387
+            </h2>
             <p>
-            Thank you for booking your travel with Tripma! Below is a summary of your trip to Narita airport in Tokyo, Japan.
-             We’ve sent a copy of your booking confirmation to your email address. You can also find this page again in 
-              <Link href="/ui/my-trips" style={{ color: "#605DEC",margin:'0px 5px' }}>
-              My trips.
+              Thank you for booking your travel with Tripma! Below is a summary
+              of your trip to Narita airport in Tokyo, Japan. We’ve sent a copy
+              of your booking confirmation to your email address. You can also
+              find this page again in
+              <Link
+                href="/ui/my-trips"
+                style={{ color: "#605DEC", margin: "0px 5px" }}
+              >
+                My trips.
               </Link>
             </p>
           </div>
@@ -58,7 +79,10 @@ const flightDetailsData = await fetch(`${API_URL}/api/flights`).then((res) => re
               price={flight0.price}
               className={styles.flightItem}
             />
-           <h4 className={styles.bottomTitle}> Seat 9F (economy, window), 1 checked bag </h4>
+            <h4 className={styles.bottomTitle}>
+              {" "}
+              Seat 9F (economy, window), 1 checked bag{" "}
+            </h4>
 
             <h3 className={styles.subtitle}>Arriving March 5th, 2021</h3>
             <FlightItem
@@ -71,9 +95,11 @@ const flightDetailsData = await fetch(`${API_URL}/api/flights`).then((res) => re
               stopInfo={flight1.stopInfo}
               price={flight1.price}
               className={styles.flightItem}
-
             />
-            <h4 className={styles.bottomTitle}> Seat 4F (business, window), 1 checked bag </h4>
+            <h4 className={styles.bottomTitle}>
+              {" "}
+              Seat 4F (business, window), 1 checked bag{" "}
+            </h4>
           </div>
 
           {/* Price Breakdown */}
@@ -127,11 +153,8 @@ const flightDetailsData = await fetch(`${API_URL}/api/flights`).then((res) => re
           {/* Flight Route */}
           <div className={styles.card}>
             <h2 className={styles.sectionTitle}>Flight Route</h2>
-            <div className={styles.flightRouteDetails}
-              
-            >
+            <div className={styles.flightRouteDetails}>
               <Image src={map} alt="map" />
-
             </div>
           </div>
         </div>
