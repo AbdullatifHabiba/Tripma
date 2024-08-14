@@ -10,8 +10,7 @@ import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 export default  function PassengerInformation({ bookingId, flights }) {
-  const departingFlight = flights.booking.departFlight;
-  const returningFlight = flights.booking.arriveFlight;
+ 
   const router = useRouter();
 
   const [passengerInfo, setPassengerInfo] = useState({
@@ -404,13 +403,13 @@ export default  function PassengerInformation({ bookingId, flights }) {
             </div>
           </form>
         </div>
-
+    
         <div className={styles.sideSection}>
           {/* Flight Summary */}
           <div className={styles.flightSummary}>
             <FlightSelectCard
-              departingFlight={departingFlight}
-              returningFlight={returningFlight}
+              departingFlight={flights.booking.departFlight}
+              returningFlight={flights.booking.arriveFlight}
               pass={false}
             />
             <button

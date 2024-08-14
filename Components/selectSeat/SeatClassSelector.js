@@ -7,21 +7,13 @@ import businessChair from "@/public/businessChairs.svg";
 import dot from "@/public/dot.svg";
 import check from "@/public/check_green.svg";
 import arrow from "@/public/right-arrow.svg";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-const FLIGHT_INFO = {
-  departing: { date: "Feb 25", time: "7:00AM", label: "Departing" },
-  arriving: { date: "Mar 21", time: "12:15PM", label: "Arriving" },
-};
-
-const PASSENGER_INFO = {
-  name: "Sofia Knowles",
-  seat: { row: 12, col: 3 },
-};
 
 const SelectedDiv = ({ selected }) => (
-  <div className={selected ? styles.selectbus : styles.selectecon}>selected</div>
+  <div className={selected ? styles.selectbus : styles.selectecon}>
+    selected
+  </div>
 );
 
 const UpgradeCard = ({ handleCancelClick, handleUpgradeClick }) => (
@@ -42,8 +34,9 @@ const UpgradeCard = ({ handleCancelClick, handleUpgradeClick }) => (
   </div>
 );
 
-const SeatClassSelector = ({ selectedSeat }) => {
-  const router = useRouter();
+const SeatClassSelector = ({ selectedSeat, handleSeatSelection,CardInfo }) => {
+  console.log(CardInfo);
+
   const [departing, setDeparting] = useState(true);
   const [isBusiness, setIsBusiness] = useState(false);
   const [allowUpgrade, setAllowUpgrade] = useState(false);
@@ -67,44 +60,59 @@ const SeatClassSelector = ({ selectedSeat }) => {
   };
   const handleCancelClick = () => setAllowUpgrade(false);
 
-  const handleSeatSelection = () => {
+  const updateSeatSelection = () => {
     if (departing) {
       setDepartingSeatSelected(true);
+      setDeparting(false);
     } else {
       setArrivingSeatSelected(true);
     }
+    handleSeatSelection();
   };
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         {/* <div className={styles.flightInfo}> */}
-         <div className={styles.flightInfoLeft}>
+        <div className={styles.flightInfoLeft}>
           <div className={styles.location}>
-            <h4>SFO</h4>
+            <h4>{CardInfo.src}</h4>
             <span>California, US</span>
           </div>
           <Image src={arrow} alt="arrow" />
           <div className={styles.location}>
-            <h4>NRT</h4>
+            <h4>{CardInfo.dest}</h4>
             <span>Tokyo, Japan</span>
           </div>
         </div>
-          
-          <div className={`${styles.flightDetails} ${departing ? styles.selected : ""}`}
-            onClick={handleDepartingClick}
-          >
-            <span>{FLIGHT_INFO.departing.date} | {FLIGHT_INFO.departing.time}</span>
-            <span style={{ fontSize: "small" }}>{FLIGHT_INFO.departing.label}</span>
-          </div>
-          
-          <div
-            className={`${styles.flightDetails} ${!departing ? styles.selected : ""}`}
-            onClick={handleArrivingClick}
-          >
-            <span>{FLIGHT_INFO.arriving.date} | {FLIGHT_INFO.arriving.time}</span>
-            <span style={{ fontSize: "small" }}>{FLIGHT_INFO.arriving.label}</span>
-          </div>
+
+        <div
+          className={`${styles.flightDetails} ${
+            departing ? styles.selected : ""
+          }`}
+          onClick={handleDepartingClick}
+        >
+          <span>
+            {CardInfo.departing.date} | {CardInfo.departing.time}
+          </span>
+          <span style={{ fontSize: "small" }}>
+            {CardInfo.departing.label}
+          </span>
+        </div>
+
+        <div
+          className={`${styles.flightDetails} ${
+            !departing ? styles.selected : ""
+          }`}
+          onClick={handleArrivingClick}
+        >
+          <span>
+            {CardInfo.arriving.date} | {CardInfo.arriving.time}
+          </span>
+          <span style={{ fontSize: "small" }}>
+            {CardInfo.arriving.label}
+          </span>
+        </div>
         {/* </div> */}
       </div>
 
@@ -119,9 +127,15 @@ const SeatClassSelector = ({ selectedSeat }) => {
             personalized service, and a multi-course meal service
           </p>
           <ul className={styles.inlineList}>
-            <li><Image src={dot} alt="dot" /> Built-in entertainment system</li>
-            <li><Image src={dot} alt="dot" /> Complimentary snacks and drinks</li>
-            <li><Image src={dot} alt="dot" /> One free carry-on and personal item</li>
+            <li>
+              <Image src={dot} alt="dot" /> Built-in entertainment system
+            </li>
+            <li>
+              <Image src={dot} alt="dot" /> Complimentary snacks and drinks
+            </li>
+            <li>
+              <Image src={dot} alt="dot" /> One free carry-on and personal item
+            </li>
           </ul>
         </div>
         <div className={styles.class}>
@@ -134,12 +148,25 @@ const SeatClassSelector = ({ selectedSeat }) => {
             personalized service, and a multi-course meal service
           </p>
           <ul className={styles.inlineList}>
-            <li><Image src={check} alt="check" /> Extended leg room</li>
-            <li><Image src={check} alt="check" /> First two checked bags free</li>
-            <li><Image src={check} alt="check" /> Priority boarding</li>
-            <li><Image src={check} alt="check" /> Personalized service</li>
-            <li><Image src={check} alt="check" /> Enhanced food and drink service</li>
-            <li><Image src={check} alt="check" /> Seats that recline 40% more than economy</li>
+            <li>
+              <Image src={check} alt="check" /> Extended leg room
+            </li>
+            <li>
+              <Image src={check} alt="check" /> First two checked bags free
+            </li>
+            <li>
+              <Image src={check} alt="check" /> Priority boarding
+            </li>
+            <li>
+              <Image src={check} alt="check" /> Personalized service
+            </li>
+            <li>
+              <Image src={check} alt="check" /> Enhanced food and drink service
+            </li>
+            <li>
+              <Image src={check} alt="check" /> Seats that recline 40% more than
+              economy
+            </li>
           </ul>
         </div>
       </div>
@@ -148,7 +175,7 @@ const SeatClassSelector = ({ selectedSeat }) => {
         <div className={styles.passengerInfo}>
           <div>
             <span>Passenger 1</span>
-            <h4>{PASSENGER_INFO.name}</h4>
+            <h4>{CardInfo.passangerName}</h4>
           </div>
           <div>
             <span>Seat number</span>
@@ -159,10 +186,14 @@ const SeatClassSelector = ({ selectedSeat }) => {
           </div>
         </div>
         <div className={styles.footerButtons}>
-          <button className={styles.button} onClick={handleSeatSelection}>Save and close</button>
+          <button className={styles.button} onClick={updateSeatSelection}>
+            Save and close
+          </button>
           {departingSeatSelected && !arrivingSeatSelected ? (
             <button
-              className={`${styles.buttonPrimary} ${selectedSeat ? styles.selected : ""}`}
+              className={`${styles.buttonPrimary} ${
+                selectedSeat ? styles.selected : ""
+              }`}
               onClick={() => {
                 setAllowUpgrade(true);
                 handleArrivingClick();
@@ -173,8 +204,13 @@ const SeatClassSelector = ({ selectedSeat }) => {
           ) : (
             arrivingSeatSelected && (
               <Link
-                className={`${styles.buttonPrimary} ${selectedSeat ? styles.selected : ""}`}
-                href={{ pathname: '/ui/flights/passanger/payment' }}
+                className={`${styles.buttonPrimary} ${
+                  selectedSeat ? styles.selected : ""
+                }`}
+                href={
+                  { pathname: "/ui/flights/passanger/payment" 
+                     , query: { bookingId: CardInfo.bookingId } 
+                }}
               >
                 Payment
               </Link>

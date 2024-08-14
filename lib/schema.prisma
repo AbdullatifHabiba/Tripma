@@ -89,7 +89,7 @@ model Seat {
   id        Int      @id @default(autoincrement())
   row       Int      // Row number
   col       Int      // Column number
-  class     String   
+  class     Boolean   
   available Boolean  @default(true)
   flightId  Int
   bookingId Int?
@@ -100,9 +100,10 @@ model Seat {
 }
 model PaymentMethod {
   id         Int       @id @default(autoincrement())
-  type       String    // e.g., 'Visa', 'MasterCard', 'PayPal', etc.
-  cardNumber String?
-  expiryDate String?
+  name       String
+  cardNumber String
+  expiryDate String
+  ccv        Int
   bookings   Booking[]
 }
 

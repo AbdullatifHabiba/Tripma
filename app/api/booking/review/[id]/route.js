@@ -1,11 +1,11 @@
 import prisma from "@/utils/database";
 import { NextResponse } from "next/server";
 
-export async function GET(req) {
-    const { bookingId } = await req.json();
+export async function GET(req,context) {
+    const { id } = context.params;
 
     const booking = await prisma.booking.findUnique({
-      where: { id: Number(bookingId) },
+      where: { id: Number(id) },
       include: {
         passengers: true,
         seats: true,

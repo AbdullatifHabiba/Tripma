@@ -9,6 +9,7 @@ export async function GET(req,context) {
         include: {
             departFlight: true,
             arriveFlight: true,
+            passengers: true,
         },
     });
     if (!booking) {

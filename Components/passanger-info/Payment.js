@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import styles from "./PassengerInformation.module.css";
 import FlightSelectCard from "../flight-details/FlightCard";
-import { flightDetailsData } from "@/lib/data";
 import { useRouter } from "next/navigation";
 import google from "@/public/google.png";
 import apple from "@/public/apple.png";
@@ -12,7 +11,8 @@ import paypal from "@/public/paypal.svg";
 
 import Image from "next/image";
 
-export default function Payment() {
+export default function Payment({flights, bookingId}) {
+ 
   const router = useRouter();
   const [formData, setFormData] = useState({
     nameOnCard: "",
@@ -31,7 +31,34 @@ export default function Payment() {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
-
+  const handlePayment=() => {
+    // send payment info to server
+    fetch('/api/booking/payment', {
+      method: 'POST',
+      body: JSON.stringify({ bookingId, paymentMethod: 
+        {
+          name  : formData.nameOnCard,    
+          cardNumber : formData.cardNumber,
+          expiryDate : formData.expirationDate,
+          ccv        : formData.ccv
+        }
+       }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+      throw new Error('Something went wrong with payment');
+    }).then(data => {
+      console.log(data);
+      router.push(`/ui/flights/flight-summary?bookingId=${bookingId}`);
+    }).catch(error => {
+      console.error(error);
+    });
+    
+  }
   const validateForm = () => {
     let newErrors = {};
   
@@ -338,7 +365,7 @@ export default function Payment() {
                   <button
                     type="button"
                     className={styles.backButton}
-                    onClick={() => router.push("/ui/flights/passanger/select-seat")}
+                    onClick={() => router.push(`/ui/flights/passanger/select-seat?bookingId=${bookingId}`)}
                   >
                     Back to seat select
                   </button>
@@ -346,7 +373,7 @@ export default function Payment() {
                     type="submit"
                     disabled={!isFormValid}
                     className={styles.confirmButton}
-                    onClick={() => router.push("/ui/flights/flight-summary")}
+                    onClick={() => router.push(`/ui/flights/flight-summary?bookingId=${bookingId}`)}
 
                   >
                     Confirm and pay
@@ -363,15 +390,15 @@ export default function Payment() {
           {/* Flight Summary */}
           <div className={styles.flightSummary}>
             <FlightSelectCard
-              departingFlight={flightDetailsData[0]}
-              returningFlight={flightDetailsData[1]}
+              departingFlight={flights.booking.departFlight}
+              returningFlight={flights.booking.arriveFlight}
               pass={false}
             />
             <button
               type="submit"
               disabled={!isFormValid}
               className={styles.confirmButton}
-              onClick={() => router.push("/ui/flights/flight-summary")}
+              onClick={() => router.push(`/ui/flights/flight-summary?bookingId=${bookingId}`)}
 
             >
               Confirm and pay

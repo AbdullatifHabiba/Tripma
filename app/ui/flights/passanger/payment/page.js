@@ -1,17 +1,18 @@
-"use client";
 import { Footer1, Footer2 } from "@/Components/footer/footer";
-import PassengerInformation from "@/Components/passanger-info/passanger";
 import Navbar from "@/Components/Navbar";
 import Payment from "@/Components/passanger-info/Payment";
-import React from "react";
-import { useSearchParams } from "next/navigation";
 
-export default function Passenger() {
+export default async function  Passenger({ searchParams }) {
+
+  const API_URL = process.env.SERVER_URL;
+  const { bookingId } = searchParams;
+  const flights = await fetch(`${API_URL}/api/booking/${bookingId}`).then((res) => res.json());  
+
   return (
     <>
       <Navbar />
 
-      <Payment />
+      <Payment bookingId={bookingId} flights={flights} />
 
       <Footer1 />
       <Footer2 />
