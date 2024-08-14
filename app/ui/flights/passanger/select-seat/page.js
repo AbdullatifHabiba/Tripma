@@ -10,6 +10,8 @@ import useSWR from 'swr';
 import { useRouter } from 'next/navigation';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { formatDateTime } from '@/utils/functions';
+
 
 const SeatsPage = ({ searchParams }) => {
 
@@ -43,15 +45,6 @@ const SeatsPage = ({ searchParams }) => {
    if (!bookingData || !departSeats || !returnSeats) return <div>loading...</div>;
  
 
-const formatDateTime = (dateString) => {
-  const date = new Date(dateString);
-  const options = { month: 'short', day: 'numeric' };
-  const formattedDate = date.toLocaleDateString('en-US', options);
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
-  const formattedTime = `${hours % 12 || 12}:${minutes.toString().padStart(2, '0')}${hours >= 12 ? 'PM' : 'AM'}`;
-  return { formattedDate, formattedTime };
-};
 
 const departcardInfo ={
     departing: { date:formatDateTime(bookingData.booking.departFlight.departure).formattedDate, time: formatDateTime(bookingData.booking.departure).formattedTime, label: "Departing" },

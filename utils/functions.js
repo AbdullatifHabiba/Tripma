@@ -30,3 +30,34 @@ export const formatTime = (timeString) => {
 
     return 'Unknown'; // Return 'Unknown' if the card type is not recognized
 }
+
+export const formatDateTime = (dateString) => {
+  const date = new Date(dateString);
+  const options = { month: 'short', day: 'numeric' };
+  const formattedDate = date.toLocaleDateString('en-US', options);
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  const formattedTime = `${hours % 12 || 12}:${minutes.toString().padStart(2, '0')}${hours >= 12 ? 'PM' : 'AM'}`;
+  return { formattedDate, formattedTime };
+};
+export const formatDate= (isoString)=> {
+  const date = new Date(isoString);
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  let formatted = date.toLocaleDateString('en-US', options);
+  
+  const day = date.getDate();
+  const suffix = getOrdinalSuffix(day);
+  
+  return formatted.replace(/\d+/, day + suffix);
+}
+
+function getOrdinalSuffix(day) {
+  if (day > 3 && day < 21) return 'th';
+  switch (day % 10) {
+    case 1:  return "st";
+    case 2:  return "nd";
+    case 3:  return "rd";
+    default: return "th";
+  }
+}
+

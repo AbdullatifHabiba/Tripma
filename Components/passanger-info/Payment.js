@@ -8,11 +8,11 @@ import google from "@/public/google.png";
 import apple from "@/public/apple.png";
 import facebook from "@/public/facebook.png";
 import paypal from "@/public/paypal.svg";
-
 import Image from "next/image";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-export default function Payment({flights, bookingId}) {
- 
+export default function Payment({ flights, bookingId }) {
   const router = useRouter();
   const [formData, setFormData] = useState({
     nameOnCard: "",
@@ -31,82 +31,67 @@ export default function Payment({flights, bookingId}) {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
-  const handlePayment=() => {
-    // send payment info to server
-    fetch('/api/booking/payment', {
-      method: 'POST',
-      body: JSON.stringify({ bookingId, paymentMethod: 
-        {
-          name  : formData.nameOnCard,    
-          cardNumber : formData.cardNumber,
-          expiryDate : formData.expirationDate,
-          ccv        : formData.ccv
-        }
-       }),
+
+  const handlePayment = () => {
+    fetch("/api/booking/payment", {
+      method: "POST",
+      body: JSON.stringify({
+        bookingId: Number( bookingId),
+        paymentMethod: {
+          name: formData.nameOnCard,
+          cardNumber: formData.cardNumber,
+          expiryDate: formData.expirationDate,
+          ccv: Number(formData.ccv),
+        },
+      }),
       headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      throw new Error('Something went wrong with payment');
-    }).then(data => {
-      console.log(data);
-      router.push(`/ui/flights/flight-summary?bookingId=${bookingId}`);
-    }).catch(error => {
-      console.error(error);
-    });
-    
-  }
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw new Error("Something went wrong with payment");
+      })
+      .then((data) => {
+        toast.success("Payment method checked successful!");
+        router.push(`/ui/flights/flight-summary?bookingId=${bookingId}`);
+      })
+      .catch((error) => {
+        toast.error("Payment failed. Please try again.");
+        console.error(error);
+      });
+  };
+
   const validateForm = () => {
     let newErrors = {};
-  
-    // Validate name on card
+
     if (!formData.nameOnCard) {
       newErrors.nameOnCard = "Name on card is required";
     }
-  
-    // Validate card number (basic check for 16 digits)
+
     if (!formData.cardNumber) {
       newErrors.cardNumber = "Card number is required";
     } else if (!/^\d{16}$/.test(formData.cardNumber)) {
       newErrors.cardNumber = "Card number must be 16 digits";
     }
-  
-    // Validate expiration date (basic check for MM/YY format)
+
     if (!formData.expirationDate) {
       newErrors.expirationDate = "Expiration date is required";
     } else if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(formData.expirationDate)) {
       newErrors.expirationDate = "Expiration date must be in MM/YY format";
     }
-  
-    // Validate CCV (basic check for 3 or 4 digits)
+
     if (!formData.ccv) {
       newErrors.ccv = "CCV is required";
     } else if (!/^\d{3,4}$/.test(formData.ccv)) {
       newErrors.ccv = "CCV must be 3 or 4 digits";
     }
-  
-    // Validate email (basic email format check)
-    if (!formData.email) {
-      newErrors.email = "Email is required";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = "Email is not valid";
-    }
-  
-    // Validate password (basic check for minimum length)
-    if (!formData.password) {
-      newErrors.password = "Password is required";
-    } else if (formData.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters";
-    }
-  
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-  
-
 
   useEffect(() => {
     setIsFormValid(validateForm());
@@ -115,10 +100,9 @@ export default function Payment({flights, bookingId}) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isFormValid) {
-      // Process payment
-      console.log("Form is valid. Processing payment...");
+      handlePayment();
     } else {
-      console.log("Form has errors. Please correct them.");
+      toast.error("Form has errors. Please correct them.");
     }
   };
 
@@ -128,6 +112,7 @@ export default function Payment({flights, bookingId}) {
 
   return (
     <div className={styles.container}>
+      <ToastContainer />
       <div className={styles.formContainer}>
         <div className={styles.formSection}>
           <h2 className={styles.title}>Payment method</h2>
@@ -183,9 +168,10 @@ export default function Payment({flights, bookingId}) {
               }`}
               onClick={() => handlePaymentMethodChange("paypal")}
             >
-               <span className={styles.icon}>
+              <span className={styles.icon}>
                 <Image src={paypal} alt="p" width={16} height={16} />
-              </span>{" "} PayPal
+              </span>{" "}
+              PayPal
             </button>
             <button
               className={`${styles.paymentButton} ${
@@ -246,18 +232,17 @@ export default function Payment({flights, bookingId}) {
                   </div>
                   <div className={styles.inputGroup}>
                     <div className={styles.rowIcon}>
-                    <input
-                      type="text"
-                      name="ccv"
-                      placeholder="CCV"
-                      className={styles.input}
-                      style={{border: "none"}}
-                      value={formData.ccv}
-                      onChange={handleInputChange}
-                    />
-                    <span className={styles.infoIcon}>ℹ️</span>
+                      <input
+                        type="text"
+                        name="ccv"
+                        placeholder="CCV"
+                        className={styles.input}
+                        style={{ border: "none" }}
+                        value={formData.ccv}
+                        onChange={handleInputChange}
+                      />
+                      <span className={styles.infoIcon}>ℹ️</span>
                     </div>
-
                     {errors.ccv && (
                       <span className={styles.error}>{errors.ccv}</span>
                     )}
@@ -300,7 +285,6 @@ export default function Payment({flights, bookingId}) {
                   {errors.email && (
                     <span className={styles.error}>{errors.email}</span>
                   )}
-               
                   <input
                     type="password"
                     name="password"
@@ -315,7 +299,7 @@ export default function Payment({flights, bookingId}) {
                 </div>
 
                 <div className={styles.inputGroup}>
-                 <p className={styles.orDivider}>or</p>
+                  <p className={styles.orDivider}>or</p>
                   <button type="button" className={styles.socialButton}>
                     <Image
                       src={google}
@@ -365,7 +349,7 @@ export default function Payment({flights, bookingId}) {
                   <button
                     type="button"
                     className={styles.backButton}
-                    onClick={() => router.push(`/ui/flights/passanger/select-seat?bookingId=${bookingId}`)}
+                    onClick={() => router.push(`/ui/flights/seat-select?bookingId=${bookingId}`)}
                   >
                     Back to seat select
                   </button>
@@ -373,8 +357,6 @@ export default function Payment({flights, bookingId}) {
                     type="submit"
                     disabled={!isFormValid}
                     className={styles.confirmButton}
-                    onClick={() => router.push(`/ui/flights/flight-summary?bookingId=${bookingId}`)}
-
                   >
                     Confirm and pay
                   </button>
@@ -398,8 +380,7 @@ export default function Payment({flights, bookingId}) {
               type="submit"
               disabled={!isFormValid}
               className={styles.confirmButton}
-              onClick={() => router.push(`/ui/flights/flight-summary?bookingId=${bookingId}`)}
-
+              onClick={handleSubmit}
             >
               Confirm and pay
             </button>

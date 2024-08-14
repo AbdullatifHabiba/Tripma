@@ -54,7 +54,6 @@ flex-direction: row;
 align-items: center;
 justify-content: center;
 padding: auto;
-width: 704px;
 height: 64px;
 
 background: #EAFFFB;
@@ -131,8 +130,13 @@ border: 1px solid #007B65;
 .paymentLogo {
   width: 50px;
   height: auto;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 30px;
 }
-
 .paymentInfo p {
   margin: 0;
 }
