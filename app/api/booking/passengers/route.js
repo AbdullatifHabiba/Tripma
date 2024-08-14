@@ -63,6 +63,11 @@ export async function POST(req) {
     return NextResponse.json({ addedPassengers }, { status: 201 });
   } catch (error) {
     console.error("Error creating passengers or emergency contacts:", error);
+    // if there already exists a passenger with the same email
+    if (error.code === "P2002") {
+      return NextResponse.json({ error: "Passenger  already exists with this booking" }, { status: 400 });
+    }
+    
     return NextResponse.json({ error: "Failed to create passengers" }, { status: 500 });
   }
 }

@@ -4,12 +4,16 @@ import Image from "next/image";
 import styles from "./PassengerInformation.module.css";
 import backpackIcon from "@/public/bag.svg";
 import FlightSelectCard from "../flight-details/FlightCard";
-import { flightDetailsData } from "@/lib/data";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
-export default function PassengerInformation({bookingId}) {
+export default  function PassengerInformation({ bookingId, flights }) {
+  const departingFlight = flights.booking.departFlight;
+  const returningFlight = flights.booking.arriveFlight;
   const router = useRouter();
+
   const [passengerInfo, setPassengerInfo] = useState({
     firstName: "",
     middleName: "",
@@ -112,18 +116,42 @@ export default function PassengerInformation({bookingId}) {
   }, [passengerInfo]);
 
   const createPassenger = async () => {
-    const data = await fetch("/api/booking/passengers", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({  passengers:[passengerInfo],bookingId:bookingId })
-    });
-    const response = await data.json();
-    console.log(response);
+    try {
+      toast.info("Adding Passengers, please wait...");
+
+      const data = await fetch("/api/booking/passengers", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ passengers: [passengerInfo], bookingId: bookingId })
+      });
+      const response = await data.json();
+      if (data.ok) {
+        toast.success("Passenger created successfully!");
+        return true;
+      } else {
+        toast.error(`Failed to create passenger.${response.error}`);
+        return false;
+      }
+    } catch (error) {
+      toast.error("An error occurred while creating the passenger.");
+      return false;
+    }
   }
+
+  const handleSelectSeat = async () => {
+    const success = await createPassenger();
+    if (success) {
+      setTimeout(() => {
+      router.push(`/ui/flights/passanger/select-seat?bookingId=${bookingId}`);
+      },1000);
+    }
+  }
+
   return (
     <div className={styles.container}>
+      <ToastContainer />
       <div className={styles.formContainer}>
         <div className={styles.formSection}>
           <h1 className={styles.title}>Passenger Information</h1>
@@ -369,10 +397,7 @@ export default function PassengerInformation({bookingId}) {
                 type="submit"
                 className={styles.selectSeat}
                 disabled={!isFormValid}
-                onClick={() => {
-                   createPassenger();
-                  router.push(`/ui/flights/passanger/select-seat?bookingId=${bookingId}`);
-                }}
+                onClick={handleSelectSeat}
               >
                 Select Seat
               </button>
@@ -384,17 +409,14 @@ export default function PassengerInformation({bookingId}) {
           {/* Flight Summary */}
           <div className={styles.flightSummary}>
             <FlightSelectCard
-              departingFlight={flightDetailsData[0]}
-              returningFlight={flightDetailsData[1]}
+              departingFlight={departingFlight}
+              returningFlight={returningFlight}
               pass={false}
             />
             <button
               className={styles.selectSeat}
               disabled={!isFormValid}
-              onClick={() => {
-                createPassenger();
-                router.push(`/ui/flights/passanger/select-seat?bookingId=${bookingId}`);
-              }}
+              onClick={handleSelectSeat}
             >
               Select Seat
             </button>

@@ -3,6 +3,9 @@ import styles from "./FlightDetails.module.css";
 import Image from "next/image";
 import { formatTime } from "@/utils/functions";
 import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 const cardItem = ({ flight }) => {
   return (
     <div className={styles.flightCard}>
@@ -40,23 +43,36 @@ const FlightSelectCard = ({
 
   const totalCost = calculateTotalCost();
   const createIntialBooking = async () => {
-    const flightsID = {
-      departFlightId: departingFlight.id,
-      arriveFlightId: returningFlight.id,
-    };
-    const data = await fetch("/api/booking/create", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(flightsID),
-    });
-    const { booking } = await data.json();
-    router.push(`/ui/flights/passanger?bookingId=${booking["id"]}`);
+    try {
+      toast.info("Creating booking, please wait...");
+      const flightsID = {
+        departFlightId: departingFlight.id,
+        arriveFlightId: returningFlight.id,
+      };
+      const data = await fetch("/api/booking/create", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(flightsID),
+      });
+      const response = await data.json();
+      if (data.ok) {
+        toast.success("Booking created successfully!");
+        setTimeout(() => {
+        router.push(`/ui/flights/passanger?bookingId=${response.booking.id}`);
+        },1000);
+      } else {
+        toast.error("Failed to create booking.");
+      }
+    } catch (error) {
+      toast.error("An error occurred while creating the booking.");
+    }
   };
 
   return (
     <div className={styles.priceGrid}>
+      <ToastContainer />
       <div className={styles.flightSelectCard}>
         {departingFlight && cardItem({ flight: departingFlight })}
         {returningFlight && cardItem({ flight: returningFlight })}
@@ -82,12 +98,8 @@ const FlightSelectCard = ({
             </pre>
             {pass && (
               <button
-                // href={{
-                //   pathname: '/ui/flights/passanger',
-                //   query:{bookingId:booking.id}
-                // }}
                 className={styles.passengerInfoBtn}
-                onClick={createIntialBooking} // Remove the parentheses from the onClick event
+                onClick={createIntialBooking}
               >
                 Passenger Information
               </button>
