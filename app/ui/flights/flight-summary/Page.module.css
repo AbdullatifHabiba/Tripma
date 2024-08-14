@@ -126,7 +126,19 @@ border: 1px solid #007B65;
     width: 400px;
 
 }
-
+.totalAmount{
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0px;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #E5E5E5;
+    border-bottom: 1px solid #E5E5E5;
+    padding: 10px 0px;
+}
+.totalprice{
+  margin-left: auto;
+}
 .paymentLogo {
   width: 50px;
   height: auto;

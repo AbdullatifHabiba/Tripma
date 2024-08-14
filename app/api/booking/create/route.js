@@ -1,6 +1,7 @@
 import  prisma  from "@/utils/database";
 import { NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid";
+import{uuidToTenDigitNumber} from "@/utils/functions";
 
 // /app/booking/create/route.js
 
@@ -18,7 +19,7 @@ export async function POST(req) {
     }
     let booking = await prisma.booking.create({
         data: {
-            bookingNumber: uuidv4(),
+            bookingNumber: uuidToTenDigitNumber(uuidv4()),
             totalPrice: 0,
             departFlightId: departFlightId,
             arriveFlightId: arriveFlightId,

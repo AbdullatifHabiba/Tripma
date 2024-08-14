@@ -11,6 +11,7 @@ import ShareTravel from "@/Components/explore/share-travel";
 import Link from "next/link";
 import {formatTime ,formatDate,getCardType }from "@/utils/functions";
 
+export const revalidate = 5;
 export default async function Page({ searchParams }) {
   const { bookingId } = searchParams;
   const API_URL = process.env.SERVER_URL;
@@ -39,18 +40,19 @@ export default async function Page({ searchParams }) {
             <div className={styles.confirm}>
               <h1>Your flight has been booked successfully!</h1>
               <p className={styles.confirmationNumber}>
-                Your confirmation number is <span>{bookingData.booking.bookingNumber}</span>
+                Your confirmation number is #<span>{bookingData.booking.bookingNumber}</span>
               </p>
             </div>
             <h2 className={styles.sectionTitle} style={{ color: "#605DEC" }}>
               Bon voyage, {passenger.firstName}!
             </h2>
             <h2 className={styles.subtitle}>
-              Confirmation number: {bookingData.booking.bookingNumber}
+              Confirmation number: #{bookingData.booking.bookingNumber}
             </h2>
             <p>
               Thank you for booking your travel with Tripma! Below is a summary
-              of your trip. We’ve sent a copy of your booking confirmation to{" "}
+              of your trip.Below is a summary of your trip to {flight0.destination} airport 
+               We’ve sent a copy of your booking confirmation to{" "}
               <a href={`mailto:${passenger.email}`} className={styles.emailLink}>
                 {passenger.email}
               </a>
@@ -67,7 +69,7 @@ export default async function Page({ searchParams }) {
           {/* Flight Summary */}
           <div className={styles.card}>
             <h2 className={styles.sectionTitle}>Flight Summary</h2>
-            <h3 className={styles.subtitle}>{formatDate(flight0.departure)}</h3>
+            <h2 > Departing {formatDate(flight0.departure)}</h2>
             <FlightItem
               airline={flight0.airline}
               logo={flight0.logo}
@@ -86,7 +88,7 @@ export default async function Page({ searchParams }) {
               checked bag
             </h4>
 
-            <h3 className={styles.subtitle}>{formatDate(flight1.arrival)}</h3>
+            <h2 >Arriving {formatDate(flight1.arrival)}</h2>
             <FlightItem
               airline={flight1.airline}
               logo={flight1.logo}
@@ -117,7 +119,6 @@ export default async function Page({ searchParams }) {
                 <p>Seat upgrade (business)</p>
                 <p>Subtotal</p>
                 <p>Taxes (9.4%)</p>
-                <p className={styles.totalAmount}>Amount Paid</p>
               </div>
               <div className={styles.priceDetailsRight}>
                 <p>${flight0.price}</p>
@@ -126,8 +127,11 @@ export default async function Page({ searchParams }) {
                 <p>{seats[0].class ? "$199" : "$0"}</p>
                 <p>${bookingData.booking.totalPrice}</p>
                 <p>${(bookingData.booking.totalPrice * 0.094).toFixed(2)}</p>
-                <p className={styles.totalAmount}>${(bookingData.booking.totalPrice * 1.094).toFixed(2)}</p>
               </div>
+            </div>
+            <div className={styles.totalAmount} >
+            <p >Amount Paid</p>
+            <p className={styles.totalprice}>${(bookingData.booking.totalPrice * 1.094).toFixed(2)}</p>
             </div>
           </div>
 
