@@ -1,0 +1,49 @@
+.container {
+    padding: 20px;
+  }
+  
+  .title {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .bookingList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .bookingCard {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 10px;
+  }
+  
+  .bookingNumber {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  .flightDetails {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 200px;
+  }
+  
+  .flight {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .flightInfo {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .totalPrice {
+    margin-top: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  

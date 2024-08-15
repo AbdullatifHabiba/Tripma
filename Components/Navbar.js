@@ -100,10 +100,10 @@ export default function Navbar({ logined = false }) {
           ) : (
             <>
             <li className={style.link}>
-              <Link href="/ui/myTrips">
+              <Link href="/ui/users/trips">
                 <span
-                  className={`${style.link} ${isActive("/ui/myTrips") ? style.active : ""}`}
-                  onClick={() => handleLinkClick("/ui/myTrips")}
+                  className={`${style.link} ${isActive("/ui/users/trips") ? style.active : ""}`}
+                  onClick={() => handleLinkClick("/ui/users/trips")}
                   >
                   My Trips
                 </span>
