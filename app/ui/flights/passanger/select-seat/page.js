@@ -108,6 +108,7 @@ const SeatsPage = ({ searchParams }) => {
       <Link href="/">
         <Image src={tripma} alt="tripma" />
       </Link>
+      {}
       <div>
         {isDeparting ? (
           <TrainSeats

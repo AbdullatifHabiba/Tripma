@@ -63,7 +63,7 @@ export default async function Page({ searchParams }) {
               </a>
               . You can also find this page again in
               <Link
-                href="/ui/my-trips"
+                href="/ui/users/trips"
                 style={{ color: "#605DEC", margin: "0px 5px" }}
               >
                 My trips.
