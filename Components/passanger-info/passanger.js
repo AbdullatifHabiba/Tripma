@@ -9,8 +9,7 @@ import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
-export default  function PassengerInformation({ bookingId, flights }) {
- 
+export default function PassengerInformation({ bookingId, flights }) {
   const router = useRouter();
 
   const [passengerInfo, setPassengerInfo] = useState({
@@ -114,6 +113,18 @@ export default  function PassengerInformation({ bookingId, flights }) {
     setIsFormValid(validateForm());
   }, [passengerInfo]);
 
+  useEffect(() => {
+    if (passengerInfo.emergencyContactSameAsPassenger) {
+      setPassengerInfo((prev) => ({
+        ...prev,
+        emergencyContactFirstName: prev.firstName,
+        emergencyContactLastName: prev.lastName,
+        emergencyContactEmail: prev.email,
+        emergencyContactPhone: prev.phoneNumber,
+      }));
+    }
+  }, [passengerInfo.emergencyContactSameAsPassenger, passengerInfo.firstName, passengerInfo.lastName, passengerInfo.email, passengerInfo.phoneNumber]);
+
   const createPassenger = async () => {
     try {
       toast.info("Adding Passengers, please wait...");
@@ -143,8 +154,8 @@ export default  function PassengerInformation({ bookingId, flights }) {
     const success = await createPassenger();
     if (success) {
       setTimeout(() => {
-      router.push(`/ui/flights/passanger/select-seat?bookingId=${bookingId}`);
-      },1000);
+        router.push(`/ui/flights/passanger/select-seat?bookingId=${bookingId}`);
+      }, 1000);
     }
   }
 
@@ -432,3 +443,15 @@ export default  function PassengerInformation({ bookingId, flights }) {
     </div>
   );
 }
+/**
+ *  <button type="button" className={styles.socialButton}>
+                    <Image
+                      src={facebook}
+                      alt="Facebook"
+                      width={20}
+                      height={20}
+                      className={styles.socialIcon}
+                    />{" "}
+                    Continue with Facebook
+                  </button>
+ */

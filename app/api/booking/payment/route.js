@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function PATCH(req) {
     const { bookingId, paymentMethodId, totalPrice } = await req.json();
-  
+     console.log("totalPrice",totalPrice);
     const updatedBooking = await prisma.booking.update({
       where: { id: bookingId },
       data: {
@@ -16,7 +16,7 @@ export async function PATCH(req) {
 
 // create a payment method and update booking with payment method id
 export async function POST(req) {
-    const { bookingId, paymentMethod } = await req.json();
+    const { bookingId, paymentMethod,totalPrice ,userId} = await req.json();
 
     const paymentMethodRecord = await prisma.paymentMethod.create({
         data: paymentMethod
@@ -25,7 +25,11 @@ export async function POST(req) {
     const updatedBooking = await prisma.booking.update({
         where: { id: bookingId },
         data: {
-            paymentMethodId: paymentMethodRecord.id
+            paymentMethodId: paymentMethodRecord.id,
+            totalPrice: totalPrice,
+            userId: userId
+
+
         }
     });
 

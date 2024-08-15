@@ -9,9 +9,8 @@ import ShopHotels from "@/Components/explore/hotels";
 import UniqueExperiences from "@/Components/explore/experinces";
 import ShareTravel from "@/Components/explore/share-travel";
 import Link from "next/link";
-import {formatTime ,formatDate,getCardType }from "@/utils/functions";
+import { formatTime, formatDate, getCardType } from "@/utils/functions";
 
-export const revalidate = 5;
 export default async function Page({ searchParams }) {
   const { bookingId } = searchParams;
   const API_URL = process.env.SERVER_URL;
@@ -20,9 +19,10 @@ export default async function Page({ searchParams }) {
   const experiences = await fetch(`${API_URL}/api/experiences`).then((res) =>
     res.json()
   );
-  const bookingData = await fetch(`${API_URL}/api/booking/review/${bookingId}`).then((res) =>
-    res.json()
-  );
+  const bookingData = await fetch(
+    `${API_URL}/api/booking/review/${bookingId}`,
+    {next:{revalidate:5}}
+  ).then((res) => res.json());
 
   const passenger = bookingData.booking.passengers[0];
   const paymentMethod = bookingData.booking.paymentMethod;
@@ -40,7 +40,8 @@ export default async function Page({ searchParams }) {
             <div className={styles.confirm}>
               <h1>Your flight has been booked successfully!</h1>
               <p className={styles.confirmationNumber}>
-                Your confirmation number is #<span>{bookingData.booking.bookingNumber}</span>
+                Your confirmation number is #
+                <span>{bookingData.booking.bookingNumber}</span>
               </p>
             </div>
             <h2 className={styles.sectionTitle} style={{ color: "#605DEC" }}>
@@ -51,9 +52,13 @@ export default async function Page({ searchParams }) {
             </h2>
             <p>
               Thank you for booking your travel with Tripma! Below is a summary
-              of your trip.Below is a summary of your trip to {flight0.destination} airport 
-               We’ve sent a copy of your booking confirmation to{" "}
-              <a href={`mailto:${passenger.email}`} className={styles.emailLink}>
+              of your trip.Below is a summary of your trip to{" "}
+              {flight0.destination} airport We’ve sent a copy of your booking
+              confirmation to{" "}
+              <a
+                href={`mailto:${passenger.email}`}
+                className={styles.emailLink}
+              >
                 {passenger.email}
               </a>
               . You can also find this page again in
@@ -69,7 +74,7 @@ export default async function Page({ searchParams }) {
           {/* Flight Summary */}
           <div className={styles.card}>
             <h2 className={styles.sectionTitle}>Flight Summary</h2>
-            <h2 > Departing {formatDate(flight0.departure)}</h2>
+            <h2> Departing {formatDate(flight0.departure)}</h2>
             <FlightItem
               airline={flight0.airline}
               logo={flight0.logo}
@@ -82,13 +87,14 @@ export default async function Page({ searchParams }) {
               className={styles.flightItem}
             />
             <h4 className={styles.bottomTitle}>
-              Seat {seats[0].row}{String.fromCharCode(65 + seats[0].col - 1)}{" "}
-              ({seats[0].class ? "business" : "economy"},{" "}
-              {seats[0].col === 1 ? "window" : "aisle"}), {passenger.checkedBags}{" "}
-              checked bag
+              Seat {seats[0].row}
+              {String.fromCharCode(65 + seats[0].col - 1)} (
+              {seats[0].class ? "business" : "economy"},{" "}
+              {seats[0].col === 1 ? "window" : "aisle"}),{" "}
+              {passenger.checkedBags} checked bag
             </h4>
 
-            <h2 >Arriving {formatDate(flight1.arrival)}</h2>
+            <h2>Arriving {formatDate(flight1.arrival)}</h2>
             <FlightItem
               airline={flight1.airline}
               logo={flight1.logo}
@@ -101,10 +107,11 @@ export default async function Page({ searchParams }) {
               className={styles.flightItem}
             />
             <h4 className={styles.bottomTitle}>
-              Seat {seats[1].row}{String.fromCharCode(65 + seats[1].col - 1)}{" "}
-              ({seats[1].class ? "business" : "economy"},{" "}
-              {seats[1].col === 1 ? "window" : "aisle"}), {passenger.checkedBags}{" "}
-              checked bag
+              Seat {seats[1].row}
+              {String.fromCharCode(65 + seats[1].col - 1)} (
+              {seats[1].class ? "business" : "economy"},{" "}
+              {seats[1].col === 1 ? "window" : "aisle"}),{" "}
+              {passenger.checkedBags} checked bag
             </h4>
           </div>
 
@@ -124,14 +131,22 @@ export default async function Page({ searchParams }) {
                 <p>${flight0.price}</p>
                 <p>${flight1.price}</p>
                 <p>$0</p>
-                <p>{seats[0].class ? "$199" : "$0"}</p>
+                <p>
+                  $
+                  {seats.reduce(
+                    (total, seat) => total + (seat.class ? 199 : 0),
+                    0
+                  )}
+                </p>{" "}
                 <p>${bookingData.booking.totalPrice}</p>
                 <p>${(bookingData.booking.totalPrice * 0.094).toFixed(2)}</p>
               </div>
             </div>
-            <div className={styles.totalAmount} >
-            <p >Amount Paid</p>
-            <p className={styles.totalprice}>${(bookingData.booking.totalPrice * 1.094).toFixed(2)}</p>
+            <div className={styles.totalAmount}>
+              <p>Amount Paid</p>
+              <p className={styles.totalprice}>
+                ${(bookingData.booking.totalPrice * 1.094).toFixed(2)}
+              </p>
             </div>
           </div>
 
@@ -140,7 +155,9 @@ export default async function Page({ searchParams }) {
             <h2 className={styles.sectionTitle}>Payment Method</h2>
             <div className={styles.paymentDetails}>
               {/* <Image src={visa} alt="Visa" className={styles.paymentLogo} /> */}
-              <div className={styles.paymentLogo} >{getCardType(paymentMethod.cardNumber)}  </div>
+              <div className={styles.paymentLogo}>
+                {getCardType(paymentMethod.cardNumber)}{" "}
+              </div>
               <div className={styles.paymentInfo}>
                 <p>{paymentMethod.name}</p>
                 <div className={styles.visaNumber}>

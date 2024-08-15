@@ -65,9 +65,16 @@ export const  getCardType = (cardNumber) => {
     return "Unknown";
   }
 };
-
 export const formatDateTime = (dateString) => {
+  console.log(dateString);
   const date = new Date(dateString);
+
+  if (isNaN(date.getTime())) {
+    // Handle invalid date
+    console.error("Invalid date string:", dateString);
+    return { formattedDate: "Invalid date", formattedTime: "Invalid time" };
+  }
+
   const options = { month: 'short', day: 'numeric' };
   const formattedDate = date.toLocaleDateString('en-US', options);
   const hours = date.getHours();
@@ -75,6 +82,7 @@ export const formatDateTime = (dateString) => {
   const formattedTime = `${hours % 12 || 12}:${minutes.toString().padStart(2, '0')}${hours >= 12 ? 'PM' : 'AM'}`;
   return { formattedDate, formattedTime };
 };
+
 export const formatDate= (isoString)=> {
   const date = new Date(isoString);
   const options = { year: 'numeric', month: 'long', day: 'numeric' };

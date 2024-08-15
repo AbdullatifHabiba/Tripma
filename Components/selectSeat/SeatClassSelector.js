@@ -8,7 +8,8 @@ import dot from "@/public/dot.svg";
 import check from "@/public/check_green.svg";
 import arrow from "@/public/right-arrow.svg";
 import Link from "next/link";
-
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const SelectedDiv = ({ selected }) => (
   <div className={selected ? styles.selectbus : styles.selectecon}>
@@ -34,7 +35,12 @@ const UpgradeCard = ({ handleCancelClick, handleUpgradeClick }) => (
   </div>
 );
 
-const SeatClassSelector = ({ selectedSeat, handleSeatSelection,CardInfo }) => {
+const SeatClassSelector = ({
+  selectedSeat,
+  handleSeatSelection,
+  CardInfo,
+  setIsBusinessSelected,
+}) => {
   console.log(CardInfo);
 
   const [departing, setDeparting] = useState(true);
@@ -50,30 +56,45 @@ const SeatClassSelector = ({ selectedSeat, handleSeatSelection,CardInfo }) => {
 
   if (!hydrated) return null;
 
-  const getLetterFromNumber = (number) => String.fromCharCode("A".charCodeAt(0) + number - 1);
+  const getLetterFromNumber = (number) =>
+    String.fromCharCode("A".charCodeAt(0) + number - 1);
 
   const handleDepartingClick = () => setDeparting(true);
   const handleArrivingClick = () => setDeparting(false);
   const handleUpgradeClick = () => {
     setIsBusiness(true);
+    setIsBusinessSelected(true);
     setAllowUpgrade(false);
+    toast.success('Seat upgraded to Business class! 💵');
   };
-  const handleCancelClick = () => setAllowUpgrade(false);
+  const handleCancelClick = () => {
+    setAllowUpgrade(false);
+    toast.info('Upgrade canceled.');
+  };
 
   const updateSeatSelection = () => {
+    if (!selectedSeat) {
+      toast.error('Please select a seat 👁️‍🗨️');
+      return;
+    }
     if (departing) {
       setDepartingSeatSelected(true);
       setDeparting(false);
+      toast.success('Departing seat selected!');
     } else {
       setArrivingSeatSelected(true);
+      toast.success('Arriving seat selected!');
     }
+    setIsBusinessSelected(false);
+    setIsBusiness(false);
+
     handleSeatSelection();
   };
 
   return (
     <div className={styles.container}>
+      <ToastContainer />
       <div className={styles.header}>
-        {/* <div className={styles.flightInfo}> */}
         <div className={styles.flightInfoLeft}>
           <div className={styles.location}>
             <h4>{CardInfo.src}</h4>
@@ -95,9 +116,7 @@ const SeatClassSelector = ({ selectedSeat, handleSeatSelection,CardInfo }) => {
           <span>
             {CardInfo.departing.date} | {CardInfo.departing.time}
           </span>
-          <span style={{ fontSize: "small" }}>
-            {CardInfo.departing.label}
-          </span>
+          <span style={{ fontSize: "small" }}>{CardInfo.departing.label}</span>
         </div>
 
         <div
@@ -109,15 +128,16 @@ const SeatClassSelector = ({ selectedSeat, handleSeatSelection,CardInfo }) => {
           <span>
             {CardInfo.arriving.date} | {CardInfo.arriving.time}
           </span>
-          <span style={{ fontSize: "small" }}>
-            {CardInfo.arriving.label}
-          </span>
+          <span style={{ fontSize: "small" }}>{CardInfo.arriving.label}</span>
         </div>
-        {/* </div> */}
       </div>
 
       <div className={styles.classes}>
-        <div className={styles.class}>
+        <div className={styles.class} onClick={() => {
+          setIsBusiness(false);
+          setIsBusinessSelected(false);
+          toast.info('Selected Economy class.');
+        }}>
           <Image src={ecoChair} alt="Economy class" />
           <h3>
             Economy {!isBusiness && <SelectedDiv selected={isBusiness} />}
@@ -138,7 +158,7 @@ const SeatClassSelector = ({ selectedSeat, handleSeatSelection,CardInfo }) => {
             </li>
           </ul>
         </div>
-        <div className={styles.class}>
+        <div className={styles.class} onClick={() => setAllowUpgrade(true)}>
           <Image src={businessChair} alt="Business class" />
           <h3>
             Business class {isBusiness && <SelectedDiv selected={isBusiness} />}
@@ -195,7 +215,6 @@ const SeatClassSelector = ({ selectedSeat, handleSeatSelection,CardInfo }) => {
                 selectedSeat ? styles.selected : ""
               }`}
               onClick={() => {
-                setAllowUpgrade(true);
                 handleArrivingClick();
               }}
             >
@@ -207,9 +226,9 @@ const SeatClassSelector = ({ selectedSeat, handleSeatSelection,CardInfo }) => {
                 className={`${styles.buttonPrimary} ${
                   selectedSeat ? styles.selected : ""
                 }`}
-                href={
-                  { pathname: "/ui/flights/passanger/payment" 
-                     , query: { bookingId: CardInfo.bookingId } 
+                href={{
+                  pathname: "/ui/flights/passanger/payment",
+                  query: { bookingId: CardInfo.bookingId },
                 }}
               >
                 Payment

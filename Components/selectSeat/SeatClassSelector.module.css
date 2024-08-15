@@ -84,6 +84,7 @@ background: #27273F;
   padding: 8px 16px;
   gap: 5px;
   width: 100%;
+  cursor: pointer;
 }
 
 .class {

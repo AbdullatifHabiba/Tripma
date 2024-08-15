@@ -5,7 +5,7 @@ import plan from '@/public/plan.svg';
 import styles from './selectSeat.module.css';
 import check from '@/public/correct_icon.svg';
 
-const TrainSeats = ({ setSelectedSeat, FlightSeats, isDeparting }) => {
+const TrainSeats = ({ setSelectedSeat, FlightSeats, isBusinessSelected }) => {
   const businessSeats = FlightSeats.filter(seat => seat.class === true);
   const economySeats = FlightSeats.filter(seat => seat.class === false);
 
@@ -22,16 +22,18 @@ const TrainSeats = ({ setSelectedSeat, FlightSeats, isDeparting }) => {
 
   const renderSeat = (seat, isBusiness) => {
     const isSelected = selectedSeats.includes(seat.id);
-    const seatStyle = isBusiness
+    const seatStyle = isBusiness 
       ? styles.seatBusiness
       : styles.seatEconomy;
+
+    const isUnavailable = !seat.available || (isBusiness && !isBusinessSelected);
 
     return (
       <div
         key={seat.id}
-        onClick={() => toggleSeatSelection(seat)}
-        className={`${styles.seat} ${seatStyle} ${isSelected ? styles.selected : ''}`}
+        onClick={() => !isUnavailable && toggleSeatSelection(seat)}
         title={`Seat ${seat.row}-${seat.col}`}
+        className={`${styles.seat} ${seatStyle} ${isSelected ? styles.selected : ''} ${isUnavailable ? styles.unavailable : ''}`}
       >
         {isSelected ? <Image src={check} alt='check' /> : ''}
       </div>

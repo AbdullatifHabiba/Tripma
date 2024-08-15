@@ -12,6 +12,7 @@ export async function GET(req,context) {
         departFlight: true,
         arriveFlight: true|| null,
         paymentMethod: true,
+        user: true,
       },
     });
     return NextResponse.json({ booking }, { status: 200 });

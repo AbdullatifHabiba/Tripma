@@ -9,6 +9,7 @@ import SignUp from "@/app/ui/auth/signup/page";
 import SignIn from "@/app/ui/auth/signin/page";
 import { usePathname } from "next/navigation"; // Import usePathname
 import { signIn,signOut,useSession } from "next-auth/react";
+
 import person from '@/public/user.png'
 
 export default function Navbar({ logined = false }) {
@@ -16,7 +17,7 @@ export default function Navbar({ logined = false }) {
   const [isVisible, setIsVisible] = useState(false); //popup sign up,sign in
   const [allowSign,setAllowSign]=useState(false);
   const { data: session } = useSession(); // Get the session
-  console.log(session)
+  console.log("session ,",session);
   logined = session ? true : false;
 
   const isActive = (link) => {
@@ -110,7 +111,7 @@ export default function Navbar({ logined = false }) {
             </li>
          
             <li className={style.link}>
-            <Image src={session.user.image?session.user.image:person} alt={session.user.name} width={48} height={48}
+            <Image src={session.user.image?session.user.image:person} alt={session.user.email} width={48} height={48}
              onClick={() => signOut()} />
               <span style={{fontSize:"10px"}}>
                 {session?.user.email}

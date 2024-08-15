@@ -11,6 +11,7 @@ import paypal from "@/public/paypal.svg";
 import Image from "next/image";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useSession,signIn } from "next-auth/react";
 
 export default function Payment({ flights, bookingId }) {
   const router = useRouter();
@@ -26,13 +27,17 @@ export default function Payment({ flights, bookingId }) {
   const [isFormValid, setIsFormValid] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState("credit");
   const [sameBill, setSameBill] = useState(false);
-
+  const { data: session } = useSession();
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
-
-  const handlePayment = () => {
+  const seatUpgradeCost = flights.seats.reduce((total, seat) => total + (seat.class ? 199 : 0), 0);
+  const subtotal = flights.totalPrice + seatUpgradeCost;
+  const taxes = subtotal * 0.094;
+  const totalAmount = subtotal + taxes;
+  const handlePayment = async () => {
+                 
     fetch("/api/booking/payment", {
       method: "POST",
       body: JSON.stringify({
@@ -43,6 +48,8 @@ export default function Payment({ flights, bookingId }) {
           expiryDate: formData.expirationDate,
           ccv: Number(formData.ccv),
         },
+        totalPrice: totalAmount,
+        userId: session?.user?.id
       }),
       headers: {
         "Content-Type": "application/json",
@@ -64,6 +71,32 @@ export default function Payment({ flights, bookingId }) {
       });
   };
 
+  const handleSignUp = async () => {
+    
+    console.log("formData",formData.email);
+    // Handle email/password sign-up
+    const res = await fetch('/api/auth/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ 
+        emailOrPhone: formData.email, 
+        password:formData.password }),
+    });
+    const data = await res.json();
+
+    if (res.ok) {
+      // Sign up was successful, sign the user in immediately
+      signIn("credentials", { redirect: false, email: formData.email, password:formData.password });
+      toast.success('Sign in successful!');
+    } else {
+      console.error('Sign in failed',data);
+      // toastify the returned message
+
+      toast.error(data.error);
+    }
+  };
   const validateForm = () => {
     let newErrors = {};
 
@@ -100,7 +133,11 @@ export default function Payment({ flights, bookingId }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isFormValid) {
+      if (formData.saveCard) {
+        handleSignUp();
+      }
       handlePayment();
+
     } else {
       toast.error("Form has errors. Please correct them.");
     }
@@ -248,7 +285,12 @@ export default function Payment({ flights, bookingId }) {
                     )}
                   </div>
                 </div>
-
+               <div>
+                
+               </div>
+               {!session && (
+                <>
+               
                 <h2 className={styles.sectionTitle}>Create an account</h2>
                 <p className={styles.accountInfo}>
                   Tripma is free to use as a guest, but if you create an account
@@ -295,12 +337,16 @@ export default function Payment({ flights, bookingId }) {
                   />
                   {errors.password && (
                     <span className={styles.error}>{errors.password}</span>
+
                   )}
+                  
                 </div>
 
                 <div className={styles.inputGroup}>
                   <p className={styles.orDivider}>or</p>
-                  <button type="button" className={styles.socialButton}>
+                  <button type="button" className={styles.socialButton}
+                  onClick={() => signIn("google")}
+                  >
                     <Image
                       src={google}
                       alt="Google"
@@ -310,7 +356,9 @@ export default function Payment({ flights, bookingId }) {
                     />{" "}
                     Sign up with Google
                   </button>
-                  <button type="button" className={styles.socialButton}>
+                  <button type="button" className={styles.socialButton}
+                  onClick={() => signIn("apple")} 
+                  >
                     <Image
                       src={apple}
                       alt="Apple"
@@ -320,7 +368,9 @@ export default function Payment({ flights, bookingId }) {
                     />{" "}
                     Continue with Apple
                   </button>
-                  <button type="button" className={styles.socialButton}>
+                  <button type="button" className={styles.socialButton}
+                  onClick={() => signIn("facebook")}
+                  >
                     <Image
                       src={facebook}
                       alt="Facebook"
@@ -330,7 +380,10 @@ export default function Payment({ flights, bookingId }) {
                     />{" "}
                     Continue with Facebook
                   </button>
+                
                 </div>
+                </>
+                  )}
                 <h2 className={styles.sectionTitle}>Cancellation policy</h2>
                 <p className={styles.policyInfo}>
                   This flight has a flexible cancellation policy. If you cancel
@@ -365,15 +418,14 @@ export default function Payment({ flights, bookingId }) {
             </div>
           )}
 
-          {/* Add payment options UI for other methods here */}
         </div>
 
         <div className={styles.sideSection}>
           {/* Flight Summary */}
           <div className={styles.flightSummary}>
             <FlightSelectCard
-              departingFlight={flights.booking.departFlight}
-              returningFlight={flights.booking.arriveFlight}
+              departingFlight={flights.departFlight}
+              returningFlight={flights.arriveFlight}
               pass={false}
             />
             <button
